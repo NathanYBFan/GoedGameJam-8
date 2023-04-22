@@ -1,19 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using TMPro;
 
 public class MachinePlaceMenu : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private TextMeshProUGUI menuControlButton;
+    [SerializeField] private float menuClosed; 
+    [SerializeField] MapManager mapManager;
     private Vector3 openedPos;
     private bool menuIsOpened = true;
-    [SerializeField] private float menuClosed; 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         openedPos = menu.transform.position;
     }
 
@@ -34,5 +33,14 @@ public class MachinePlaceMenu : MonoBehaviour
         menuIsOpened = false;
         menu.transform.position = new Vector3(openedPos.x - menuClosed, openedPos.y, openedPos.z);
         menuControlButton.text = ">";
+    }
+
+    public void SelectItemToPlace(Tile building) {
+        if (building == null) {
+            Debug.Log("SelectItemToPlace is null");
+            return;
+        }
+        
+        mapManager.SetSelectedTile(building);
     }
 }

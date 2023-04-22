@@ -4,8 +4,9 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
+    
     [SerializeField] private Tilemap map;
-
+    [SerializeField] private Tile selectedTile;
     [SerializeField] private List<TileData> tileDatas;
     private Dictionary<TileBase, TileData> dataFromTiles;
 
@@ -33,4 +34,7 @@ public class MapManager : MonoBehaviour
             Debug.Log("At position " + gridPosition + " there is a " + clickedTile + " which canMine is set to " + canMine);
         }
     }
+
+    public Tile GetSelectedTile() { return selectedTile; }
+    public void SetSelectedTile(Tile newTile) { selectedTile = newTile; }
 }
