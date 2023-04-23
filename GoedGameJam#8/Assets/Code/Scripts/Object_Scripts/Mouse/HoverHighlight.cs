@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-public class LockonMouse : MonoBehaviour
+public class HoverHighlight : MonoBehaviour
 {
     [SerializeField] private Grid grid;
     [SerializeField] private Tilemap interactiveMap = null;
     [SerializeField] private Tile hoverTile = null;
+    [SerializeField] private Tile defaultTile = null;
     [SerializeField] private Camera cam;
 
     private Vector3Int previousMousePos = new Vector3Int();
@@ -23,8 +24,16 @@ public class LockonMouse : MonoBehaviour
         }
     }
 
-    Vector3Int GetMousePosition () {
+    private Vector3Int GetMousePosition() {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return grid.WorldToCell(mouseWorldPos);
     }
+    
+    public void SetHoverDisplay(Tile selectedTile) {
+        if (selectedTile == null)
+            hoverTile = defaultTile;
+        else
+            hoverTile = selectedTile;
+        interactiveMap.SetTile(GetMousePosition(), hoverTile);
+    } 
 }

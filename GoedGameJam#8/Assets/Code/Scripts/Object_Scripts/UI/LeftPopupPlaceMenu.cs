@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using TMPro;
 
-public class MachinePlaceMenu : MonoBehaviour
+public class LeftPopupPlaceMenu : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private TextMeshProUGUI menuControlButton;

@@ -4,10 +4,9 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
-    
-    [SerializeField] private Tilemap map;
     [SerializeField] private Tile selectedTile;
     [SerializeField] private List<TileData> tileDatas;
+    [SerializeField] HoverHighlight hoverHighlight;
     private Dictionary<TileBase, TileData> dataFromTiles;
 
     private void Awake() {
@@ -20,21 +19,11 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int gridPosition = map.WorldToCell(mousePosition);
-            
-            TileBase clickedTile = map.GetTile(gridPosition);
-            bool canMine;
-            if (clickedTile != null)
-                canMine = dataFromTiles[clickedTile].canMine;
-            else
-                canMine = false;
-            Debug.Log("At position " + gridPosition + " there is a " + clickedTile + " which canMine is set to " + canMine);
-        }
+    public Tile GetSelectedTile() { return selectedTile; }
+    public void SetSelectedTile(Tile newTile) {
+        selectedTile = newTile;
+        hoverHighlight.SetHoverDisplay(newTile);
     }
 
-    public Tile GetSelectedTile() { return selectedTile; }
-    public void SetSelectedTile(Tile newTile) { selectedTile = newTile; }
+    public TileData GetDictionary(TileBase tilebase) { return dataFromTiles[tilebase]; }
 }
