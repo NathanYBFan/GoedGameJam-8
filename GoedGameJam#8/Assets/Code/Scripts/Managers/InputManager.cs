@@ -33,9 +33,11 @@ public class InputManager : MonoBehaviour
                 switch(mapManager.GetTileType(mapManager.GetSelectedTile())) {
                     case Enums.TileTypes.machines:
                         mapManager.GetMachineMap().SetTile(gridPosition, mapManager.GetSelectedTile());
+                        FixSurroundingTiles(gridPosition);
                         break;
                     case Enums.TileTypes.environment:
                         mapManager.GetGameMap().SetTile(gridPosition, mapManager.GetSelectedTile());
+                        FixSurroundingTiles(gridPosition);
                         break;
                     default:
                         Debug.Log("This item's data does not exist");
@@ -70,5 +72,26 @@ public class InputManager : MonoBehaviour
         List<RaycastResult> raysastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raysastResults);
         return raysastResults;
+    }
+
+    private void FixSurroundingTiles(Vector3Int gridPosition) {
+        // Place tile
+        mapManager.GetGameMap().SetTile(gridPosition, mapManager.GetSelectedTile());
+        
+        // Check up
+
+        // Check up-right
+
+        // Check right
+
+        // Check down-right
+
+        // Check down
+
+        // Check down-left
+
+        // Check left
+
+        // Check up-left
     }
 }
