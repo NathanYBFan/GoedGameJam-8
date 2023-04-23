@@ -6,6 +6,6 @@ using UnityEngine;
 public class Resource : ScriptableObject
 {    
     public Sprite icon;
-    public string name = "";
+    new public string name = "";
     public int amount;
 }

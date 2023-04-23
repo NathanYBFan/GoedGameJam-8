@@ -35,7 +35,7 @@ public class LeftPopupPlaceMenu : MonoBehaviour
         menuControlButton.text = ">";
     }
 
-    public void SelectItemToPlace(Tile building) {
+    public void SelectItemToPlace(RuleTile building) {
         mapManager.SetSelectedTile(building);
     }
     public void SelectItemToPlace() {

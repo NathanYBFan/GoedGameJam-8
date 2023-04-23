@@ -4,8 +4,8 @@ public class HoverHighlight : MonoBehaviour
 {
     [SerializeField] private MapManager mapManager;
     [SerializeField] private Tilemap interactiveMap = null;
-    [SerializeField] private Tile hoverTile = null;
-    [SerializeField] private Tile defaultTile = null;
+    [SerializeField] private RuleTile hoverTile = null;
+    [SerializeField] private RuleTile defaultTile = null;
     [SerializeField] private Camera cam;
     private Vector3Int previousMousePos = new Vector3Int();
 
@@ -24,7 +24,7 @@ public class HoverHighlight : MonoBehaviour
         return mapManager.GetGameMap().WorldToCell(mouseWorldPos);
     }
     
-    public void SetHoverDisplay(Tile selectedTile) {
+    public void SetHoverDisplay(RuleTile selectedTile) {
         if (selectedTile == null)
             hoverTile = defaultTile;
         else

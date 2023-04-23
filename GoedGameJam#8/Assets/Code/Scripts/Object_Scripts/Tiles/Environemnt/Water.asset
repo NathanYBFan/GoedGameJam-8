@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: WaterRuleSheet
+  m_Script: {fileID: 11500000, guid: 9274d50336c59a94fa9d5fe82d975391, type: 3}
+  m_Name: Water
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 0}
-  m_DefaultGameObject: {fileID: 0}
-  m_DefaultColliderType: 1
-  m_TilingRules: []
+  tiles:
+  - {fileID: 11400000, guid: 187b960873e5411448f0975f4d1c7eb7, type: 2}
+  canMine: 1
+  hasMachineOntop: 0
+  isLand: 0
+  tileType: 1

@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9274d50336c59a94fa9d5fe82d975391, type: 3}
-  m_Name: Combinor
+  m_Name: Grass
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 11400000, guid: 1a3f8004be6b29143ae9c9445204f675, type: 2}
-  canMine: 0
+  - {fileID: 11400000, guid: 487b395f1f6edcb4b9524afdd2fd25cb, type: 2}
+  canMine: 1
+  hasMachineOntop: 0
+  isLand: 1
+  tileType: 1

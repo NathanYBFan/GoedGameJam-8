@@ -75,10 +75,8 @@ public class InputManager : MonoBehaviour
     }
 
     private void FixSurroundingTiles(Vector3Int gridPosition) {
-        // Place tile
-        mapManager.GetGameMap().SetTile(gridPosition, mapManager.GetSelectedTile());
-        
         // Check up
+        
 
         // Check up-right
 
