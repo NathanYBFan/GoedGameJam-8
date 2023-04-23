@@ -6,7 +6,6 @@ using UnityEngine.Tilemaps;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private Tilemap gameMap;
     [SerializeField] private MapManager mapManager;
     [SerializeField] private bool mouseOverUI;
     private int UILayer;
@@ -22,18 +21,30 @@ public class InputManager : MonoBehaviour
         else
             mouseOverUI = false;
 
+        // Left click, place current selected tile 
         if (Input.GetMouseButton(0) && !mouseOverUI) {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int gridPosition = gameMap.WorldToCell(mousePosition);
+            Vector3Int gridPosition = mapManager.GetGameMap().WorldToCell(mousePosition);
             
-            TileBase clickedTile = gameMap.GetTile(gridPosition);
+            TileBase clickedTile = mapManager.GetGameMap().GetTile(gridPosition);
             if (mapManager.GetSelectedTile() == null)
                 return;
-            else
-                gameMap.SetTile(gridPosition, mapManager.GetSelectedTile());
+            else {
+                switch(mapManager.GetTileType(mapManager.GetSelectedTile())) {
+                    case Enums.TileTypes.machines:
+                        mapManager.GetMachineMap().SetTile(gridPosition, mapManager.GetSelectedTile());
+                        break;
+                    case Enums.TileTypes.environment:
+                        mapManager.GetGameMap().SetTile(gridPosition, mapManager.GetSelectedTile());
+                        break;
+                    default:
+                        Debug.Log("This item's data does not exist");
+                        break;
+                }
+            }
         }
-
-        if (Input.GetMouseButtonDown(1)) { mapManager.SetSelectedTile(null); }
+        // Right click, remove current selected tile
+        else if (Input.GetMouseButtonDown(1)) { mapManager.SetSelectedTile(null); }
     }
 
     public bool IsPointerOverUIElement()

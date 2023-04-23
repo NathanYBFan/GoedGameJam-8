@@ -2,17 +2,12 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 public class HoverHighlight : MonoBehaviour
 {
-    [SerializeField] private Grid grid;
+    [SerializeField] private MapManager mapManager;
     [SerializeField] private Tilemap interactiveMap = null;
     [SerializeField] private Tile hoverTile = null;
     [SerializeField] private Tile defaultTile = null;
     [SerializeField] private Camera cam;
-
     private Vector3Int previousMousePos = new Vector3Int();
-
-    void Awake() {
-        grid = gameObject.GetComponent<Grid>();
-    }
 
     void Update() {
         Vector3Int mousePos = GetMousePosition();
@@ -26,7 +21,7 @@ public class HoverHighlight : MonoBehaviour
 
     private Vector3Int GetMousePosition() {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return grid.WorldToCell(mouseWorldPos);
+        return mapManager.GetGameMap().WorldToCell(mouseWorldPos);
     }
     
     public void SetHoverDisplay(Tile selectedTile) {

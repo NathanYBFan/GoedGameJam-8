@@ -38,4 +38,7 @@ public class LeftPopupPlaceMenu : MonoBehaviour
     public void SelectItemToPlace(Tile building) {
         mapManager.SetSelectedTile(building);
     }
+    public void SelectItemToPlace() {
+        mapManager.SetSelectedTile(null);
+    }
 }
