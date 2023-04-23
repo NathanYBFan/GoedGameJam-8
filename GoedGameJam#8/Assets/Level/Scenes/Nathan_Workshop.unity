@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 89296965}
   m_Layer: 5
   m_Name: BackgroundImage
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45583,7 +45583,7 @@ GameObject:
   - component: {fileID: 341377205}
   m_Layer: 5
   m_Name: CloseMenuButton
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46155,7 +46155,7 @@ GameObject:
   - component: {fileID: 534158579}
   m_Layer: 5
   m_Name: ConveyorBelt
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46230,7 +46230,7 @@ MonoBehaviour:
         m_MethodName: SelectItemToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -46424,7 +46424,7 @@ GameObject:
   - component: {fileID: 695513704}
   m_Layer: 5
   m_Name: Dirt
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46828,7 +46828,7 @@ GameObject:
   - component: {fileID: 777605311}
   m_Layer: 5
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46903,7 +46903,7 @@ MonoBehaviour:
         m_MethodName: SelectItemToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -46962,7 +46962,7 @@ GameObject:
   - component: {fileID: 923497127}
   m_Layer: 5
   m_Name: Combinors
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47037,7 +47037,7 @@ MonoBehaviour:
         m_MethodName: SelectItemToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -47094,7 +47094,7 @@ GameObject:
   - component: {fileID: 958370628}
   m_Layer: 5
   m_Name: EnvironmentTilesMenu
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47150,7 +47150,7 @@ GameObject:
   - component: {fileID: 983524757}
   m_Layer: 5
   m_Name: Extractor
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47225,7 +47225,7 @@ MonoBehaviour:
         m_MethodName: SelectItemToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -47284,7 +47284,7 @@ GameObject:
   - component: {fileID: 1132999588}
   m_Layer: 5
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47416,7 +47416,7 @@ GameObject:
   - component: {fileID: 1151389321}
   m_Layer: 5
   m_Name: MachineTilesMenu
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48096,7 +48096,7 @@ GameObject:
   - component: {fileID: 1580143940}
   m_Layer: 5
   m_Name: CloseMenuButton
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48449,7 +48449,7 @@ GameObject:
   - component: {fileID: 1677549908}
   m_Layer: 5
   m_Name: ConveyorBeltsButton
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48524,7 +48524,7 @@ MonoBehaviour:
         m_MethodName: SelectItemToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -48583,7 +48583,7 @@ GameObject:
   - component: {fileID: 1730752335}
   m_Layer: 5
   m_Name: BackgroundImage
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48725,6 +48725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMap: {fileID: 286591951}
   mapManager: {fileID: 1913127749}
+  mouseOverUI: 0
 --- !u!1 &1810851714
 GameObject:
   m_ObjectHideFlags: 0
@@ -48739,7 +48740,7 @@ GameObject:
   - component: {fileID: 1810851716}
   m_Layer: 5
   m_Name: Uploader
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48814,7 +48815,7 @@ MonoBehaviour:
         m_MethodName: SelectItemToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -48873,7 +48874,7 @@ GameObject:
   - component: {fileID: 1834575384}
   m_Layer: 5
   m_Name: AnimalBreeder
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48948,7 +48949,7 @@ MonoBehaviour:
         m_MethodName: SelectItemToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -49007,7 +49008,7 @@ GameObject:
   - component: {fileID: 1882371468}
   m_Layer: 5
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49195,7 +49196,7 @@ GameObject:
   - component: {fileID: 1913243874}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49296,7 +49297,7 @@ GameObject:
   - component: {fileID: 1931757164}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49434,7 +49435,7 @@ GameObject:
   - component: {fileID: 1972421942}
   m_Layer: 5
   m_Name: Combuster
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49509,7 +49510,7 @@ MonoBehaviour:
         m_MethodName: SelectItemToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -49720,7 +49721,7 @@ GameObject:
   - component: {fileID: 2038824226}
   m_Layer: 5
   m_Name: Extractor
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49795,7 +49796,7 @@ MonoBehaviour:
         m_MethodName: SelectItemToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

@@ -36,11 +36,6 @@ public class LeftPopupPlaceMenu : MonoBehaviour
     }
 
     public void SelectItemToPlace(Tile building) {
-        if (building == null) {
-            Debug.Log("SelectItemToPlace is null");
-            return;
-        }
-        
         mapManager.SetSelectedTile(building);
     }
 }
