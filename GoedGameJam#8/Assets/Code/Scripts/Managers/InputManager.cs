@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -76,7 +75,7 @@ public class InputManager : MonoBehaviour
 
     private void FixSurroundingTiles(Vector3Int gridPosition) {
         // Check up
-        
+
 
         // Check up-right
 

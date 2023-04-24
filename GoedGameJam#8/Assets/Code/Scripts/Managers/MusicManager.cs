@@ -23,9 +23,9 @@ public class MusicManager : MonoBehaviour
 
     public void SwapMusic(AudioClip musicToPlay)
     {
-        musicPlayer.Stop();            
+        if (musicPlayer.clip != null)
+            musicPlayer.Stop();
         musicPlayer.clip = musicToPlay;            
         musicPlayer.Play();
-       
     }
 }

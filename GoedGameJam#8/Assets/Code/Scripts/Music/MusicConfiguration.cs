@@ -8,7 +8,6 @@ public class MusicConfiguration : MonoBehaviour
     public MusicManager musicPlayer;
     void Awake()
     {
-        musicPlayer = GameObject.Find("MusicManager").GetComponent<MusicManager>();
         musicPlayer.SwapMusic(musicToPlay);
     }
 }

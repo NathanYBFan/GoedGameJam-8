@@ -1614,6 +1614,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 4926968996095940997, guid: 31d09748b01a5594fbac1f309902311a, type: 3}
+      propertyPath: musicPlayer
+      value: 
+      objectReference: {fileID: 1554502098}
+    - target: {fileID: 4926968996095940997, guid: 31d09748b01a5594fbac1f309902311a, type: 3}
+      propertyPath: musicToPlay
+      value: 
+      objectReference: {fileID: 8300000, guid: 95a28b773e7b84a448163f4bb2b54d8f, type: 3}
     - target: {fileID: 4926968996095941050, guid: 31d09748b01a5594fbac1f309902311a, type: 3}
       propertyPath: m_RootOrder
       value: 4
