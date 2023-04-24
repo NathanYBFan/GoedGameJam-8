@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MachineSpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 9aa4b0ebb0206164280b5b199f861ec7, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -2132297206, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 1774449259, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 1444536019, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 552524429, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 1699423110, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 346348174, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -328538882, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 1491707332, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 1727976372, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -291119481, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -626125556, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -684014143, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 591786349, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -293966929, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -435190874, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 1731745832, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1596578696, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1702320336, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 595334770, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 405133065, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 544601590, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 900669504, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1104203612, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1705810742, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1324965869, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -494628700, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1240128999, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -106031165, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -327034988, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 2133569847, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1696997091, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1503028228, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1324851909, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1050507246, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 311103442, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -258761515, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -179349094, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -185594494, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1651695807, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1489656384, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 1032444958, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -994433809, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 1542596950, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -1182720359, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 1507561677, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 771959178, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: -41358872, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  - {fileID: 338121130, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Conveyor_Spritesheet_19
+  - Conveyor_Spritesheet_18
+  - Conveyor_Spritesheet_17
+  - Conveyor_Spritesheet_16
+  - Conveyor_Spritesheet_15
+  - Conveyor_Spritesheet_14
+  - Conveyor_Spritesheet_13
+  - Conveyor_Spritesheet_12
+  - Conveyor_Spritesheet_11
+  - Conveyor_Spritesheet_10
+  - Conveyor_Spritesheet_40
+  - Conveyor_Spritesheet_41
+  - Conveyor_Spritesheet_42
+  - Conveyor_Spritesheet_22
+  - Conveyor_Spritesheet_4
+  - Conveyor_Spritesheet_43
+  - Conveyor_Spritesheet_23
+  - Conveyor_Spritesheet_5
+  - Conveyor_Spritesheet_44
+  - Conveyor_Spritesheet_20
+  - Conveyor_Spritesheet_6
+  - Conveyor_Spritesheet_45
+  - Conveyor_Spritesheet_21
+  - Conveyor_Spritesheet_35
+  - Conveyor_Spritesheet_7
+  - Conveyor_Spritesheet_46
+  - Conveyor_Spritesheet_26
+  - Conveyor_Spritesheet_34
+  - Conveyor_Spritesheet_0
+  - Conveyor_Spritesheet_47
+  - Conveyor_Spritesheet_27
+  - Conveyor_Spritesheet_37
+  - Conveyor_Spritesheet_1
+  - Conveyor_Spritesheet_24
+  - Conveyor_Spritesheet_36
+  - Conveyor_Spritesheet_2
+  - Conveyor_Spritesheet_25
+  - Conveyor_Spritesheet_31
+  - Conveyor_Spritesheet_3
+  - Conveyor_Spritesheet_30
+  - Conveyor_Spritesheet_33
+  - Conveyor_Spritesheet_28
+  - Conveyor_Spritesheet_32
+  - Conveyor_Spritesheet_29
+  - Conveyor_Spritesheet_8
+  - Conveyor_Spritesheet_9
+  - Conveyor_Spritesheet_39
+  - Conveyor_Spritesheet_38
+  m_RenderDataMap: {}
+  m_Tag: MachineSpriteAtlas
+  m_IsVariant: 0

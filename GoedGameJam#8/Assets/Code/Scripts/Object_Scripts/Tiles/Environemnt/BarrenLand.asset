@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9274d50336c59a94fa9d5fe82d975391, type: 3}
   m_Name: BarrenLand
   m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 11400000, guid: b6e0f9ceba3f2c04e9d1ef51d9fb03b2, type: 2}
+  tiles: {fileID: 11400000, guid: b6e0f9ceba3f2c04e9d1ef51d9fb03b2, type: 2}
   canMine: 1
   hasMachineOntop: 0
   isLand: 1

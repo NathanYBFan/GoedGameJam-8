@@ -1,0 +1,342 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EnvironmentSpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 4f58204f816bf6149a5f5794321318ee, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1b2a5020238ad6341aff29bf0b591031, type: 3}
+  - {fileID: 21300000, guid: dadcdf907edbd56459e206c95bb2684e, type: 3}
+  - {fileID: -39364788, guid: acb7fcb09e261d7419d5ed1372b028d3, type: 3}
+  - {fileID: -444235115, guid: acb7fcb09e261d7419d5ed1372b028d3, type: 3}
+  - {fileID: 1942628103, guid: acb7fcb09e261d7419d5ed1372b028d3, type: 3}
+  - {fileID: -891995669, guid: acb7fcb09e261d7419d5ed1372b028d3, type: 3}
+  - {fileID: -879216105, guid: acb7fcb09e261d7419d5ed1372b028d3, type: 3}
+  - {fileID: -505729374, guid: acb7fcb09e261d7419d5ed1372b028d3, type: 3}
+  - {fileID: 1608819102, guid: acb7fcb09e261d7419d5ed1372b028d3, type: 3}
+  - {fileID: -1013517819, guid: 5c14dcc0fed10da40a16d41bf8dba79f, type: 3}
+  - {fileID: 775737552, guid: 5c14dcc0fed10da40a16d41bf8dba79f, type: 3}
+  - {fileID: 1838762522, guid: 5c14dcc0fed10da40a16d41bf8dba79f, type: 3}
+  - {fileID: -1143083186, guid: 5c14dcc0fed10da40a16d41bf8dba79f, type: 3}
+  - {fileID: 1190355568, guid: 5c14dcc0fed10da40a16d41bf8dba79f, type: 3}
+  - {fileID: 1311158517, guid: 5c14dcc0fed10da40a16d41bf8dba79f, type: 3}
+  - {fileID: 958713581, guid: 5c14dcc0fed10da40a16d41bf8dba79f, type: 3}
+  - {fileID: 21300000, guid: b4a77621c132a154e85a73a308c547fc, type: 3}
+  - {fileID: 21300000, guid: 43a86341692d2394a9942a6f08483ae1, type: 3}
+  - {fileID: -823281891, guid: f3f4a9413c343e645b6a48cc6d9d039f, type: 3}
+  - {fileID: 1494870958, guid: f3f4a9413c343e645b6a48cc6d9d039f, type: 3}
+  - {fileID: 1146623705, guid: f3f4a9413c343e645b6a48cc6d9d039f, type: 3}
+  - {fileID: 1151715612, guid: f3f4a9413c343e645b6a48cc6d9d039f, type: 3}
+  - {fileID: -482836467, guid: f3f4a9413c343e645b6a48cc6d9d039f, type: 3}
+  - {fileID: -1965136839, guid: f3f4a9413c343e645b6a48cc6d9d039f, type: 3}
+  - {fileID: 554808035, guid: f3f4a9413c343e645b6a48cc6d9d039f, type: 3}
+  - {fileID: 21300000, guid: b3eb506149193284e862fa4699c14910, type: 3}
+  - {fileID: 1438743402, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
+  - {fileID: 2012234478, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
+  - {fileID: -387070931, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
+  - {fileID: 569439192, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
+  - {fileID: -1671230861, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
+  - {fileID: 874029707, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
+  - {fileID: -1921725953, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
+  - {fileID: 2002650079, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
+  - {fileID: -676385390, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
+  - {fileID: 479942252, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
+  - {fileID: -1454093185, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
+  - {fileID: 594196836, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
+  - {fileID: -1957450263, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
+  - {fileID: 1374075864, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
+  - {fileID: 21300000, guid: 8625f7e231e301d4a8242d1744ee37cf, type: 3}
+  - {fileID: 21300000, guid: 8d35d4a37ffd29249854f7244e4d22f4, type: 3}
+  - {fileID: 1891871958, guid: b622e6a371d2b104b8fd6dde0922ab48, type: 3}
+  - {fileID: -1176284929, guid: b622e6a371d2b104b8fd6dde0922ab48, type: 3}
+  - {fileID: 636630973, guid: b622e6a371d2b104b8fd6dde0922ab48, type: 3}
+  - {fileID: 1620800678, guid: b622e6a371d2b104b8fd6dde0922ab48, type: 3}
+  - {fileID: -709179454, guid: b622e6a371d2b104b8fd6dde0922ab48, type: 3}
+  - {fileID: -1096241101, guid: b622e6a371d2b104b8fd6dde0922ab48, type: 3}
+  - {fileID: 1844844207, guid: b622e6a371d2b104b8fd6dde0922ab48, type: 3}
+  - {fileID: 21300000, guid: c485310482d578d4280129c0b37f1bd1, type: 3}
+  - {fileID: 216699804, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
+  - {fileID: -603952274, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
+  - {fileID: -99633395, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
+  - {fileID: -1791592533, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
+  - {fileID: -1413833132, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
+  - {fileID: 646545743, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
+  - {fileID: 484889075, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
+  - {fileID: 21300000, guid: 019ea0748b36b484894d3eabcbb1292d, type: 3}
+  - {fileID: 21300000, guid: 4ebbd4459a92ab54295403c8fa635612, type: 3}
+  - {fileID: 21300000, guid: 586c23b55af4aaa40986451c639c7704, type: 3}
+  - {fileID: 21300000, guid: 008cc306871a5a2419275e7507bf71b4, type: 3}
+  - {fileID: 21300000, guid: 8e3e3f064fa636441b951d6f45348511, type: 3}
+  - {fileID: 21300000, guid: aceeff06fb9c89c4493e562435dcfa11, type: 3}
+  - {fileID: 1969836820, guid: 05b833769a3fc9f46ae1c395e8ed9716, type: 3}
+  - {fileID: 38097726, guid: 05b833769a3fc9f46ae1c395e8ed9716, type: 3}
+  - {fileID: 1457256348, guid: 05b833769a3fc9f46ae1c395e8ed9716, type: 3}
+  - {fileID: -492885587, guid: 05b833769a3fc9f46ae1c395e8ed9716, type: 3}
+  - {fileID: -2123462770, guid: 05b833769a3fc9f46ae1c395e8ed9716, type: 3}
+  - {fileID: -1866895480, guid: 05b833769a3fc9f46ae1c395e8ed9716, type: 3}
+  - {fileID: 322662025, guid: 05b833769a3fc9f46ae1c395e8ed9716, type: 3}
+  - {fileID: -1033285312, guid: b6c970d677478c8478cb1942cae5e96c, type: 3}
+  - {fileID: -671971390, guid: b6c970d677478c8478cb1942cae5e96c, type: 3}
+  - {fileID: -1157132491, guid: b6c970d677478c8478cb1942cae5e96c, type: 3}
+  - {fileID: -68621759, guid: b6c970d677478c8478cb1942cae5e96c, type: 3}
+  - {fileID: 1544668207, guid: b6c970d677478c8478cb1942cae5e96c, type: 3}
+  - {fileID: -538407588, guid: b6c970d677478c8478cb1942cae5e96c, type: 3}
+  - {fileID: -10696088, guid: b6c970d677478c8478cb1942cae5e96c, type: 3}
+  - {fileID: -1735718671, guid: 987411871291a444da2e11e6b5de8f28, type: 3}
+  - {fileID: 1675872686, guid: 987411871291a444da2e11e6b5de8f28, type: 3}
+  - {fileID: -1336844036, guid: 987411871291a444da2e11e6b5de8f28, type: 3}
+  - {fileID: -1313156839, guid: 987411871291a444da2e11e6b5de8f28, type: 3}
+  - {fileID: 287533809, guid: 987411871291a444da2e11e6b5de8f28, type: 3}
+  - {fileID: 1808136322, guid: 987411871291a444da2e11e6b5de8f28, type: 3}
+  - {fileID: 1002242402, guid: 987411871291a444da2e11e6b5de8f28, type: 3}
+  - {fileID: 21300000, guid: dd3373c7b877da64c9eff52236185b15, type: 3}
+  - {fileID: 21300000, guid: 71ef6d082a2f8e84297615fe6b1fbe19, type: 3}
+  - {fileID: 21300000, guid: 36d8a048f2bb34347bef94f3e8bc6f53, type: 3}
+  - {fileID: 21300000, guid: c53dd54883a90eb4e9e4c3bd78af903c, type: 3}
+  - {fileID: 21300000, guid: 3b69c668e3fcfe8448101e7f9ab56494, type: 3}
+  - {fileID: -383155116, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
+  - {fileID: 2006773334, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
+  - {fileID: -1253443393, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
+  - {fileID: 276725093, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
+  - {fileID: -99604607, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
+  - {fileID: -1216859258, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
+  - {fileID: 430866000, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
+  - {fileID: 21300000, guid: 3f66c7d9eeb60c94b8878ae9e8597524, type: 3}
+  - {fileID: 21300000, guid: c7f4242a2e230cb40bbc86e7bb4aacc1, type: 3}
+  - {fileID: 21300000, guid: e002693a47fd8e04f819a6ba7972916f, type: 3}
+  - {fileID: -1904708115, guid: 94b6a68ae7d2d974da7dadb7d4fbbdb5, type: 3}
+  - {fileID: 1020728488, guid: 94b6a68ae7d2d974da7dadb7d4fbbdb5, type: 3}
+  - {fileID: -1822659745, guid: 94b6a68ae7d2d974da7dadb7d4fbbdb5, type: 3}
+  - {fileID: -565294177, guid: 94b6a68ae7d2d974da7dadb7d4fbbdb5, type: 3}
+  - {fileID: 1540959905, guid: 94b6a68ae7d2d974da7dadb7d4fbbdb5, type: 3}
+  - {fileID: -1737331638, guid: 94b6a68ae7d2d974da7dadb7d4fbbdb5, type: 3}
+  - {fileID: 147489429, guid: 94b6a68ae7d2d974da7dadb7d4fbbdb5, type: 3}
+  - {fileID: 21300000, guid: c2054cea47352ec42a76d3b1c0a1ee3b, type: 3}
+  - {fileID: 243967426, guid: 2d5a166bf87e0cf41a77ba8444959943, type: 3}
+  - {fileID: 1805720583, guid: 2d5a166bf87e0cf41a77ba8444959943, type: 3}
+  - {fileID: -774923266, guid: 2d5a166bf87e0cf41a77ba8444959943, type: 3}
+  - {fileID: -1480284005, guid: 2d5a166bf87e0cf41a77ba8444959943, type: 3}
+  - {fileID: -36847704, guid: 2d5a166bf87e0cf41a77ba8444959943, type: 3}
+  - {fileID: -1297241863, guid: 2d5a166bf87e0cf41a77ba8444959943, type: 3}
+  - {fileID: -253072472, guid: 2d5a166bf87e0cf41a77ba8444959943, type: 3}
+  - {fileID: 21300000, guid: c84f2c8b951d78e4683a88b364a57d02, type: 3}
+  - {fileID: 21300000, guid: 2d1116bbdb0f59341998cdaaeac78b7d, type: 3}
+  - {fileID: 21300000, guid: 85008cdbb92e3a04abb6728cb794b69c, type: 3}
+  - {fileID: 21300000, guid: ea59de3c0cf92a041ae46fdd3b79c436, type: 3}
+  - {fileID: 21300000, guid: c4ca9b4c71270eb418cd925579a8b269, type: 3}
+  - {fileID: 21300000, guid: bfc2289c5044dcd4dab05016250d3222, type: 3}
+  - {fileID: 21300000, guid: 6e731d9cecfefff43a6efd4aff541d01, type: 3}
+  - {fileID: 21300000, guid: f51a933d3d9ff9d49a90e51e7daf541d, type: 3}
+  - {fileID: 21300000, guid: 34ccc06d09c97c44ebe2dcc77883d070, type: 3}
+  - {fileID: 21300000, guid: ceb1ecdd30ad50a4ba5be72aa88fb7cc, type: 3}
+  - {fileID: 1419773433, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
+  - {fileID: -1403342682, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
+  - {fileID: 617019478, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
+  - {fileID: 1660506369, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
+  - {fileID: 29828165, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
+  - {fileID: -2015448315, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
+  - {fileID: 1010432702, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
+  - {fileID: 21300000, guid: fba6ec0e79b9baf409b7645096d08ea4, type: 3}
+  - {fileID: -1138228417, guid: 1f73704ea0c39fb458232cfbab8afe80, type: 3}
+  - {fileID: -67310702, guid: 1f73704ea0c39fb458232cfbab8afe80, type: 3}
+  - {fileID: -1974013150, guid: 1f73704ea0c39fb458232cfbab8afe80, type: 3}
+  - {fileID: -2132298198, guid: 1f73704ea0c39fb458232cfbab8afe80, type: 3}
+  - {fileID: -196094788, guid: 1f73704ea0c39fb458232cfbab8afe80, type: 3}
+  - {fileID: 413688805, guid: 1f73704ea0c39fb458232cfbab8afe80, type: 3}
+  - {fileID: -1175276426, guid: 1f73704ea0c39fb458232cfbab8afe80, type: 3}
+  - {fileID: 21300000, guid: 50e0e21fb6bf0f445a769d994e7507ab, type: 3}
+  - {fileID: 21300000, guid: 8fd5bfcf62e17b4429cdb5627cb421a4, type: 3}
+  - {fileID: 21300000, guid: 790e4edfbc5e2f04f912c43b1edad623, type: 3}
+  - {fileID: 21300000, guid: 5dfbb4ff6009689409b3bd27252279bd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - WaterTile_Base_SpriteSheet
+  - Flowers_SpriteSheet
+  - WaterTile_Bottom_SpriteSheet_6
+  - WaterTile_Bottom_SpriteSheet_4
+  - WaterTile_Bottom_SpriteSheet_5
+  - WaterTile_Bottom_SpriteSheet_2
+  - WaterTile_Bottom_SpriteSheet_3
+  - WaterTile_Bottom_SpriteSheet_0
+  - WaterTile_Bottom_SpriteSheet_1
+  - WaterTile_EdgeTopt_SpriteSheet_6
+  - WaterTile_EdgeTopt_SpriteSheet_5
+  - WaterTile_EdgeTopt_SpriteSheet_4
+  - WaterTile_EdgeTopt_SpriteSheet_3
+  - WaterTile_EdgeTopt_SpriteSheet_2
+  - WaterTile_EdgeTopt_SpriteSheet_1
+  - WaterTile_EdgeTopt_SpriteSheet_0
+  - SoilTile_Base_SpriteSheet
+  - GrassTile_TopLeft_SpriteSheet
+  - WaterTile_BottomRight_SpriteSheet_4
+  - WaterTile_BottomRight_SpriteSheet_5
+  - WaterTile_BottomRight_SpriteSheet_6
+  - WaterTile_BottomRight_SpriteSheet_0
+  - WaterTile_BottomRight_SpriteSheet_1
+  - WaterTile_BottomRight_SpriteSheet_2
+  - WaterTile_BottomRight_SpriteSheet_3
+  - GrassTile_EdgeTop_SpriteSheet
+  - WaterTile_EdgeVertical_SpriteSheet_2
+  - WaterTile_EdgeVertical_SpriteSheet_3
+  - WaterTile_EdgeVertical_SpriteSheet_0
+  - WaterTile_EdgeVertical_SpriteSheet_1
+  - WaterTile_EdgeVertical_SpriteSheet_6
+  - WaterTile_EdgeVertical_SpriteSheet_4
+  - WaterTile_EdgeVertical_SpriteSheet_5
+  - WaterTile_EdgeLeft_SpriteSheet_3
+  - WaterTile_EdgeLeft_SpriteSheet_2
+  - WaterTile_EdgeLeft_SpriteSheet_1
+  - WaterTile_EdgeLeft_SpriteSheet_0
+  - WaterTile_EdgeLeft_SpriteSheet_6
+  - WaterTile_EdgeLeft_SpriteSheet_5
+  - WaterTile_EdgeLeft_SpriteSheet_4
+  - GrassTile_EdgeHorizontal_SpriteSheet
+  - BarrenTile_BottomRight_SpriteSheet
+  - WaterTile_Right_SpriteSheet_3
+  - WaterTile_Right_SpriteSheet_2
+  - WaterTile_Right_SpriteSheet_1
+  - WaterTile_Right_SpriteSheet_0
+  - WaterTile_Right_SpriteSheet_6
+  - WaterTile_Right_SpriteSheet_5
+  - WaterTile_Right_SpriteSheet_4
+  - GrassTile_Right_SpriteSheet
+  - WaterTile_TopLeft_SpriteSheet_3
+  - WaterTile_TopLeft_SpriteSheet_2
+  - WaterTile_TopLeft_SpriteSheet_1
+  - WaterTile_TopLeft_SpriteSheet_0
+  - WaterTile_TopLeft_SpriteSheet_6
+  - WaterTile_TopLeft_SpriteSheet_5
+  - WaterTile_TopLeft_SpriteSheet_4
+  - BarrenLand_EdgeLeft_SpriteSheet
+  - GrassTile_Base_SpriteSheet
+  - BarrenTile_Bottom_SpriteSheet
+  - GrassTile_BottomLeft_SpriteSheet
+  - GrassTile_TopRight_SpriteSheet
+  - BarrenTile_Base_SpriteSheet
+  - WaterTile_BottomLeft_SpriteSheet_5
+  - WaterTile_BottomLeft_SpriteSheet_4
+  - WaterTile_BottomLeft_SpriteSheet_6
+  - WaterTile_BottomLeft_SpriteSheet_1
+  - WaterTile_BottomLeft_SpriteSheet_0
+  - WaterTile_BottomLeft_SpriteSheet_3
+  - WaterTile_BottomLeft_SpriteSheet_2
+  - WaterTile_Top_SpriteSheet_0
+  - WaterTile_Top_SpriteSheet_1
+  - WaterTile_Top_SpriteSheet_2
+  - WaterTile_Top_SpriteSheet_3
+  - WaterTile_Top_SpriteSheet_4
+  - WaterTile_Top_SpriteSheet_5
+  - WaterTile_Top_SpriteSheet_6
+  - WaterTile_EdgeBottom_SpriteSheet_5
+  - WaterTile_EdgeBottom_SpriteSheet_4
+  - WaterTile_EdgeBottom_SpriteSheet_6
+  - WaterTile_EdgeBottom_SpriteSheet_1
+  - WaterTile_EdgeBottom_SpriteSheet_0
+  - WaterTile_EdgeBottom_SpriteSheet_3
+  - WaterTile_EdgeBottom_SpriteSheet_2
+  - BarrenTile_BottomLeft_SpriteSheet
+  - BarrenTile_Left_SpriteSheet
+  - GrassTile_EdgeSurround_SpriteSheet
+  - GrassTile_Left_SpriteSheet
+  - BarrenLand_EdgeSurround_SpriteSheet
+  - WaterTile_TopRight_SpriteSheet_2
+  - WaterTile_TopRight_SpriteSheet_3
+  - WaterTile_TopRight_SpriteSheet_0
+  - WaterTile_TopRight_SpriteSheet_1
+  - WaterTile_TopRight_SpriteSheet_6
+  - WaterTile_TopRight_SpriteSheet_4
+  - WaterTile_TopRight_SpriteSheet_5
+  - BarrenTile_Top_SpriteSheet
+  - Tree_SpriteSheet
+  - GrassTile_Bottom_SpriteSheet
+  - WaterTile_Left_SpriteSheet_4
+  - WaterTile_Left_SpriteSheet_5
+  - WaterTile_Left_SpriteSheet_6
+  - WaterTile_Left_SpriteSheet_0
+  - WaterTile_Left_SpriteSheet_1
+  - WaterTile_Left_SpriteSheet_2
+  - WaterTile_Left_SpriteSheet_3
+  - BarrenLand_EdgeRight_SpriteSheet
+  - WaterTile_EdgeHorizontal_SpriteSheet_0
+  - WaterTile_EdgeHorizontal_SpriteSheet_1
+  - WaterTile_EdgeHorizontal_SpriteSheet_2
+  - WaterTile_EdgeHorizontal_SpriteSheet_3
+  - WaterTile_EdgeHorizontal_SpriteSheet_4
+  - WaterTile_EdgeHorizontal_SpriteSheet_5
+  - WaterTile_EdgeHorizontal_SpriteSheet_6
+  - Wheat_Short_SpriteSheet
+  - BarrenLand_EdgeVertical_SpriteSheet
+  - BarrenTile_TopLeft_SpriteSheet
+  - GrassTile_EdgeRight_SpriteSheet
+  - GrassTile_Top_SpriteSheet
+  - Wheat_Long_SpriteSheet
+  - GrassTile_EdgeVertical_SpriteSheet
+  - GrassTile_BottomRight_SpriteSheet
+  - GrassTile_EdgeBottom_SpriteSheet
+  - BarrenTile_Right_SpriteSheet
+  - WaterTile_EdgeRight_SpriteSheet_2
+  - WaterTile_EdgeRight_SpriteSheet_3
+  - WaterTile_EdgeRight_SpriteSheet_0
+  - WaterTile_EdgeRight_SpriteSheet_1
+  - WaterTile_EdgeRight_SpriteSheet_6
+  - WaterTile_EdgeRight_SpriteSheet_4
+  - WaterTile_EdgeRight_SpriteSheet_5
+  - BarrenLand_EdgeHorizontal_SpriteSheet
+  - WaterTile_EdgeSurround_SpriteSheet_2
+  - WaterTile_EdgeSurround_SpriteSheet_3
+  - WaterTile_EdgeSurround_SpriteSheet_0
+  - WaterTile_EdgeSurround_SpriteSheet_1
+  - WaterTile_EdgeSurround_SpriteSheet_6
+  - WaterTile_EdgeSurround_SpriteSheet_4
+  - WaterTile_EdgeSurround_SpriteSheet_5
+  - BarrenTile_TopRight_SpriteSheet
+  - BarrenLand_EdgeTop_SpriteSheet
+  - GrassTile_EdgeLeft_SpriteSheet
+  - BarrenLand_EdgeBottom_SpriteSheet
+  m_RenderDataMap: {}
+  m_Tag: EnvironmentSpriteAtlas
+  m_IsVariant: 0

@@ -35,10 +35,14 @@ public class LeftPopupPlaceMenu : MonoBehaviour
         menuControlButton.text = ">";
     }
 
-    public void SelectItemToPlace(RuleTile building) {
-        mapManager.SetSelectedTile(building);
+    public void SelectRuleTileToPlace(RuleTile building) {
+        mapManager.SetSelectedRuleTile(building);
     }
-    public void SelectItemToPlace() {
-        mapManager.SetSelectedTile(null);
+    public void SelectConveyorToPlace(AnimatedTile conveyor) {
+        mapManager.SetSelectedAnimatedTile(conveyor);
+    }
+    public void SelectMachineToPlace() {
+        mapManager.SetSelectedRuleTile(null);
+
     }
 }
