@@ -39,6 +39,9 @@ public class InputManager : MonoBehaviour
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)   // Mouse scroll wheel Downwards (towards person)
             spriteEditorManager.RotateSprite(false);
         
+        if (Input.GetKeyDown(KeyCode.Escape))
+            PauseGame();
+
         // Update Grid Positions 
         lastGridPosition = gridPosition;
     }
@@ -64,5 +67,9 @@ public class InputManager : MonoBehaviour
         List<RaycastResult> raysastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raysastResults);
         return raysastResults;
+    }
+
+    public void PauseGame() {
+        
     }
 }
