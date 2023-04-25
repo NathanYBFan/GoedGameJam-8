@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class InputManager : MonoBehaviour
     [SerializeField] private SpriteEditorManager spriteEditorManager;
     [SerializeField] private bool mouseOverUI;
     private int UILayer;
+
+
+    public static bool pmEnabled;
+    public string pauseMenu;
 
     private Vector3Int lastGridPosition, gridPosition;
 
@@ -38,10 +43,11 @@ public class InputManager : MonoBehaviour
         
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)   // Mouse scroll wheel Downwards (towards person)
             spriteEditorManager.RotateSprite(false);
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
+       
+        if (Input.GetKeyDown(KeyCode.Escape) && !pmEnabled)
+            
             PauseGame();
-
+        
         // Update Grid Positions 
         lastGridPosition = gridPosition;
     }
@@ -69,7 +75,10 @@ public class InputManager : MonoBehaviour
         return raysastResults;
     }
 
-    public void PauseGame() {
-        
+    public void PauseGame() 
+    {
+        pmEnabled = true;
+        PauseMenuManager.paused = true;
+        SceneManager.LoadScene(pauseMenu, LoadSceneMode.Additive);
     }
 }
