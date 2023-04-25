@@ -139,6 +139,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc7047e141a4752428534a9ec2c4c0a9, type: 2}
   hoverHighlight: {fileID: 6518340055194314656}
   gameMap: {fileID: 0}
+  conveyorMap: {fileID: 0}
   machineMap: {fileID: 0}
 --- !u!1 &2150522890427333635
 GameObject:
@@ -269,11 +270,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapManager: {fileID: 1386659341379418046}
-  conveyorTiles:
+  conveyorCardinalDirTiles:
   - {fileID: 11400000, guid: 82e278cff3fd5f2478e8f3873cf585f8, type: 2}
   - {fileID: 11400000, guid: f70e05cfa3844154786572f2e9239733, type: 2}
   - {fileID: 11400000, guid: 90350173a7a278d4d95294709bb2218a, type: 2}
   - {fileID: 11400000, guid: 5250a4e109096e24d9aa77bae77c4010, type: 2}
+  conveyorEdgeDirTiles:
+  - {fileID: 11400000, guid: 1c95359aa4e2f614db164e9bb4dacf10, type: 2}
+  - {fileID: 11400000, guid: 7d6e2e75b245ab949b15cbf1d5a32d29, type: 2}
+  - {fileID: 11400000, guid: 6fdc8d38af0cde9459cd5628c71d2e3a, type: 2}
+  - {fileID: 11400000, guid: 28134b25be8988649a9e660d13d1dc7b, type: 2}
+  - {fileID: 11400000, guid: 5274b56271268e74d80c3d3b5069b1b2, type: 2}
+  - {fileID: 11400000, guid: 5c7a248d3091a964f94b5ea40a81d5ab, type: 2}
+  - {fileID: 11400000, guid: 654f19bb42e5e594eb529575491cf461, type: 2}
+  - {fileID: 11400000, guid: ee30eacdf59d748499e5edefc3ab63d0, type: 2}
 --- !u!1 &4254235305920640076
 GameObject:
   m_ObjectHideFlags: 0

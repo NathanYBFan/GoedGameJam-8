@@ -38,7 +38,6 @@ public class MapManager : MonoBehaviour
     }
 
     public Enums.TileTypes GetTileType(TileBase tilebase) { return dataFromTiles[tilebase].tileType; }
-    public bool GetTileHasMachine(TileBase tilebase) { return dataFromTiles[tilebase].hasMachineOntop; }
     public Tilemap GetGameMap() { return gameMap; }
     public Tilemap GetConveyorMap() { return conveyorMap; }
     public Tilemap GetMachineMap() { return machineMap; }

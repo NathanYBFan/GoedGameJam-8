@@ -14,10 +14,10 @@ public class AudioSettings : MonoBehaviour
 
     private void Awake()
     {
-        masterVolumeSlider.value = PlayerPrefs.GetFloat("masterVolume");
-        musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
-        playerVolumeSlider.value = PlayerPrefs.GetFloat("playerVolume");
-        systemVolumeSlider.value = PlayerPrefs.GetFloat("systemVolume");
+        masterVolumeSlider.value = PlayerPrefs.GetFloat("masterVolume", 1);
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume", 1);
+        playerVolumeSlider.value = PlayerPrefs.GetFloat("playerVolume", 1);
+        systemVolumeSlider.value = PlayerPrefs.GetFloat("systemVolume", 1);
     }
 
     public void MasterVolumeChanged()

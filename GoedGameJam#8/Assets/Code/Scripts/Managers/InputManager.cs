@@ -9,17 +9,26 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool mouseOverUI;
     private int UILayer;
 
+    private Vector3Int lastGridPosition, gridPosition;
+
     private void Start() {
         UILayer = LayerMask.NameToLayer("UI");
+        lastGridPosition = new Vector3Int(0, 0, 0);
     }
 
     void Update()
     {
+        // Get mouse position
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // Get grid that mouse is hovering over
+        gridPosition = mapManager.GetGameMap().WorldToCell(mousePosition);
+        
+
         // bool if pointer is over UI element
         mouseOverUI = IsPointerOverUIElement(GetEventSystemRaycastResults());
 
         if (Input.GetMouseButton(0) && !mouseOverUI)        // Left click, place current selected tile 
-            spriteEditorManager.PlaceTileDown();
+            spriteEditorManager.PlaceTileDown(lastGridPosition, gridPosition);
         
         else if (Input.GetMouseButtonDown(1))               // Right click, remove current selected tile
             OnRightClick();
@@ -29,7 +38,9 @@ public class InputManager : MonoBehaviour
         
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)   // Mouse scroll wheel Downwards (towards person)
             spriteEditorManager.RotateSprite(false);
-
+        
+        // Update Grid Positions 
+        lastGridPosition = gridPosition;
     }
 
     private void OnRightClick() {
@@ -38,10 +49,8 @@ public class InputManager : MonoBehaviour
     }
 
     // Check if pointer is over UI element
-    private bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
-    {
-        for (int index = 0; index < eventSystemRaysastResults.Count; index++)
-        {
+    private bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults) {
+        for (int index = 0; index < eventSystemRaysastResults.Count; index++) {
             RaycastResult curRaysastResult = eventSystemRaysastResults[index];
             if (curRaysastResult.gameObject.layer == UILayer)
                 return true;
@@ -49,8 +58,7 @@ public class InputManager : MonoBehaviour
         return false;
     }
     // Event data
-    static List<RaycastResult> GetEventSystemRaycastResults()
-    {
+    static List<RaycastResult> GetEventSystemRaycastResults() {
         PointerEventData eventData = new PointerEventData(EventSystem.current);
         eventData.position = Input.mousePosition;
         List<RaycastResult> raysastResults = new List<RaycastResult>();
