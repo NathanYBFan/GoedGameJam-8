@@ -8,10 +8,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] private MapManager mapManager;
     [SerializeField] private SpriteEditorManager spriteEditorManager;
     [SerializeField] private bool mouseOverUI;
-    private int UILayer;
-    [SerializeField, ReadOnly] private bool gameIsPaused;
     [SerializeField] private string pauseMenuSceneName;
-
+    private int UILayer;
     private Vector3Int lastGridPosition, gridPosition;
 
     private void Start() {
@@ -42,7 +40,7 @@ public class InputManager : MonoBehaviour
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)   // Mouse scroll wheel Downwards (towards person)
             spriteEditorManager.RotateSprite(false);
        
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))               // Escape button click, pause or unpause game
             PauseGame();
         
         // Update Grid Positions 
@@ -74,14 +72,12 @@ public class InputManager : MonoBehaviour
 
     public void PauseGame() 
     {
-        if (gameIsPaused) {
+        if (Time.timeScale == 0f) {
             Time.timeScale = 1f;
             SceneManager.UnloadSceneAsync(pauseMenuSceneName);
-            gameIsPaused = false;
             return;
         }
         Time.timeScale = 0f;
         SceneManager.LoadScene(pauseMenuSceneName, LoadSceneMode.Additive);
-        gameIsPaused = true;
     }
 }
