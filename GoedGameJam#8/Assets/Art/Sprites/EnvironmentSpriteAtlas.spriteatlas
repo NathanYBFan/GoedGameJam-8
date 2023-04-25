@@ -147,7 +147,8 @@ SpriteAtlas:
   - {fileID: -1216859258, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
   - {fileID: 430866000, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
   - {fileID: 21300000, guid: 3f66c7d9eeb60c94b8878ae9e8597524, type: 3}
-  - {fileID: 21300000, guid: c7f4242a2e230cb40bbc86e7bb4aacc1, type: 3}
+  - {fileID: 239215895, guid: c7f4242a2e230cb40bbc86e7bb4aacc1, type: 3}
+  - {fileID: -1565416962, guid: c7f4242a2e230cb40bbc86e7bb4aacc1, type: 3}
   - {fileID: 21300000, guid: e002693a47fd8e04f819a6ba7972916f, type: 3}
   - {fileID: -1904708115, guid: 94b6a68ae7d2d974da7dadb7d4fbbdb5, type: 3}
   - {fileID: 1020728488, guid: 94b6a68ae7d2d974da7dadb7d4fbbdb5, type: 3}
@@ -291,7 +292,8 @@ SpriteAtlas:
   - WaterTile_TopRight_SpriteSheet_4
   - WaterTile_TopRight_SpriteSheet_5
   - BarrenTile_Top_SpriteSheet
-  - Tree_SpriteSheet
+  - Tree_SpriteSheet_1
+  - Tree_SpriteSheet_0
   - GrassTile_Bottom_SpriteSheet
   - WaterTile_Left_SpriteSheet_4
   - WaterTile_Left_SpriteSheet_5

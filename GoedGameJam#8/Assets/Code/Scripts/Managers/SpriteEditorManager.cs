@@ -8,7 +8,6 @@ public class SpriteEditorManager : MonoBehaviour
     [SerializeField] private AnimatedTile[] conveyorEdgeDirTiles;
     private int selectedTile = 0;
 
-
     public void PlaceTileDown(Vector3Int lastGridPos, Vector3Int currentGridPos) {
         // If a machine is selected
         if (mapManager.GetSelectedRuleTile() == null && mapManager.GetSelectedAnimatedTile() != null) {
@@ -66,8 +65,12 @@ public class SpriteEditorManager : MonoBehaviour
         mapManager.SetSelectedAnimatedTile(conveyorCardinalDirTiles[spriteToPick]);
     }
     
-    private void SelectDiagonalSprite(Vector3Int position, int spriteToPick) {
+    private void SetDiagonalSprite(Vector3Int position, int spriteToPick) {
         mapManager.GetConveyorMap().SetTile(position, conveyorEdgeDirTiles[spriteToPick]);
+    }
+
+    private void SetOppositeSprite(Vector3Int position, int spriteToPick) {
+        mapManager.GetConveyorMap().SetTile(position, conveyorCardinalDirTiles[spriteToPick]);
     }
 
     private void FixPreviousConveyor(Vector3Int lastGridPos, Vector3Int currentGridPos) {
@@ -77,30 +80,38 @@ public class SpriteEditorManager : MonoBehaviour
         // Up and to the sides
         if (mapManager.GetConveyorMap().GetTile(lastGridPos).name.Contains("Conveyor_Up")) {
             if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Left")
-                SelectDiagonalSprite(lastGridPos, 0);
+                SetDiagonalSprite(lastGridPos, 0);
             else if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Right")
-                SelectDiagonalSprite(lastGridPos, 1);
+                SetDiagonalSprite(lastGridPos, 1);
+            else if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Down")
+                SetOppositeSprite(lastGridPos, 2);
         }
         // Down and to the sides
         else if (mapManager.GetConveyorMap().GetTile(lastGridPos).name.Contains("Conveyor_Down")) {
             if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Left")
-                SelectDiagonalSprite(lastGridPos, 6);
+                SetDiagonalSprite(lastGridPos, 6);
             else if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Right")
-                SelectDiagonalSprite(lastGridPos, 7);
+                SetDiagonalSprite(lastGridPos, 7);
+            else if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Up")
+                SetOppositeSprite(lastGridPos, 0);
         }
         // Left and UP/DOWN
         else if (mapManager.GetConveyorMap().GetTile(lastGridPos).name.Contains("Conveyor_Left")) {
             if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Up")
-                SelectDiagonalSprite(lastGridPos, 5);
+                SetDiagonalSprite(lastGridPos, 5);
             else if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Down")
-                SelectDiagonalSprite(lastGridPos, 4);
+                SetDiagonalSprite(lastGridPos, 4);
+            else if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Right")
+                SetOppositeSprite(lastGridPos, 1);
         }
         // Right and UP/DOWN
         else if (mapManager.GetConveyorMap().GetTile(lastGridPos).name.Contains("Conveyor_Right")) {
             if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Up")
-                SelectDiagonalSprite(lastGridPos, 3);
+                SetDiagonalSprite(lastGridPos, 3);
             else if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Down")
-                SelectDiagonalSprite(lastGridPos, 2);
+                SetDiagonalSprite(lastGridPos, 2);
+            else if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Left")
+                SetOppositeSprite(lastGridPos, 3);
         }
     }
 

@@ -967,11 +967,10 @@ MonoBehaviour:
   gradMap: {fileID: 0}
   wGradMap: {fileID: 0}
   grid: {fileID: 2010681560}
-  grass:
-  - {fileID: 11400000, guid: c178e1071ae82e44aa7f716dcfa02128, type: 2}
+  grass: {fileID: 11400000, guid: b6e0f9ceba3f2c04e9d1ef51d9fb03b2, type: 2}
   flowers: []
-  sand: {fileID: 0}
-  water: {fileID: 11400000, guid: 524239498f544784ab1aea6c3084a419, type: 2}
+  sand: {fileID: 11400000, guid: 41399db30fbb4d3418871416f3de6cba, type: 2}
+  water: {fileID: 11400000, guid: 187b960873e5411448f0975f4d1c7eb7, type: 2}
   gridBottomLeft: {x: 0, y: 0, z: 0}
   gridTopRight: {x: 0, y: 0, z: 0}
   mask: {fileID: 1092314505}

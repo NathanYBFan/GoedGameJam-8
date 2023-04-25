@@ -27,10 +27,10 @@ public class Biome : MonoBehaviour
 
     [Header("TILES")]    
     public Grid grid;         //Reference to the grid of which this tilemap is a child of
-    public Tile[] grass;        //The tiles we want to autotile. For this instance, it's grass tiles
+    public RuleTile grass;        //The tiles we want to autotile. For this instance, it's grass tiles
     public Tile[] flowers;        //The tiles we want to autotile. For this instance, it's grass tiles
-    public Tile sand;
-    public Tile water;
+    public RuleTile sand;
+    public RuleTile water;
     //public AnimatedTile water;        //The tile we want to autotile. For this instance, it's water
 
     
@@ -270,21 +270,22 @@ public class Biome : MonoBehaviour
             {
                 //Grabbing the tile map and setting the tile at x, y to be grass.
                 //DO NOTE: TileMap positions work in Vector3Int which DOES make a difference (Vector3 doesn't work).
-                if ((heightMap.GetPerlinFractal(x / scale, y / scale) + defectorHeightMap.GetPerlinFractal(x / scale, y / scale)) / 2 <= waterThreshold)
-                {
-                    //if (GetComponent<Tilemap>().GetTile(new Vector3Int(x, y, 0)) == null)
-                    //{
-                        GetComponent<Tilemap>().SetTile(new Vector3Int(x, y, 0), water);
-                       // CalcNoise(x, y, true);
-                    //}
+                if (GetComponent<Tilemap>().GetTile(new Vector3Int(x, y, 0)) == null) {
+                    if ((heightMap.GetPerlinFractal(x / scale, y / scale) + defectorHeightMap.GetPerlinFractal(x / scale, y / scale)) / 2 <= waterThreshold)
+                    {
+                        
+                        //{
+                            GetComponent<Tilemap>().SetTile(new Vector3Int(x, y, 0), water);
+                        // CalcNoise(x, y, true);
+                        //}
+                    }
+                    else
+                    {
+                        GetComponent<Tilemap>().SetTile(new Vector3Int(x, y, 0), grass);
+                    // CalcNoise(x, y, false);
+                    }
+                    // EqualizeColours();
                 }
-                else
-                {
-                    GetComponent<Tilemap>().SetTile(new Vector3Int(x, y, 0), grass[0]);
-                   // CalcNoise(x, y, false);
-                }
-                // EqualizeColours();
-
             }
         }
     }
@@ -321,8 +322,6 @@ public class Biome : MonoBehaviour
                 GetComponent<Tilemap>().SetColor(gridPos, newColour);
             }
         }
-
-
 
     }
     void Update()
