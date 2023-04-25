@@ -216,9 +216,11 @@ GameObject:
   - component: {fileID: 5084892042005560092}
   - component: {fileID: 5084892042005560090}
   - component: {fileID: 5084892042005560093}
+  - component: {fileID: 6231664110272235636}
+  - component: {fileID: 3002597070394252609}
   m_Layer: 0
   m_Name: ConveyorMap
-  m_TagString: Untagged
+  m_TagString: Conveyors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -325,6 +327,43 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!19719996 &6231664110272235636
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5084892042005560095}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
+--- !u!50 &3002597070394252609
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5084892042005560095}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &5084892042090609448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1228,7 @@ Tilemap:
       - {fileID: 1374075864, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
       - {fileID: -1957450263, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
       - {fileID: 594196836, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
-      m_AnimationSpeed: 3.2399082
+      m_AnimationSpeed: 5.2379303
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 72, y: 72, z: 0}
@@ -1202,7 +1241,7 @@ Tilemap:
       - {fileID: -2015448315, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
       - {fileID: 1010432702, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
       - {fileID: 29828165, guid: 73cccafd856f56c48b2f3991aa4acff0, type: 3}
-      m_AnimationSpeed: 3.5046785
+      m_AnimationSpeed: 5.3848934
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:

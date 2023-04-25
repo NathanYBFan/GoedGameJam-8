@@ -133,11 +133,23 @@ MonoBehaviour:
   selectedRuleTile: {fileID: 0}
   selectedAnimatedTile: {fileID: 0}
   gameTileDatas:
-  - {fileID: 11400000, guid: c54238f0937f50f43bdc96194d74b478, type: 2}
   - {fileID: 11400000, guid: 28cc9f28f020279469a0b6b29704f3db, type: 2}
   - {fileID: 11400000, guid: dfd4683d1bed8c34ba2ae8c02bdeb25d, type: 2}
   - {fileID: 11400000, guid: 1feba5da62ff63f4294655ec89c11b83, type: 2}
   - {fileID: 11400000, guid: bc7047e141a4752428534a9ec2c4c0a9, type: 2}
+  conveyorAnimatedTiles:
+  - {fileID: 11400000, guid: 5812d780dd7f24143a8d398751fced33, type: 2}
+  - {fileID: 11400000, guid: 254d92ad16662254ebb48da912d765c3, type: 2}
+  - {fileID: 11400000, guid: c5c8eb9378d21f045a27b6f9361e6ee1, type: 2}
+  - {fileID: 11400000, guid: 206a472d807a9af4b804c593f5d5e0ca, type: 2}
+  - {fileID: 11400000, guid: aa4d6a8a168fbe342853d0673e4db0b5, type: 2}
+  - {fileID: 11400000, guid: 6e53438d43a98064ab2d88dc0c4b7e2a, type: 2}
+  - {fileID: 11400000, guid: 74826dd7765dfd146aa260973c07507e, type: 2}
+  - {fileID: 11400000, guid: f54b4729669d00b448cdae7b815bfb70, type: 2}
+  - {fileID: 11400000, guid: 44e9959f2eecfb648a5bb0ff2fdddacb, type: 2}
+  - {fileID: 11400000, guid: 2d14a6d2728303a47aaa28a1daf9e436, type: 2}
+  - {fileID: 11400000, guid: 7fa537611be4eb442aba2c00a7d3cad0, type: 2}
+  - {fileID: 11400000, guid: 3e06c801969cb3747b99716cbf1033ce, type: 2}
   hoverHighlight: {fileID: 6518340055194314656}
   gameMap: {fileID: 0}
   conveyorMap: {fileID: 0}
