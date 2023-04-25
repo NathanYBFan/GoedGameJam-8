@@ -85,6 +85,8 @@ MonoBehaviour:
   mapManager: {fileID: 1386659341379418046}
   spriteEditorManager: {fileID: 8622603902892440748}
   mouseOverUI: 0
+  gameIsPaused: 0
+  pauseMenuSceneName: PauseMenu
 --- !u!1 &1386659341379418047
 GameObject:
   m_ObjectHideFlags: 0

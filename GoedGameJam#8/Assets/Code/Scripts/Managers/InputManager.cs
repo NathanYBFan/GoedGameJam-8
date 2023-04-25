@@ -2,17 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-
+using NaughtyAttributes;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] private MapManager mapManager;
     [SerializeField] private SpriteEditorManager spriteEditorManager;
     [SerializeField] private bool mouseOverUI;
     private int UILayer;
-
-
-    public static bool pmEnabled;
-    public string pauseMenu;
+    [SerializeField, ReadOnly] private bool gameIsPaused;
+    [SerializeField] private string pauseMenuSceneName;
 
     private Vector3Int lastGridPosition, gridPosition;
 
@@ -44,8 +42,7 @@ public class InputManager : MonoBehaviour
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)   // Mouse scroll wheel Downwards (towards person)
             spriteEditorManager.RotateSprite(false);
        
-        if (Input.GetKeyDown(KeyCode.Escape) && !pmEnabled)
-            
+        if (Input.GetKeyDown(KeyCode.Escape))
             PauseGame();
         
         // Update Grid Positions 
@@ -77,8 +74,14 @@ public class InputManager : MonoBehaviour
 
     public void PauseGame() 
     {
-        pmEnabled = true;
-        PauseMenuManager.paused = true;
-        SceneManager.LoadScene(pauseMenu, LoadSceneMode.Additive);
+        if (gameIsPaused) {
+            Time.timeScale = 1f;
+            SceneManager.UnloadSceneAsync(pauseMenuSceneName);
+            gameIsPaused = false;
+            return;
+        }
+        Time.timeScale = 0f;
+        SceneManager.LoadScene(pauseMenuSceneName, LoadSceneMode.Additive);
+        gameIsPaused = true;
     }
 }
