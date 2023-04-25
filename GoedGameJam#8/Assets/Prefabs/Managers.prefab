@@ -475,7 +475,7 @@ MonoBehaviour:
   mapManager: {fileID: 1386659341379418046}
   interactiveMap: {fileID: 0}
   hoverTile: {fileID: 0}
-  defaultTile: {fileID: 0}
+  defaultTile: {fileID: 21300000, guid: 610239a3f8a6fe34e88ba8001c86cb3a, type: 3}
   cam: {fileID: 5983777797334221681}
 --- !u!1 &8819347226147147635
 GameObject:
