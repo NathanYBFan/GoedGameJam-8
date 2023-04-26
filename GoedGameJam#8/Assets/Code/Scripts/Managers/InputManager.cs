@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private SpriteEditorManager spriteEditorManager;
     [SerializeField] private bool mouseOverUI;
     [SerializeField] private string pauseMenuSceneName;
+    [SerializeField] private GameObject item;
     private int UILayer;
     private Vector3Int lastGridPosition, gridPosition;
 
@@ -43,6 +44,12 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))               // Escape button click, pause or unpause game
             PauseGame();
         
+        if (Input.GetKeyDown(KeyCode.LeftControl)) {
+            Vector3Int newGrid = gridPosition;
+            newGrid.z = -2;
+            for (int i = 0; i < 100; i++)
+                Instantiate(item, newGrid, Quaternion.identity);
+        }
         // Update Grid Positions 
         lastGridPosition = gridPosition;
     }
@@ -50,6 +57,7 @@ public class InputManager : MonoBehaviour
     private void OnRightClick() {
         mapManager.SetSelectedRuleTile(null);
         mapManager.SetSelectedAnimatedTile(null);
+        mapManager.GetHoverMap().ClearAllTiles();
     }
 
     // Check if pointer is over UI element

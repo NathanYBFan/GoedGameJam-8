@@ -33,14 +33,13 @@ public class SpriteEditorManager : MonoBehaviour
             {
                 for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++)
                 {
-                    
-                    Debug.Log("Here");
+                    Debug.Log("Placed");
                     mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().multiTile[counter]);
                     counter++;
                 }
             }
         }
-        else if (mapManager.GetSelectedRuleTile() == null && mapManager.GetSelectedAnimatedTile() != null) {
+        else if (mapManager.GetSelectedAnimatedTile() != null) {
             // If tile already has machine on it, then exit
             if (mapManager.GetMachineMap().GetTile(currentGridPos) != null) return;
 

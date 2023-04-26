@@ -1013,8 +1013,8 @@ RectTransform:
   m_Father: {fileID: 7734261214028406384}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 132.6526, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1101,12 +1101,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7734261215128240317}
-        m_TargetAssemblyTypeName: MachinePlaceMenu, Assembly-CSharp
-        m_MethodName: SelectItemToPlace
+        m_TargetAssemblyTypeName: LeftPopupPlaceMenu, Assembly-CSharp
+        m_MethodName: SelectMachineToPlace
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 9d977c73616e7ed43890bc0358aa4ca3, type: 2}
+          m_ObjectArgumentAssemblyTypeName: MultiTile, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

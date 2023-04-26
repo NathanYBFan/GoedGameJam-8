@@ -86,6 +86,7 @@ MonoBehaviour:
   spriteEditorManager: {fileID: 8622603902892440748}
   mouseOverUI: 0
   pauseMenuSceneName: PauseMenu
+  item: {fileID: 7712557044733936025, guid: 02972f4f6598d3943891333f04a57d7e, type: 3}
 --- !u!1 &1386659341379418047
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRuleTile: {fileID: 0}
   selectedAnimatedTile: {fileID: 0}
+  selectedMultiTile: {fileID: 0}
   gameTileDatas:
   - {fileID: 11400000, guid: 28cc9f28f020279469a0b6b29704f3db, type: 2}
   - {fileID: 11400000, guid: dfd4683d1bed8c34ba2ae8c02bdeb25d, type: 2}
@@ -154,6 +156,7 @@ MonoBehaviour:
   gameMap: {fileID: 0}
   conveyorMap: {fileID: 0}
   machineMap: {fileID: 0}
+  hoverMap: {fileID: 0}
 --- !u!1 &2150522890427333635
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +301,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c7a248d3091a964f94b5ea40a81d5ab, type: 2}
   - {fileID: 11400000, guid: 654f19bb42e5e594eb529575491cf461, type: 2}
   - {fileID: 11400000, guid: ee30eacdf59d748499e5edefc3ab63d0, type: 2}
-  conveyorAudioClip: {fileID: 8300000, guid: 7855b7a6fb5be614598e39a119c58642, type: 3}
+  ConveyorAudioClip: {fileID: 0}
   audioSource: {fileID: 2367133609327758352}
 --- !u!82 &2367133609327758352
 AudioSource:
@@ -585,7 +588,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapManager: {fileID: 1386659341379418046}
   interactiveMap: {fileID: 0}
-  hoverTile: {fileID: 0}
+  hoverTile:
+  - {fileID: 0}
   defaultTile: {fileID: 21300000, guid: 610239a3f8a6fe34e88ba8001c86cb3a, type: 3}
   cam: {fileID: 5983777797334221681}
 --- !u!1 &8819347226147147635

@@ -5,51 +5,87 @@ public class HoverHighlight : MonoBehaviour
 {
     [SerializeField] private MapManager mapManager;
     [SerializeField] private Tilemap interactiveMap = null;
-    [SerializeField, ReadOnly] private Tile hoverTile = null;
+    [SerializeField, ReadOnly] private AnimatedTile[] hoverTile = null;
     [SerializeField] private Sprite defaultTile = null;
     [SerializeField] private Camera cam;
     private Vector3Int previousMousePos = new Vector3Int();
+    Vector3Int gridPosition;
 
     void Update() {
         Vector3Int mousePos = GetMousePosition();
-        Vector3Int gridPosition = mapManager.GetGameMap().WorldToCell(mousePos);
+        gridPosition = mapManager.GetGameMap().WorldToCell(mousePos);
 
         if (!mousePos.Equals(previousMousePos)) {
-            interactiveMap.SetTile(previousMousePos, null); // Remove old hoverTile
-            interactiveMap.SetTile(mousePos, hoverTile);
+            interactiveMap.ClearAllTiles(); // Remove all tiles
+            if (hoverTile.Length == 1)
+                interactiveMap.SetTile(mousePos, hoverTile[0]);
+            else {
+                int counter = 0;
+                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().multiTile[counter]);
+                        counter++;
+                    }
+                }
+            }
             previousMousePos = mousePos;
 
-            if (mapManager.GetSelectedAnimatedTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null && mapManager.GetConveyorMap().GetTile(gridPosition) != null)
-                interactiveMap.color = Color.red;
+            if (mapManager.GetSelectedMultiTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
+                interactiveMap.color = GetNewTileMapColor(Color.red);
             else
-                interactiveMap.color = Color.white;
-
+                interactiveMap.color = GetNewTileMapColor(Color.white);
         }
     }
 
+    private Color GetNewTileMapColor(Color colorToAdd) {
+        Color newColor = colorToAdd;
+        newColor.a = 0.5f;
+        return newColor;
+    }
     private Vector3Int GetMousePosition() {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return mapManager.GetGameMap().WorldToCell(mouseWorldPos);
     }
     
+    public void SetMultiHoverDisplay(MultiTile selectedTile) { // Should not be used
+        if (selectedTile == null)
+            SetRuleHoverDisplay(null);
+        else {
+            hoverTile = selectedTile.multiTile;
+            interactiveMap.ClearAllTiles();
+            
+            int counter = 0;
+            for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+                for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().multiTile[counter]);
+                    counter++;
+                }
+            }
+        }
+    }
+
     public void SetRuleHoverDisplay(RuleTile selectedTile) {
         if (selectedTile == null)
             hoverTile = MakeNewTile(defaultTile);
         else
             hoverTile = MakeNewTile(selectedTile.m_DefaultSprite);
-        interactiveMap.SetTile(GetMousePosition(), hoverTile);
     }
     public void SetAnimHoverDisplay(AnimatedTile selectedTile) {
         if (selectedTile == null)
             SetRuleHoverDisplay(null);
         else
             hoverTile = MakeNewTile(selectedTile.m_AnimatedSprites[0]);
-        interactiveMap.SetTile(GetMousePosition(), hoverTile);
+        interactiveMap.SetTile(GetMousePosition(), selectedTile);
+        
     }
 
-    private Tile MakeNewTile(Sprite newSprite) {
-        Tile newTile = (Tile) ScriptableObject.CreateInstance<Tile>();
-        newTile.sprite = newSprite;
-        return newTile;
+    private AnimatedTile[] MakeNewTile(Sprite newSprite) {
+        Sprite[] arrayOfSprites = new Sprite[1];
+        arrayOfSprites[0] = newSprite;
+        AnimatedTile newTile = (AnimatedTile) ScriptableObject.CreateInstance<AnimatedTile>();
+        newTile.m_AnimatedSprites = arrayOfSprites;
+        AnimatedTile[] returnType = new AnimatedTile[1];
+        returnType[0] = newTile;
+        return returnType;
     }
 }

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7971b2652356d304b90e6601bc8bade4, type: 3}
   m_Name: Amogus Tile
   m_EditorClassIdentifier: 
-  size: {x: 2, y: 2, z: 0}
+  size: {x: 3, y: 2, z: 0}
   multiTile:
-  - {fileID: 11400000, guid: 2a0e9c58126093e40a540a68693360a8, type: 2}
-  - {fileID: 11400000, guid: cd9348b62fae34f468db87d3c29b9a1d, type: 2}
-  - {fileID: 11400000, guid: 53acb11ecb922474d9de47c0b8724695, type: 2}
-  - {fileID: 11400000, guid: b86b33c836936064c8e92095b736beed, type: 2}
+  - {fileID: 11400000, guid: 95be6f875ce5ded49b59d532802edcb3, type: 2}
+  - {fileID: 11400000, guid: 2ce2d482e8a428f468f3510c5693be91, type: 2}
+  - {fileID: 11400000, guid: 86df91010c37e4e48be6289f52edf426, type: 2}
+  - {fileID: 11400000, guid: 793b6f5e22dea344ab25da4dec0535d1, type: 2}
+  - {fileID: 11400000, guid: d09501cce9311b140a79b8a720be792a, type: 2}
+  - {fileID: 11400000, guid: d98015dae445a8f47867d081056ffae7, type: 2}

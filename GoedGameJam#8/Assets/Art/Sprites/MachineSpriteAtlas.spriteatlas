@@ -50,6 +50,7 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: eb10f0a1d91c2f84ba927e61c5264d37, type: 3}
   - {fileID: -2132297206, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
   - {fileID: 1774449259, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
   - {fileID: 1444536019, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
@@ -98,8 +99,32 @@ SpriteAtlas:
   - {fileID: 771959178, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
   - {fileID: -41358872, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
   - {fileID: 338121130, guid: 5de3c576e932ef84e8076cef0efd59f0, type: 3}
-  - {fileID: 21300000, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 1625591285, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 72569804, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 1995948616, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 738951206, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -1250406889, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 1526386701, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 732185815, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 589005843, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 546021790, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 374368376, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 2093113249, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -2089864494, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 71395354, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 1114453586, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -852771489, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -1004943348, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 1057331769, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 571685284, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -1507814587, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -1678078629, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 1020155591, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -1034063784, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 1987769781, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 198517312, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Combiner
   - Conveyor_Spritesheet_19
   - Conveyor_Spritesheet_18
   - Conveyor_Spritesheet_17
@@ -148,7 +173,30 @@ SpriteAtlas:
   - Conveyor_Spritesheet_9
   - Conveyor_Spritesheet_39
   - Conveyor_Spritesheet_38
-  - Producer
+  - Producer_6
+  - Producer_7
+  - Producer_22
+  - Producer_23
+  - Producer_20
+  - Producer_21
+  - Producer_19
+  - Producer_18
+  - Producer_13
+  - Producer_12
+  - Producer_11
+  - Producer_10
+  - Producer_17
+  - Producer_16
+  - Producer_15
+  - Producer_14
+  - Producer_8
+  - Producer_9
+  - Producer_0
+  - Producer_1
+  - Producer_2
+  - Producer_3
+  - Producer_4
+  - Producer_5
   m_RenderDataMap: {}
   m_Tag: MachineSpriteAtlas
   m_IsVariant: 0
