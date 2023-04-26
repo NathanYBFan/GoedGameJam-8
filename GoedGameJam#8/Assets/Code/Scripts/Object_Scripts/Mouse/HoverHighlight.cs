@@ -30,13 +30,31 @@ public class HoverHighlight : MonoBehaviour
             }
             previousMousePos = mousePos;
 
+
             if (mapManager.GetSelectedMultiTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
                 interactiveMap.color = GetNewTileMapColor(Color.red);
+            else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetSelectedMultiTile().name == "Extractor" && !CanPlaceExtractor()) {
+                interactiveMap.color = GetNewTileMapColor(Color.red);
+            }
             else
-                interactiveMap.color = GetNewTileMapColor(Color.white);
+                interactiveMap.color = GetNewTileMapColor(Color.yellow);
         }
     }
-
+    private bool CanPlaceExtractor() {
+        if (mapManager.GetMachineMap().GetTile(gridPosition) != null) return false;
+        
+        Vector3Int tempTilePos = gridPosition;
+        for (int x = 0; x < 2; x++) {
+            for (int y = 0; y < 3; y++) {
+                tempTilePos.x = gridPosition.x + x;
+                tempTilePos.y = gridPosition.y + y;
+                if (mapManager.GetMachineMap().GetTile(tempTilePos) != null) {
+                    return false;   
+                }
+            }
+        }
+        return true;
+    }
     private Color GetNewTileMapColor(Color colorToAdd) {
         Color newColor = colorToAdd;
         newColor.a = 0.5f;

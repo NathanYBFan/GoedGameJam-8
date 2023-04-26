@@ -33,7 +33,6 @@ public class SpriteEditorManager : MonoBehaviour
             {
                 for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++)
                 {
-                    Debug.Log("Placed");
                     mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().multiTile[counter]);
                     counter++;
                 }
@@ -63,8 +62,52 @@ public class SpriteEditorManager : MonoBehaviour
         }
         // If no valid selected tile, then remove
         else {
-           // mapManager.GetMachineMap().SetTile(currentGridPos, null);
+            if (mapManager.GetMachineMap().GetTile(currentGridPos) != null) {
+                switch(mapManager.GetMachineMap().GetTile(currentGridPos).name) {
+                    case "Up1":                                                 // Top left
+                        RemoveAreaTiles(currentGridPos);
+                        break;
+                    case "Up2":                                                 // Top right
+                        Vector3Int temp = currentGridPos;
+                        temp.x = currentGridPos.x - 1;
+                        RemoveAreaTiles(temp);
+                        break;
+                    case "Up3":                                                 // Middle left
+                        temp = currentGridPos;
+                        temp.y += 1;
+                        RemoveAreaTiles(temp);
+                        break;
+                    case "Up4":                                                 // Middle right
+                        temp = currentGridPos;
+                        temp.x -= 1;
+                        temp.y += 1;
+                        RemoveAreaTiles(temp);
+                        break;
+                    case "Up5":                                                 // Bottom left
+                        temp = currentGridPos;
+                        temp.y += 2;
+                        RemoveAreaTiles(temp);
+                        break;
+                    case "Up6":                                                 // Bottom right
+                        temp = currentGridPos;
+                        temp.x -= 1;
+                        temp.y += 2;
+                        RemoveAreaTiles(temp);
+                        break;
+                }
+            }
             mapManager.GetConveyorMap().SetTile(currentGridPos, null);
+        }
+    }
+
+    private void RemoveAreaTiles(Vector3Int startPos) {
+        Vector3Int gridPositions = startPos;
+        for (int x = 0; x < 2; x++) {
+            for (int y = 0; y < 3; y++) {
+                gridPositions.x = startPos.x + x;
+                gridPositions.y = startPos.y - y;
+                mapManager.GetMachineMap().SetTile(gridPositions, null);
+            }
         }
     }
 
