@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7971b2652356d304b90e6601bc8bade4, type: 3}
+  m_Name: Amogus Tile
+  m_EditorClassIdentifier: 
+  size: {x: 2, y: 2, z: 0}
+  multiTile:
+  - {fileID: 11400000, guid: 2a0e9c58126093e40a540a68693360a8, type: 2}
+  - {fileID: 11400000, guid: cd9348b62fae34f468db87d3c29b9a1d, type: 2}
+  - {fileID: 11400000, guid: 53acb11ecb922474d9de47c0b8724695, type: 2}
+  - {fileID: 11400000, guid: b86b33c836936064c8e92095b736beed, type: 2}

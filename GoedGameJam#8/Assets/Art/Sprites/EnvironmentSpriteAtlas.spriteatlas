@@ -83,6 +83,7 @@ SpriteAtlas:
   - {fileID: -1671230861, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
   - {fileID: 874029707, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
   - {fileID: -1921725953, guid: ed0a4db1d875b4b409681032da07a19c, type: 3}
+  - {fileID: 21300000, guid: bf33b062de431c3428f09dcc9908e248, type: 3}
   - {fileID: 2002650079, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
   - {fileID: -676385390, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
   - {fileID: 479942252, guid: 53f4a072a437ed64e8b0f02b11ae9bde, type: 3}
@@ -107,6 +108,7 @@ SpriteAtlas:
   - {fileID: -1413833132, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
   - {fileID: 646545743, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
   - {fileID: 484889075, guid: 5ce3da345b01ef742b31b5b7e1219e29, type: 3}
+  - {fileID: 21300000, guid: 706c5c34bab32c2409f5129c827ab819, type: 3}
   - {fileID: 21300000, guid: 019ea0748b36b484894d3eabcbb1292d, type: 3}
   - {fileID: 21300000, guid: f52c0d9423da76a4ea8bd2547f0b2ea3, type: 3}
   - {fileID: 21300000, guid: 4ebbd4459a92ab54295403c8fa635612, type: 3}
@@ -140,6 +142,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 36d8a048f2bb34347bef94f3e8bc6f53, type: 3}
   - {fileID: 21300000, guid: c53dd54883a90eb4e9e4c3bd78af903c, type: 3}
   - {fileID: 21300000, guid: 3b69c668e3fcfe8448101e7f9ab56494, type: 3}
+  - {fileID: 21300000, guid: ed8716a8b16ca8842a6249d9c3a97d3b, type: 3}
+  - {fileID: 21300000, guid: 37757809eab6ef34687fd30e63ca2216, type: 3}
   - {fileID: -383155116, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
   - {fileID: 2006773334, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
   - {fileID: -1253443393, guid: 436a1bc9aad04e243b4fbf7273886cb1, type: 3}
@@ -229,6 +233,7 @@ SpriteAtlas:
   - WaterTile_EdgeVertical_SpriteSheet_6
   - WaterTile_EdgeVertical_SpriteSheet_4
   - WaterTile_EdgeVertical_SpriteSheet_5
+  - amogus_3
   - WaterTile_EdgeLeft_SpriteSheet_3
   - WaterTile_EdgeLeft_SpriteSheet_2
   - WaterTile_EdgeLeft_SpriteSheet_1
@@ -253,6 +258,7 @@ SpriteAtlas:
   - WaterTile_TopLeft_SpriteSheet_6
   - WaterTile_TopLeft_SpriteSheet_5
   - WaterTile_TopLeft_SpriteSheet_4
+  - amogus_2
   - BarrenLand_EdgeLeft_SpriteSheet
   - Tree_Anim_SpriteSheet
   - GrassTile_Base_SpriteSheet
@@ -286,6 +292,8 @@ SpriteAtlas:
   - GrassTile_EdgeSurround_SpriteSheet
   - GrassTile_Left_SpriteSheet
   - BarrenLand_EdgeSurround_SpriteSheet
+  - amogus
+  - amogus_1
   - WaterTile_TopRight_SpriteSheet_2
   - WaterTile_TopRight_SpriteSheet_3
   - WaterTile_TopRight_SpriteSheet_0

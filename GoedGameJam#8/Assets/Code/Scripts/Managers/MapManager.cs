@@ -7,6 +7,7 @@ public class MapManager : MonoBehaviour
     [Header("Map manager Info")]
     [SerializeField, ReadOnly] private RuleTile selectedRuleTile;
     [SerializeField, ReadOnly] private AnimatedTile selectedAnimatedTile;
+    [SerializeField, ReadOnly] private MultiTile selectedMultiTile;
     [SerializeField] private List<GameTileData> gameTileDatas;
     [SerializeField] private List<ConveyorTiles> conveyorAnimatedTiles;
     [SerializeField] HoverHighlight hoverHighlight;
@@ -39,6 +40,12 @@ public class MapManager : MonoBehaviour
         selectedRuleTile = newTile;
         selectedAnimatedTile = null;
         hoverHighlight.SetRuleHoverDisplay(newTile);
+    }
+    public MultiTile GetSelectedMultiTile() { return selectedMultiTile; }
+    public void SetSelectedMultiTile(MultiTile multiTile) {
+        selectedMultiTile = multiTile;
+        selectedAnimatedTile = null;
+       // hoverHighlight.SetRuleHoverDisplay(MultiTile.);
     }
     public AnimatedTile GetSelectedAnimatedTile() { return selectedAnimatedTile; }
     public void SetSelectedAnimatedTile(AnimatedTile newSelectedTile) {

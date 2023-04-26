@@ -6,11 +6,40 @@ public class SpriteEditorManager : MonoBehaviour
     [SerializeField] private MapManager mapManager;
     [SerializeField] private AnimatedTile[] conveyorCardinalDirTiles;
     [SerializeField] private AnimatedTile[] conveyorEdgeDirTiles;
+    
     private int selectedTile = 0;
 
+    public bool CheckIfPlaceable(Vector3Int currentGridPos)
+    {
+        for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++)
+        {
+            for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++)
+            {
+                if(mapManager.GetMachineMap().GetTile(currentGridPos + new Vector3Int(j, i, 0)) != null) return false;
+            }
+        }
+        return true;
+    }
     public void PlaceTileDown(Vector3Int lastGridPos, Vector3Int currentGridPos) {
         // If a machine is selected
-        if (mapManager.GetSelectedRuleTile() == null && mapManager.GetSelectedAnimatedTile() != null) {
+        
+        if (mapManager.GetSelectedMultiTile() != null)
+        {
+            if (!CheckIfPlaceable(currentGridPos)) return;
+
+            int counter = 0;
+            for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++)
+            {
+                for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++)
+                {
+                    
+                    Debug.Log("Here");
+                    mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().multiTile[counter]);
+                    counter++;
+                }
+            }
+        }
+        else if (mapManager.GetSelectedRuleTile() == null && mapManager.GetSelectedAnimatedTile() != null) {
             // If tile already has machine on it, then exit
             if (mapManager.GetMachineMap().GetTile(currentGridPos) != null) return;
 
@@ -24,10 +53,6 @@ public class SpriteEditorManager : MonoBehaviour
 
                 mapManager.GetConveyorMap().SetTile(currentGridPos, mapManager.GetSelectedAnimatedTile());
             }
-            
-            // If any other machine is selected
-            else
-                mapManager.GetMachineMap().SetTile(currentGridPos, mapManager.GetSelectedAnimatedTile());
         }
         // If an environemnt tile is selected
         else if (mapManager.GetSelectedRuleTile() != null && mapManager.GetSelectedAnimatedTile() == null) {
@@ -35,7 +60,7 @@ public class SpriteEditorManager : MonoBehaviour
         }
         // If no valid selected tile, then remove
         else {
-            mapManager.GetMachineMap().SetTile(currentGridPos, null);
+           // mapManager.GetMachineMap().SetTile(currentGridPos, null);
             mapManager.GetConveyorMap().SetTile(currentGridPos, null);
         }
     }
