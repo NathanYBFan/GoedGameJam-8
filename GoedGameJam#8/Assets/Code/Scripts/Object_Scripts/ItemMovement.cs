@@ -46,23 +46,20 @@ public class ItemMovement : MonoBehaviour
                 target.x -= 1;
                 break;
         }
-        StartCoroutine (MoveOverSeconds (gameObject, target, speed));
+        StartCoroutine(MoveOverSeconds(this.gameObject, target, speed));
     }
 
-    public IEnumerator MoveOverSpeed (GameObject objectToMove, Vector3 end, float speed){
+    public IEnumerator MoveOverSpeed (GameObject objectToMove, Vector3 end, float speed) {
         // speed should be 1 unit per second
-        while (objectToMove.transform.position != end)
-        {
+        while (objectToMove.transform.position != end) {
             objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, speed * Time.deltaTime);
             yield return new WaitForEndOfFrame ();
         }
     }
-    public IEnumerator MoveOverSeconds (GameObject objectToMove, Vector3 end, float seconds)
-    {
+    public IEnumerator MoveOverSeconds (GameObject objectToMove, Vector3 end, float seconds) {
         float elapsedTime = 0;
         Vector3 startingPos = objectToMove.transform.position;
-        while (elapsedTime < seconds)
-        {
+        while (elapsedTime < seconds) {
             objectToMove.transform.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
