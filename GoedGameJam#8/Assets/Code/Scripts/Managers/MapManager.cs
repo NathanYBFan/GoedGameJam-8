@@ -63,5 +63,7 @@ public class MapManager : MonoBehaviour
         selectedAnimatedTile = null;
         selectedMultiTile = null;
         selectedRuleTile = null;
+        hoverHighlight.SetRuleHoverDisplay(null);
     }    
+    public HoverHighlight GetHoverHighlight() { return hoverHighlight; }
 }

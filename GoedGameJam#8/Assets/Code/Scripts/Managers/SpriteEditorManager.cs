@@ -33,7 +33,8 @@ public class SpriteEditorManager : MonoBehaviour
             {
                 for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++)
                 {
-                    mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().multiTile[counter]);
+                    if (selectedTile == 0)
+                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingUpTile[counter]);
                     counter++;
                 }
             }
@@ -113,8 +114,8 @@ public class SpriteEditorManager : MonoBehaviour
 
     public void RotateSprite(bool scrollUp) { // Order is down, left, up, right
         // If selection is null or incorrect type selected, then exit
-        if (mapManager.GetSelectedAnimatedTile() == null) return;
-
+        if (mapManager.GetSelectedRuleTile() != null) return;
+        
         // If scroll was upwards/clockwise
         if (scrollUp) {
             selectedTile++;
@@ -128,8 +129,28 @@ public class SpriteEditorManager : MonoBehaviour
             if (selectedTile <= -1)
                 selectedTile = 3;
         }
+
         // Select that tile
-        SelectCardinalSprite(selectedTile);
+        if (mapManager.GetSelectedAnimatedTile() != null)
+            SelectCardinalSprite(selectedTile);
+        else if (mapManager.GetSelectedMultiTile() != null) {
+            mapManager.SetSelectedMultiTile(mapManager.GetSelectedMultiTile());
+        }
+    }
+
+    private void SelectExtractorDirection(int spriteToPick) {
+        if (spriteToPick == 1) {
+
+        }
+        else if (spriteToPick == 2) {
+
+        }
+        else if (spriteToPick == 3) {
+
+        }
+        else {
+
+        }
     }
 
     private void SelectCardinalSprite(int spriteToPick) {
@@ -204,4 +225,6 @@ public class SpriteEditorManager : MonoBehaviour
                 break;
         }
     }
+
+    public int GetSelectedTile() { return selectedTile; }
 }

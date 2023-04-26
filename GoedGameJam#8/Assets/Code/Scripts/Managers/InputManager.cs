@@ -58,6 +58,7 @@ public class InputManager : MonoBehaviour
         mapManager.SetSelectedRuleTile(null);
         mapManager.SetSelectedAnimatedTile(null);
         mapManager.GetHoverMap().ClearAllTiles();
+        mapManager.GetHoverHighlight().SetRuleHoverDisplay(null);
     }
 
     // Check if pointer is over UI element

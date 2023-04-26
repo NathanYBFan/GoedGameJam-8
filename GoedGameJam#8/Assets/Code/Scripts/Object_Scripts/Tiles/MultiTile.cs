@@ -4,8 +4,11 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(menuName = "TileData/Machine Tile")]
 public class MultiTile : ScriptableObject
 {
-    public string name;
+    public new string name;
     public Vector3Int size;
 
-    public AnimatedTile[] multiTile;
+    public AnimatedTile[] facingUpTile;
+    public AnimatedTile[] facingRightTile;
+    public AnimatedTile[] facingDownTile;
+    public AnimatedTile[] facingLeftTile;
 }

@@ -4,6 +4,7 @@ using NaughtyAttributes;
 public class HoverHighlight : MonoBehaviour
 {
     [SerializeField] private MapManager mapManager;
+    [SerializeField] private SpriteEditorManager spriteEditorManager;
     [SerializeField] private Tilemap interactiveMap = null;
     [SerializeField, ReadOnly] private AnimatedTile[] hoverTile = null;
     [SerializeField] private Sprite defaultTile = null;
@@ -21,17 +22,20 @@ public class HoverHighlight : MonoBehaviour
                 interactiveMap.SetTile(mousePos, hoverTile[0]);
             else {
                 int counter = 0;
-                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
-                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().multiTile[counter]);
+                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.y; i++) {
+                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.x; j++) {
+                        SetMultiHoverDisplay(mapManager.GetSelectedMultiTile());
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingUpTile[counter]);
                         counter++;
                     }
                 }
             }
             previousMousePos = mousePos;
 
-
-            if (mapManager.GetSelectedMultiTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
+            // Color change if can place
+            if (mapManager.GetSelectedAnimatedTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
+                interactiveMap.color = GetNewTileMapColor(Color.red);
+            else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
                 interactiveMap.color = GetNewTileMapColor(Color.red);
             else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetSelectedMultiTile().name == "Extractor" && !CanPlaceExtractor()) {
                 interactiveMap.color = GetNewTileMapColor(Color.red);
@@ -69,13 +73,20 @@ public class HoverHighlight : MonoBehaviour
         if (selectedTile == null)
             SetRuleHoverDisplay(null);
         else {
-            hoverTile = selectedTile.multiTile;
+            hoverTile = selectedTile.facingUpTile;
             interactiveMap.ClearAllTiles();
             
             int counter = 0;
             for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
                 for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().multiTile[counter]);
+                    if (spriteEditorManager.GetSelectedTile() == 0)
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingUpTile[counter]);
+                    else if (spriteEditorManager.GetSelectedTile() == 1)
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingRightTile[counter]);
+                    else if (spriteEditorManager.GetSelectedTile() == 2)
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingDownTile[counter]);
+                    else if (spriteEditorManager.GetSelectedTile() == 3)
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingLeftTile[counter]);
                     counter++;
                 }
             }
@@ -83,8 +94,10 @@ public class HoverHighlight : MonoBehaviour
     }
 
     public void SetRuleHoverDisplay(RuleTile selectedTile) {
-        if (selectedTile == null)
+        if (selectedTile == null) {
             hoverTile = MakeNewTile(defaultTile);
+            interactiveMap.SetTile(gridPosition, hoverTile[0]);
+        }
         else
             hoverTile = MakeNewTile(selectedTile.m_DefaultSprite);
     }
