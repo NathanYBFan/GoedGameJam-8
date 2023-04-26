@@ -6,7 +6,8 @@ public class SpriteEditorManager : MonoBehaviour
     [SerializeField] private MapManager mapManager;
     [SerializeField] private AnimatedTile[] conveyorCardinalDirTiles;
     [SerializeField] private AnimatedTile[] conveyorEdgeDirTiles;
-    
+    [SerializeField] private AudioClip ConveyorAudioClip;
+    [SerializeField] private AudioSource audioSource;
     private int selectedTile = 0;
 
     public bool CheckIfPlaceable(Vector3Int currentGridPos)
@@ -52,6 +53,9 @@ public class SpriteEditorManager : MonoBehaviour
                 FixPreviousConveyor(lastGridPos, currentGridPos);
 
                 mapManager.GetConveyorMap().SetTile(currentGridPos, mapManager.GetSelectedAnimatedTile());
+                audioSource.clip = ConveyorAudioClip;
+                if (!audioSource.isPlaying)
+                    audioSource.Play();
             }
         }
         // If an environemnt tile is selected
@@ -153,7 +157,7 @@ public class SpriteEditorManager : MonoBehaviour
                 break;
             case Vector3Int v when v.Equals(Vector3Int.right): // Moving mouse left
                 SelectCardinalSprite(3); // Left
-                break;
+                break; 
             default:
                 break;
         }
