@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private MapManager mapManager;
     [SerializeField] private SpriteEditorManager spriteEditorManager;
+    [SerializeField] private ItemSaveManager itemSaveManager;
     [SerializeField] private bool mouseOverUI;
     [SerializeField] private string pauseMenuSceneName;
     [SerializeField] private GameObject item;
@@ -42,7 +43,11 @@ public class InputManager : MonoBehaviour
         
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f)   // Mouse scroll wheel Downwards (towards person)
             spriteEditorManager.RotateSprite(false);
-       
+
+        else if (Input.GetKeyDown(KeyCode.L))
+            itemSaveManager.SetNumberOfBears(itemSaveManager.GetNumberOfBears() + 1);
+
+
         if (Input.GetKeyDown(KeyCode.Escape))               // Escape button click, pause or unpause game
             PauseGame();
         

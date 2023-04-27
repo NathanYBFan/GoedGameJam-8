@@ -24,7 +24,13 @@ public class HoverHighlight : MonoBehaviour
                 SetTilesExtractorHover();
 
             // Color change if can place
-            if (mapManager.GetSelectedAnimatedTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
+            
+            ResetTileMapColor();
+            previousMousePos = mousePos;
+        }
+    }
+    public void ResetTileMapColor() {
+        if (mapManager.GetSelectedAnimatedTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
                 interactiveMap.color = GetNewTileMapColor(Color.red);
             else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
                 interactiveMap.color = GetNewTileMapColor(Color.red);
@@ -32,9 +38,6 @@ public class HoverHighlight : MonoBehaviour
                 interactiveMap.color = GetNewTileMapColor(Color.red);
             else
                 interactiveMap.color = GetNewTileMapColor(Color.green);
-            
-            previousMousePos = mousePos;
-        }
     }
     private bool CanPlaceExtractor() {
         if (mapManager.GetMachineMap().GetTile(gridPosition) != null) return false;
@@ -94,6 +97,7 @@ public class HoverHighlight : MonoBehaviour
         if (selectedTile == null) {
             hoverTile = MakeNewTile(defaultTile);
             interactiveMap.SetTile(gridPosition, hoverTile[0]);
+            interactiveMap.color = GetNewTileMapColor(Color.green);
         }
         else
             hoverTile = MakeNewTile(selectedTile.m_DefaultSprite);

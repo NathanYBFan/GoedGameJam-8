@@ -29,12 +29,10 @@ public class SpriteEditorManager : MonoBehaviour
         {
             if (!CheckIfPlaceable(currentGridPos)) return;
             Vector3Int offset = Vector3Int.zero;
-            Tile spawnerTile;
             int counter = 0;
             for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
                 for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                    if (selectedTile == 0)
-                    {
+                    if (selectedTile == 0) {
                         offset = currentGridPos + new Vector3Int(1, 1, 0);
                         mapManager.GetSelectedMultiTile().localOutputLocation = offset;                        
                         Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
@@ -42,8 +40,7 @@ public class SpriteEditorManager : MonoBehaviour
                         newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
                         mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
                     }
-                    else if (selectedTile == 1)
-                    {
+                    else if (selectedTile == 1) {
                         offset = currentGridPos + new Vector3Int(1, 0, 0);
                         mapManager.GetSelectedMultiTile().localOutputLocation = offset;
                         Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
@@ -51,8 +48,7 @@ public class SpriteEditorManager : MonoBehaviour
                         newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
                         mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
                     }
-                    else if (selectedTile == 2)
-                    {
+                    else if (selectedTile == 2) {
                         offset = currentGridPos;
                         mapManager.GetSelectedMultiTile().localOutputLocation = offset;
                         Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
@@ -60,8 +56,7 @@ public class SpriteEditorManager : MonoBehaviour
                         newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
                         mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
                     }
-                    else if (selectedTile == 3)
-                    {
+                    else if (selectedTile == 3) {
                         offset = currentGridPos + new Vector3Int(0, 1, 0);
                         mapManager.GetSelectedMultiTile().localOutputLocation = offset;                        
                         Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
@@ -73,17 +68,12 @@ public class SpriteEditorManager : MonoBehaviour
                 }
             }
             if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
-            {                
                 mapManager.GetMachineMap().SetTile(offset, spawnerTiles[0]);
-            }
             else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Soil"))
-            {                
                 mapManager.GetMachineMap().SetTile(offset, spawnerTiles[1]);
-            }
             else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Water"))
-            {                
                 mapManager.GetMachineMap().SetTile(offset, spawnerTiles[2]);
-            }
+
             //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
         }
         else if (mapManager.GetSelectedAnimatedTile() != null) {
@@ -105,9 +95,9 @@ public class SpriteEditorManager : MonoBehaviour
             }
         }
         // If an environemnt tile is selected
-        else if (mapManager.GetSelectedRuleTile() != null && mapManager.GetSelectedAnimatedTile() == null) {
+        else if (mapManager.GetSelectedRuleTile() != null && mapManager.GetSelectedAnimatedTile() == null)
             mapManager.GetGameMap().SetTile(currentGridPos, mapManager.GetSelectedRuleTile());
-        }
+        
         // If no valid selected tile, then remove
         else {
             if (mapManager.GetMachineMap().GetTile(currentGridPos) != null) {
@@ -145,6 +135,7 @@ public class SpriteEditorManager : MonoBehaviour
                 }
             }
             mapManager.GetConveyorMap().SetTile(currentGridPos, null);
+            mapManager.GetHoverHighlight().SetRuleHoverDisplay(null);
         }
     }
 
