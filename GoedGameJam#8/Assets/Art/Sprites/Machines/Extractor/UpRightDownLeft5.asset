@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: Up2
+  m_Name: UpRightDownLeft5
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: -1678078629, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
-  m_MinSpeed: 1
-  m_MaxSpeed: 1
+  - {fileID: 1057331769, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -2089864494, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -1250406889, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: 1995948616, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  m_MinSpeed: 0
+  m_MaxSpeed: 0
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
   m_TileColliderType: 0

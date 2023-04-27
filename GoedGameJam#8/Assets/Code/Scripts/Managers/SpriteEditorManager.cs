@@ -10,13 +10,11 @@ public class SpriteEditorManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     private int selectedTile = 0;
 
-    public bool CheckIfPlaceable(Vector3Int currentGridPos)
-    {
-        for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++)
-        {
-            for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++)
-            {
-                if(mapManager.GetMachineMap().GetTile(currentGridPos + new Vector3Int(j, i, 0)) != null) return false;
+    private bool CheckIfPlaceable(Vector3Int currentGridPos) {
+        for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+            for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                if (mapManager.GetMachineMap().GetTile(currentGridPos + new Vector3Int(j, i, 0)) != null) return false;
+                if (mapManager.GetConveyorMap().GetTile(currentGridPos + new Vector3Int(j, i, 0)) != null) return false;
             }
         }
         return true;
@@ -29,12 +27,19 @@ public class SpriteEditorManager : MonoBehaviour
             if (!CheckIfPlaceable(currentGridPos)) return;
 
             int counter = 0;
-            for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++)
-            {
-                for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++)
-                {
+            for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+                for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                    Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
+                    newTile.name = "Extractor_" + counter;
+                    newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];
                     if (selectedTile == 0)
-                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingUpTile[counter]);
+                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                    else if (selectedTile == 1)
+                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                    else if (selectedTile == 2)
+                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                    else if (selectedTile == 3)
+                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
                     counter++;
                 }
             }
@@ -65,31 +70,31 @@ public class SpriteEditorManager : MonoBehaviour
         else {
             if (mapManager.GetMachineMap().GetTile(currentGridPos) != null) {
                 switch(mapManager.GetMachineMap().GetTile(currentGridPos).name) {
-                    case "Up1":                                                 // Top left
+                    case "Extractor_4":                                         // Top left
                         RemoveAreaTiles(currentGridPos);
                         break;
-                    case "Up2":                                                 // Top right
+                    case "Extractor_5":                                         // Top right
                         Vector3Int temp = currentGridPos;
                         temp.x = currentGridPos.x - 1;
                         RemoveAreaTiles(temp);
                         break;
-                    case "Up3":                                                 // Middle left
+                    case "Extractor_2":                                         // Middle left
                         temp = currentGridPos;
                         temp.y += 1;
                         RemoveAreaTiles(temp);
                         break;
-                    case "Up4":                                                 // Middle right
+                    case "Extractor_3":                                         // Middle right
                         temp = currentGridPos;
                         temp.x -= 1;
                         temp.y += 1;
                         RemoveAreaTiles(temp);
                         break;
-                    case "Up5":                                                 // Bottom left
+                    case "Extractor_0":                                         // Bottom left
                         temp = currentGridPos;
                         temp.y += 2;
                         RemoveAreaTiles(temp);
                         break;
-                    case "Up6":                                                 // Bottom right
+                    case "Extractor_1":                                         // Bottom right
                         temp = currentGridPos;
                         temp.x -= 1;
                         temp.y += 2;
@@ -135,21 +140,6 @@ public class SpriteEditorManager : MonoBehaviour
             SelectCardinalSprite(selectedTile);
         else if (mapManager.GetSelectedMultiTile() != null) {
             mapManager.SetSelectedMultiTile(mapManager.GetSelectedMultiTile());
-        }
-    }
-
-    private void SelectExtractorDirection(int spriteToPick) {
-        if (spriteToPick == 1) {
-
-        }
-        else if (spriteToPick == 2) {
-
-        }
-        else if (spriteToPick == 3) {
-
-        }
-        else {
-
         }
     }
 

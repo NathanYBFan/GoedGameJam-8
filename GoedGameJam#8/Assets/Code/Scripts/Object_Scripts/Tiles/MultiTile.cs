@@ -6,9 +6,6 @@ public class MultiTile : ScriptableObject
 {
     public new string name;
     public Vector3Int size;
-
-    public AnimatedTile[] facingUpTile;
-    public AnimatedTile[] facingRightTile;
-    public AnimatedTile[] facingDownTile;
-    public AnimatedTile[] facingLeftTile;
+    public AnimatedTile[] directedTile;
+    public Vector3Int localOutputLocation;
 }

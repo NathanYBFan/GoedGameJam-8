@@ -20,28 +20,20 @@ public class HoverHighlight : MonoBehaviour
             interactiveMap.ClearAllTiles(); // Remove all tiles
             if (hoverTile.Length == 1)
                 interactiveMap.SetTile(mousePos, hoverTile[0]);
-            else {
-                int counter = 0;
-                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.y; i++) {
-                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.x; j++) {
-                        SetMultiHoverDisplay(mapManager.GetSelectedMultiTile());
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingUpTile[counter]);
-                        counter++;
-                    }
-                }
-            }
-            previousMousePos = mousePos;
+            else
+                SetTilesExtractorHover();
 
             // Color change if can place
             if (mapManager.GetSelectedAnimatedTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
                 interactiveMap.color = GetNewTileMapColor(Color.red);
             else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
                 interactiveMap.color = GetNewTileMapColor(Color.red);
-            else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetSelectedMultiTile().name == "Extractor" && !CanPlaceExtractor()) {
+            else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetSelectedMultiTile().name == "Extractor" && !CanPlaceExtractor())
                 interactiveMap.color = GetNewTileMapColor(Color.red);
-            }
             else
-                interactiveMap.color = GetNewTileMapColor(Color.yellow);
+                interactiveMap.color = GetNewTileMapColor(Color.green);
+            
+            previousMousePos = mousePos;
         }
     }
     private bool CanPlaceExtractor() {
@@ -52,9 +44,8 @@ public class HoverHighlight : MonoBehaviour
             for (int y = 0; y < 3; y++) {
                 tempTilePos.x = gridPosition.x + x;
                 tempTilePos.y = gridPosition.y + y;
-                if (mapManager.GetMachineMap().GetTile(tempTilePos) != null) {
-                    return false;   
-                }
+                if (mapManager.GetMachineMap().GetTile(tempTilePos) != null) return false;
+                if (mapManager.GetConveyorMap().GetTile(tempTilePos) != null) return false;
             }
         }
         return true;
@@ -73,24 +64,30 @@ public class HoverHighlight : MonoBehaviour
         if (selectedTile == null)
             SetRuleHoverDisplay(null);
         else {
-            hoverTile = selectedTile.facingUpTile;
+            hoverTile = selectedTile.directedTile;
             interactiveMap.ClearAllTiles();
             
-            int counter = 0;
+            SetTilesExtractorHover();
+        }
+    }
+
+    private void SetTilesExtractorHover() {
+        int counter = 0;
             for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
                 for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                    Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
+                    newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[spriteEditorManager.GetSelectedTile()];
                     if (spriteEditorManager.GetSelectedTile() == 0)
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingUpTile[counter]);
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
                     else if (spriteEditorManager.GetSelectedTile() == 1)
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingRightTile[counter]);
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
                     else if (spriteEditorManager.GetSelectedTile() == 2)
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingDownTile[counter]);
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
                     else if (spriteEditorManager.GetSelectedTile() == 3)
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), mapManager.GetSelectedMultiTile().facingLeftTile[counter]);
+                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
                     counter++;
                 }
             }
-        }
     }
 
     public void SetRuleHoverDisplay(RuleTile selectedTile) {

@@ -14,31 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Extractor
   size: {x: 3, y: 2, z: 0}
-  facingUpTile:
+  directedTile:
   - {fileID: 11400000, guid: 95be6f875ce5ded49b59d532802edcb3, type: 2}
   - {fileID: 11400000, guid: 2ce2d482e8a428f468f3510c5693be91, type: 2}
   - {fileID: 11400000, guid: 86df91010c37e4e48be6289f52edf426, type: 2}
   - {fileID: 11400000, guid: 793b6f5e22dea344ab25da4dec0535d1, type: 2}
   - {fileID: 11400000, guid: d09501cce9311b140a79b8a720be792a, type: 2}
   - {fileID: 11400000, guid: d98015dae445a8f47867d081056ffae7, type: 2}
-  facingRightTile:
-  - {fileID: 11400000, guid: eafe00dd9f4d33c4c8bdc1f4a562c109, type: 2}
-  - {fileID: 11400000, guid: dbee1e95c84177e4dbaa57e0574943cf, type: 2}
-  - {fileID: 11400000, guid: aa017c1b7aa108f44bdc01727ebe109d, type: 2}
-  - {fileID: 11400000, guid: 4b99702fc4da491449347b01468bd36e, type: 2}
-  - {fileID: 11400000, guid: 9131b93457ed86b4e95ba071e6cc5b36, type: 2}
-  - {fileID: 11400000, guid: dfa40b116d281c143b3b6093975d9a5d, type: 2}
-  facingDownTile:
-  - {fileID: 11400000, guid: 656062c227b798c4b812eec521dbb9e3, type: 2}
-  - {fileID: 11400000, guid: 7f001c74e5b5572458d39029d2f480d9, type: 2}
-  - {fileID: 11400000, guid: 494efc167a1d7884dbd84b7b102d0bdd, type: 2}
-  - {fileID: 11400000, guid: 56515ce44a0e3a541a940130b434713e, type: 2}
-  - {fileID: 11400000, guid: ce04f1bde10a7a4408362c1c4f580799, type: 2}
-  - {fileID: 11400000, guid: af8c724c1cb565047b5dbf5e5cd85363, type: 2}
-  facingLeftTile:
-  - {fileID: 11400000, guid: a4881859a3b2ef84daaa52d9f3de5a13, type: 2}
-  - {fileID: 11400000, guid: 29214ffb9a2d2114ba733613695a5d3a, type: 2}
-  - {fileID: 11400000, guid: eef243394fd699343a264f02f6dc7dc9, type: 2}
-  - {fileID: 11400000, guid: 071bb3b3851cf6a47beb648e21f4558b, type: 2}
-  - {fileID: 11400000, guid: 71800577b12776b40a8505452fd7b477, type: 2}
-  - {fileID: 11400000, guid: 178ffa4989385d5458b5ddb245b9e0e4, type: 2}
