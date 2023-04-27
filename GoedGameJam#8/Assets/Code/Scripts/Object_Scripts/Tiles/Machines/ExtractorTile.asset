@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ExtractorTile
   m_EditorClassIdentifier: 
   name: Extractor
-  size: {x: 3, y: 2, z: 0}
+  size: {x: 2, y: 2, z: 0}
   directedTile:
   - {fileID: 11400000, guid: 95be6f875ce5ded49b59d532802edcb3, type: 2}
   - {fileID: 11400000, guid: 2ce2d482e8a428f468f3510c5693be91, type: 2}
   - {fileID: 11400000, guid: 86df91010c37e4e48be6289f52edf426, type: 2}
   - {fileID: 11400000, guid: 793b6f5e22dea344ab25da4dec0535d1, type: 2}
-  - {fileID: 11400000, guid: d09501cce9311b140a79b8a720be792a, type: 2}
-  - {fileID: 11400000, guid: d98015dae445a8f47867d081056ffae7, type: 2}
+  localOutputLocation: {x: -6, y: 2, z: 0}
+  spawnLocation: {fileID: 4144191020385190768, guid: 003d55fc5ea1b1744915f9213f59b269, type: 3}

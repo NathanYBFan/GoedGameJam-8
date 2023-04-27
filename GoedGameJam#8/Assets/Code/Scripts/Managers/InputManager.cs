@@ -30,8 +30,10 @@ public class InputManager : MonoBehaviour
         mouseOverUI = IsPointerOverUIElement(GetEventSystemRaycastResults());
 
         if (Input.GetMouseButton(0) && !mouseOverUI)        // Left click, place current selected tile 
+        {            
             spriteEditorManager.PlaceTileDown(lastGridPosition, gridPosition);
-        
+            spriteEditorManager.UpdateSpawnerTiles();
+        }        
         else if (Input.GetMouseButtonDown(1))               // Right click, remove current selected tile
             OnRightClick();
 
@@ -59,6 +61,7 @@ public class InputManager : MonoBehaviour
         mapManager.SetSelectedAnimatedTile(null);
         mapManager.GetHoverMap().ClearAllTiles();
         mapManager.GetHoverHighlight().SetRuleHoverDisplay(null);
+        spriteEditorManager.UpdateSpawnerTiles();
     }
 
     // Check if pointer is over UI element

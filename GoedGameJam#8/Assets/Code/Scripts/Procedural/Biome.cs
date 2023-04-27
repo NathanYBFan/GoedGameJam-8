@@ -42,6 +42,8 @@ public class Biome : MonoBehaviour
     Vector3 size;             //The vector 3 scale of the entire viewport (viewable range)
     public int tempSeed = 1337;
     public int precSeed = 10273;
+    
+    [SerializeField] private MapManager mapManager;
     void Start()
     {
         size = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)) - Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
@@ -285,7 +287,8 @@ public class Biome : MonoBehaviour
                     // CalcNoise(x, y, false);
                     }
                     // EqualizeColours();
-                }
+                }              
+
             }
         }
     }

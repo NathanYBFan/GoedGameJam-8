@@ -3,12 +3,15 @@ using UnityEngine.Tilemaps;
 
 public class SpriteEditorManager : MonoBehaviour
 {
-    [SerializeField] private MapManager mapManager;
+    [SerializeField] private MapManager mapManager;    
+    [SerializeField] private MachineManager machineManager;     
+    [SerializeField] private Grid grid;
     [SerializeField] private AnimatedTile[] conveyorCardinalDirTiles;
-    [SerializeField] private AnimatedTile[] conveyorEdgeDirTiles;
+    [SerializeField] private AnimatedTile[] conveyorEdgeDirTiles;    
+    [SerializeField] private Tile[] spawnerTiles;
     [SerializeField] private AudioClip ConveyorAudioClip;
     [SerializeField] private AudioSource audioSource;
-    private int selectedTile = 0;
+    public int selectedTile = 0; //Rotational value
 
     private bool CheckIfPlaceable(Vector3Int currentGridPos) {
         for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
@@ -25,24 +28,63 @@ public class SpriteEditorManager : MonoBehaviour
         if (mapManager.GetSelectedMultiTile() != null)
         {
             if (!CheckIfPlaceable(currentGridPos)) return;
-
+            Vector3Int offset = Vector3Int.zero;
+            Tile spawnerTile;
             int counter = 0;
             for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
                 for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                    Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
-                    newTile.name = "Extractor_" + counter;
-                    newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];
                     if (selectedTile == 0)
+                    {
+                        offset = currentGridPos + new Vector3Int(1, 1, 0);
+                        mapManager.GetSelectedMultiTile().localOutputLocation = offset;                        
+                        Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
+                        newTile.name = "Extractor_" + counter;
+                        newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
                         mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                    }
                     else if (selectedTile == 1)
+                    {
+                        offset = currentGridPos + new Vector3Int(1, 0, 0);
+                        mapManager.GetSelectedMultiTile().localOutputLocation = offset;
+                        Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
+                        newTile.name = "Extractor_" + counter;
+                        newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
                         mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                    }
                     else if (selectedTile == 2)
+                    {
+                        offset = currentGridPos;
+                        mapManager.GetSelectedMultiTile().localOutputLocation = offset;
+                        Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
+                        newTile.name = "Extractor_" + counter;
+                        newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
                         mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                    }
                     else if (selectedTile == 3)
+                    {
+                        offset = currentGridPos + new Vector3Int(0, 1, 0);
+                        mapManager.GetSelectedMultiTile().localOutputLocation = offset;                        
+                        Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
+                        newTile.name = "Extractor_" + counter;
+                        newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
                         mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                    }
                     counter++;
                 }
             }
+            if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
+            {                
+                mapManager.GetMachineMap().SetTile(offset, spawnerTiles[0]);
+            }
+            else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Soil"))
+            {                
+                mapManager.GetMachineMap().SetTile(offset, spawnerTiles[1]);
+            }
+            else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Water"))
+            {                
+                mapManager.GetMachineMap().SetTile(offset, spawnerTiles[2]);
+            }
+            //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
         }
         else if (mapManager.GetSelectedAnimatedTile() != null) {
             // If tile already has machine on it, then exit
@@ -115,6 +157,38 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(gridPositions, null);
             }
         }
+    }
+
+    public void UpdateSpawnerTiles()
+    {
+        Vector3Int gridBottomLeft = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)));
+        Vector3Int gridTopRight = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)));
+        machineManager.dirtSpawners = new();
+        machineManager.soilSpawners = new();
+        machineManager.waterSpawners = new();
+        //First iteration of terrain gen
+        for (int y = gridBottomLeft.y; y <= gridTopRight.y; y++)
+        {
+            for (int x = gridBottomLeft.x; x <= gridTopRight.x; x++)
+            {
+                if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)) == null) continue;
+                if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)).name.Contains("Dirt"))
+                {
+                    machineManager.dirtSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
+                }
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)).name.Contains("Soil"))
+                {                    
+                    machineManager.soilSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
+                }                
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)).name.Contains("Water"))
+                {                    
+                    machineManager.waterSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
+                }
+            }
+        }
+        
+        //Get machine map
+        //Check which tiles have spawner in its name. If has it, add to list of spawner tiles (machineManager)
     }
 
     public void RotateSprite(bool scrollUp) { // Order is down, left, up, right
