@@ -1281,8 +1281,8 @@ MonoBehaviour:
   audioButton: {fileID: 15766060}
   inGameControls: {fileID: 244841467}
   controlsButton: {fileID: 405503577}
-  selectedButtonColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 0.78431374}
-  deselectedButtonColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.39215687}
+  selectedButtonColor: {r: 0.14243592, g: 0.7075472, b: 0, a: 0.78431374}
+  deselectedButtonColor: {r: 0.10413842, g: 0.509434, b: 0, a: 0.39215687}
 --- !u!114 &165822784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3129,7 +3129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.105882354, g: 0.50980395, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3775,7 +3775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+  m_Color: {r: 0.105882354, g: 0.50980395, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6105,7 +6105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+  m_Color: {r: 0.105882354, g: 0.50980395, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
