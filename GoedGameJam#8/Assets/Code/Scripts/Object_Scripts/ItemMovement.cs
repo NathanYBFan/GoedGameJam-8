@@ -3,12 +3,25 @@ using UnityEngine.Tilemaps;
 
 public class ItemMovement : MonoBehaviour
 {
+    public MapManager mapManager;
     private RuleTile ruleTile;
     private Tilemap conveyorMap;
     private Vector3 target;
     private Coroutine movement;
     private float distance = 0.1f;
 
+    void Start(){
+        mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
+    }
+
+    void FixedUpdate()
+    {
+        target = this.transform.position;
+        if (mapManager.GetMachineMap().GetTile(Vector3Int.FloorToInt(transform.position)) is MovementTile movementTile){
+            target += new Vector3(movementTile.movementDir.x, movementTile.movementDir.y, 0);
+            this.transform.position = target;
+        }
+    }
     void OnTriggerStay2D(Collider2D col) {
         if (!col.CompareTag("Conveyors")) return;
 
