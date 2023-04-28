@@ -8,7 +8,7 @@ public class SpriteEditorManager : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private AnimatedTile[] conveyorCardinalDirTiles;
     [SerializeField] private AnimatedTile[] conveyorEdgeDirTiles;    
-    [SerializeField] private Tile[] spawnerTiles;
+    [SerializeField] private MovementTile[] spawnerTiles;
     [SerializeField] private AudioClip ConveyorAudioClip;
     [SerializeField] private AudioSource audioSource;
     public int selectedTile = 0; //Rotational value
@@ -68,12 +68,11 @@ public class SpriteEditorManager : MonoBehaviour
                 }
             }
             if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
-                mapManager.GetMachineMap().SetTile(offset, spawnerTiles[0]);
+                SetSpawnTileType(0, offset);
             else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Soil"))
-                mapManager.GetMachineMap().SetTile(offset, spawnerTiles[1]);
+                SetSpawnTileType(1, offset);
             else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Water"))
-                mapManager.GetMachineMap().SetTile(offset, spawnerTiles[2]);
-
+                SetSpawnTileType(2, offset);
             //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
         }
         else if (mapManager.GetSelectedAnimatedTile() != null) {
@@ -128,6 +127,25 @@ public class SpriteEditorManager : MonoBehaviour
         }
     }
 
+    private void SetSpawnTileType(int temp, Vector3Int offset)
+    {
+        switch(selectedTile)
+        {
+            case 1:
+                spawnerTiles[temp].movementDir = new Vector2(0.1f, 0);
+                break;
+            case 2:
+                spawnerTiles[temp].movementDir = new Vector2(0, -0.1f);
+                break;
+            case 3:
+                spawnerTiles[temp].movementDir = new Vector2(-0.1f, 0);
+                break;  
+            default:
+                spawnerTiles[temp].movementDir = new Vector2(0, 0.1f);
+                break;
+        }                
+        mapManager.GetMachineMap().SetTile(offset, spawnerTiles[temp]);
+    }
     private void RemoveAreaTiles(Vector3Int startPos) {
         Vector3Int gridPositions = startPos;
         for (int x = 0; x < 2; x++) {
