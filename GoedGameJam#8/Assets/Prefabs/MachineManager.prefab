@@ -48,7 +48,7 @@ MonoBehaviour:
   soilSpawners: []
   waterSpawners: []
   spawnItems:
-  - {fileID: 7712557044733936025, guid: 02972f4f6598d3943891333f04a57d7e, type: 3}
-  - {fileID: 7712557044733936025, guid: 02972f4f6598d3943891333f04a57d7e, type: 3}
-  - {fileID: 7712557044733936025, guid: 02972f4f6598d3943891333f04a57d7e, type: 3}
+  - {fileID: 5383387296994737334, guid: 925073ed37cfacb4792a48e5d6a2e085, type: 3}
+  - {fileID: 5201393625666806928, guid: 97d01e3ddf68f6243a5f3531079b0c70, type: 3}
+  - {fileID: 3032334106983512930, guid: 0486bbaa62097cf4bab9cc8e9a415587, type: 3}
   spawnInterval: 2

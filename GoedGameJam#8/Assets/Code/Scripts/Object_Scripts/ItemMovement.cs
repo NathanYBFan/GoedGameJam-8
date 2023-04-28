@@ -14,15 +14,15 @@ public class ItemMovement : MonoBehaviour
         mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         target = this.transform.position;
-        if (mapManager.GetMachineMap().GetTile(Vector3Int.FloorToInt(new Vector3(transform.position.x, transform.position.y, 0))) is MovementTile movementTile){
+        if (mapManager.GetMachineMap().GetTile(Vector3Int.FloorToInt(new Vector3(transform.position.x, transform.position.y, 0))) is MovementTile movementTile) {
             target += new Vector3(movementTile.movementDir.x, movementTile.movementDir.y, 0);            
         }
         this.transform.position = target;
     }
-    /*
+    
     void OnTriggerStay2D(Collider2D col) {
         if (!col.CompareTag("Conveyors")) return;
 
@@ -75,6 +75,6 @@ public class ItemMovement : MonoBehaviour
                 break;
         }
         this.transform.position = target;
-    }*/
+    }
 
 }

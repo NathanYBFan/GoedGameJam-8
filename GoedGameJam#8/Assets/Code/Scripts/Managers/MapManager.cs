@@ -53,6 +53,7 @@ public class MapManager : MonoBehaviour
     }
 
     public Enums.TileTypes GetTileType(TileBase tilebase) { return dataFromTiles[tilebase].tileType; }
+    public bool GetTileIsLand(TileBase tilebase) { return dataFromTiles[tilebase].isLand; }
     public static Dictionary<Sprite, ConveyorTiles> GetConveyorDictionary() { return conveyorDataTiles; } 
 
     public Tilemap GetGameMap() { return gameMap; }

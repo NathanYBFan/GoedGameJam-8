@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: UpRightDownLeft4
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 198517312, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
-  - {fileID: 72569804, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
-  - {fileID: 71395354, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
-  - {fileID: 732185815, guid: 52f059fcf1695494c804e24eecbe65ed, type: 3}
+  - {fileID: -714977018, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
+  - {fileID: 930015510, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
+  - {fileID: 1677217902, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
+  - {fileID: 304954735, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
   m_MinSpeed: 0
   m_MaxSpeed: 0
   m_AnimationStartTime: 0

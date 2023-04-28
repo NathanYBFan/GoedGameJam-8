@@ -34,35 +34,19 @@ public class SpriteEditorManager : MonoBehaviour
                 for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
                     if (selectedTile == 0) {
                         offset = currentGridPos + new Vector3Int(1, 1, 0);
-                        mapManager.GetSelectedMultiTile().localOutputLocation = offset;                        
-                        Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
-                        newTile.name = "Extractor_" + counter;
-                        newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
-                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                        SetupTileTopPlace(offset, counter, currentGridPos, j, i);
                     }
                     else if (selectedTile == 1) {
                         offset = currentGridPos + new Vector3Int(1, 0, 0);
-                        mapManager.GetSelectedMultiTile().localOutputLocation = offset;
-                        Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
-                        newTile.name = "Extractor_" + counter;
-                        newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
-                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                        SetupTileTopPlace(offset, counter, currentGridPos, j, i);
                     }
                     else if (selectedTile == 2) {
-                        offset = currentGridPos;
-                        mapManager.GetSelectedMultiTile().localOutputLocation = offset;
-                        Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
-                        newTile.name = "Extractor_" + counter;
-                        newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
-                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                        offset = currentGridPos;   
+                        SetupTileTopPlace(offset, counter, currentGridPos, j, i);
                     }
                     else if (selectedTile == 3) {
                         offset = currentGridPos + new Vector3Int(0, 1, 0);
-                        mapManager.GetSelectedMultiTile().localOutputLocation = offset;                        
-                        Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
-                        newTile.name = "Extractor_" + counter;
-                        newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
-                        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
+                        SetupTileTopPlace(offset, counter, currentGridPos, j, i);
                     }
                     counter++;
                 }
@@ -125,6 +109,14 @@ public class SpriteEditorManager : MonoBehaviour
             mapManager.GetConveyorMap().SetTile(currentGridPos, null);
             mapManager.GetHoverHighlight().SetRuleHoverDisplay(null);
         }
+    }
+
+    private void SetupTileTopPlace(Vector3Int offset, int counter, Vector3Int currentGridPos, int j, int i) {
+        mapManager.GetSelectedMultiTile().localOutputLocation = offset;                        
+        Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
+        newTile.name = "Extractor_" + counter;
+        newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
+        mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
     }
 
     private void SetSpawnTileType(int temp, Vector3Int offset)
