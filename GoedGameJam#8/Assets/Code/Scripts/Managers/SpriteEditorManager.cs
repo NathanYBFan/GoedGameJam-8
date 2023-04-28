@@ -102,34 +102,23 @@ public class SpriteEditorManager : MonoBehaviour
         else {
             if (mapManager.GetMachineMap().GetTile(currentGridPos) != null) {
                 switch(mapManager.GetMachineMap().GetTile(currentGridPos).name) {
-                    case "Extractor_4":                                         // Top left
+                    case "Extractor_2":                                         // Middle left
                         RemoveAreaTiles(currentGridPos);
                         break;
-                    case "Extractor_5":                                         // Top right
-                        Vector3Int temp = currentGridPos;
-                        temp.x = currentGridPos.x - 1;
-                        RemoveAreaTiles(temp);
-                        break;
-                    case "Extractor_2":                                         // Middle left
-                        temp = currentGridPos;
-                        temp.y += 1;
-                        RemoveAreaTiles(temp);
-                        break;
                     case "Extractor_3":                                         // Middle right
-                        temp = currentGridPos;
+                        Vector3Int temp = currentGridPos;
                         temp.x -= 1;
-                        temp.y += 1;
                         RemoveAreaTiles(temp);
                         break;
                     case "Extractor_0":                                         // Bottom left
-                        temp = currentGridPos;
-                        temp.y += 2;
+                        temp = currentGridPos; 
+                        temp.y += 1;
                         RemoveAreaTiles(temp);
                         break;
                     case "Extractor_1":                                         // Bottom right
                         temp = currentGridPos;
                         temp.x -= 1;
-                        temp.y += 2;
+                        temp.y += 1;
                         RemoveAreaTiles(temp);
                         break;
                 }
@@ -142,7 +131,7 @@ public class SpriteEditorManager : MonoBehaviour
     private void RemoveAreaTiles(Vector3Int startPos) {
         Vector3Int gridPositions = startPos;
         for (int x = 0; x < 2; x++) {
-            for (int y = 0; y < 3; y++) {
+            for (int y = 0; y < 2; y++) {
                 gridPositions.x = startPos.x + x;
                 gridPositions.y = startPos.y - y;
                 mapManager.GetMachineMap().SetTile(gridPositions, null);

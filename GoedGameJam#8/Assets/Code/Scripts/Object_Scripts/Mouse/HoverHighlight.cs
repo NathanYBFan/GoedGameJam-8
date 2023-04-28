@@ -43,8 +43,8 @@ public class HoverHighlight : MonoBehaviour
         if (mapManager.GetMachineMap().GetTile(gridPosition) != null) return false;
         
         Vector3Int tempTilePos = gridPosition;
-        for (int x = 0; x < 2; x++) {
-            for (int y = 0; y < 3; y++) {
+        for (int x = 0; x < mapManager.GetSelectedMultiTile().size.x; x++) {
+            for (int y = 0; y < mapManager.GetSelectedMultiTile().size.y; y++) {
                 tempTilePos.x = gridPosition.x + x;
                 tempTilePos.y = gridPosition.y + y;
                 if (mapManager.GetMachineMap().GetTile(tempTilePos) != null) return false;
@@ -76,21 +76,22 @@ public class HoverHighlight : MonoBehaviour
 
     private void SetTilesExtractorHover() {
         int counter = 0;
-            for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
-                for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                    Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
-                    newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[spriteEditorManager.GetSelectedTile()];
-                    if (spriteEditorManager.GetSelectedTile() == 0)
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
-                    else if (spriteEditorManager.GetSelectedTile() == 1)
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
-                    else if (spriteEditorManager.GetSelectedTile() == 2)
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
-                    else if (spriteEditorManager.GetSelectedTile() == 3)
-                        interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
-                    counter++;
-                }
+        for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+            for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
+                newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[spriteEditorManager.GetSelectedTile()];
+                if (spriteEditorManager.GetSelectedTile() == 0)
+                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
+                else if (spriteEditorManager.GetSelectedTile() == 1)
+                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
+                else if (spriteEditorManager.GetSelectedTile() == 2)
+                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
+                else if (spriteEditorManager.GetSelectedTile() == 3)
+                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
+                counter++;
             }
+        }
+        ResetTileMapColor();
     }
 
     public void SetRuleHoverDisplay(RuleTile selectedTile) {
