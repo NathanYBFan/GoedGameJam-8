@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a95537b8ee6564e8326b50067bb45a, type: 3}
   m_Name: RecipeSoil
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  firstIngredient: {fileID: 11400000, guid: 913e2b288b214cb43b2c4bed698a8a0f, type: 2}
-  secondIngredient: {fileID: 11400000, guid: aab3d0a1ac42c4e46b1ab01221bbc02a, type: 2}
-  output: {fileID: 11400000, guid: 9ff5005657ac8d441a199f5e73227ccd, type: 2}
-  firstIngredientAmount: 1
-  secondIngredientAmount: 1
+  firstIngredient: 0
+  secondIngredient: 9
+  output: {fileID: 5201393625666806928, guid: 97d01e3ddf68f6243a5f3531079b0c70, type: 3}
   outputAmount: 1

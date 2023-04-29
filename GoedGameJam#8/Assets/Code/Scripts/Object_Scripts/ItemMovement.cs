@@ -20,6 +20,12 @@ public class ItemMovement : MonoBehaviour
         if (mapManager.GetMachineMap().GetTile(Vector3Int.FloorToInt(new Vector3(transform.position.x, transform.position.y, 0))) is MovementTile movementTile) {
             target += new Vector3(movementTile.movementDir.x, movementTile.movementDir.y, 0);            
         }
+        else if (mapManager.GetMachineMap().GetTile(Vector3Int.FloorToInt(new Vector3(transform.position.x, transform.position.y, 0))) is OutputTile outputTile) {
+            target += new Vector3(outputTile.movementDir.x, outputTile.movementDir.y, 0);            
+        }        
+        else if (mapManager.GetMachineMap().GetTile(Vector3Int.FloorToInt(new Vector3(transform.position.x, transform.position.y, 0))) is ContainerTile containerTile) {
+            containerTile.heldItem = this.gameObject;
+        }
         this.transform.position = target;
     }
     

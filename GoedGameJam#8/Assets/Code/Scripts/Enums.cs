@@ -7,6 +7,23 @@ public class Enums : MonoBehaviour
         environment
     }
 
+    public enum ItemType {
+        Dirt,
+        Ash,
+        Coal,
+        Flower,
+        FlowerSeeds,
+        Grass,
+        GrassSeeds,
+        Soil,
+        TreeSeeds,
+        Water,
+        Wheat,
+        WheatSeeds,
+        Wood,
+        Unknown
+
+    }
     public enum Directions {
         up = 0,
         upRight = 1,

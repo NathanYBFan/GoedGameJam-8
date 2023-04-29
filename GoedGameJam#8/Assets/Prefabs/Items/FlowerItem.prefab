@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1048494962406601711}
   - component: {fileID: 1048494962406601704}
   - component: {fileID: 8364699526302320133}
+  - component: {fileID: 4988571223680591655}
   m_Layer: 0
   m_Name: FlowerItem
   m_TagString: Item
@@ -115,3 +116,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.19381982}
   serializedVersion: 2
   m_Radius: 0.30618018
+--- !u!114 &4988571223680591655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048494962406601705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af42515a9fd0eb1419d39e7bd6dd431a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 3

@@ -5,15 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Recipe")]
 public class Recipe : ScriptableObject
 {    
-    public ResourceManager inventory;
-    public Resource firstIngredient, secondIngredient;
-    public Resource output;      
-    public int firstIngredientAmount, secondIngredientAmount;
+    public Enums.ItemType firstIngredient, secondIngredient;
+    public GameObject output;      
     public int outputAmount = 0;
     void Awake()
     {
         
     }  
+    /*
     public void OnRecipeSelected()
     {
         if (HasEnoughResources())
@@ -50,5 +49,5 @@ public class Recipe : ScriptableObject
             }
         }
         return hasEnough;
-    }
+    }*/
 }

@@ -27,37 +27,66 @@ public class SpriteEditorManager : MonoBehaviour
         
         if (mapManager.GetSelectedMultiTile() != null)
         {
-            if (!CheckIfPlaceable(currentGridPos)) return;
-            Vector3Int offset = Vector3Int.zero;
-            int counter = 0;
-            for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
-                for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                    if (selectedTile == 0) {
-                        offset = currentGridPos + new Vector3Int(1, 1, 0);
-                        SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+            if (mapManager.GetSelectedMultiTile().name == "Extractor")
+            {                
+                if (!CheckIfPlaceable(currentGridPos)) return;
+                Vector3Int offset = Vector3Int.zero;
+                int counter = 0;
+                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                        if (selectedTile == 0) {
+                            offset = currentGridPos + new Vector3Int(1, 1, 0);
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 1) {
+                            offset = currentGridPos + new Vector3Int(1, 0, 0);
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 2) {
+                            offset = currentGridPos;   
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 3) {
+                            offset = currentGridPos + new Vector3Int(0, 1, 0);
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        counter++;
                     }
-                    else if (selectedTile == 1) {
-                        offset = currentGridPos + new Vector3Int(1, 0, 0);
-                        SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                    }
-                    else if (selectedTile == 2) {
-                        offset = currentGridPos;   
-                        SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                    }
-                    else if (selectedTile == 3) {
-                        offset = currentGridPos + new Vector3Int(0, 1, 0);
-                        SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                    }
-                    counter++;
                 }
+                if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
+                    SetSpawnTileType(0, offset);
+                else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Soil"))
+                    SetSpawnTileType(1, offset);
+                else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Water"))
+                    SetSpawnTileType(2, offset);
+                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
             }
-            if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
-                SetSpawnTileType(0, offset);
-            else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Soil"))
-                SetSpawnTileType(1, offset);
-            else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Water"))
-                SetSpawnTileType(2, offset);
-            //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+            else if (mapManager.GetSelectedMultiTile().name == "Combiner")
+            {                
+                if (!CheckIfPlaceable(currentGridPos)) return;
+                Vector3Int offset = Vector3Int.zero;
+                int counter = 0;                
+                offset = currentGridPos + new Vector3Int(1, 1, 0);
+                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                        if (selectedTile == 0) {                            
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 1) {
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 2) {
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 3) {
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        counter++;
+                    }
+                }
+                SetupCombinerTiles(offset);
+                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+            }
         }
         else if (mapManager.GetSelectedAnimatedTile() != null) {
             // If tile already has machine on it, then exit
@@ -111,6 +140,55 @@ public class SpriteEditorManager : MonoBehaviour
         }
     }
 
+    private void SetupCombinerTiles(Vector3Int offset)
+    {                               
+        CombinerCPUTile combinerCPU = (CombinerCPUTile) ScriptableObject.CreateInstance(typeof(CombinerCPUTile));
+        ContainerTile container1 = (ContainerTile) ScriptableObject.CreateInstance(typeof(ContainerTile));
+        ContainerTile container2 = (ContainerTile) ScriptableObject.CreateInstance(typeof(ContainerTile));        
+        OutputTile output = (OutputTile) ScriptableObject.CreateInstance(typeof(OutputTile));
+        combinerCPU.name = "Extractor_4";
+        combinerCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[4].m_AnimatedSprites[selectedTile];          
+        combinerCPU.input1 = container1;
+        combinerCPU.input2 = container2;        
+        combinerCPU.output = output;  
+        combinerCPU.recipes = machineManager.recipes;     
+        switch(selectedTile)
+        {
+            case 1:
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 1, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, -1, 0), container2);                              
+                output.movementDir = new Vector2(0.1f, 0);                                              
+                output.position = offset + new Vector3Int(-1, 0, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 0, 0), output);                
+                mapManager.GetMachineMap().SetTile(offset, combinerCPU);
+                break;
+            case 2:
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 1, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 1, 0), container2);                              
+                output.movementDir = new Vector2(0, -0.1f);                                   
+                output.position = offset + new Vector3Int(0, -1, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, -1, 0), output);                
+                mapManager.GetMachineMap().SetTile(offset, combinerCPU);
+                break;
+            case 3:
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 1, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, -1, 0), container2);                              
+                output.movementDir = new Vector2(-0.1f, 0);                                   
+                output.position = offset + new Vector3Int(1, 0, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 0, 0), output);                
+                mapManager.GetMachineMap().SetTile(offset, combinerCPU);
+                break;  
+            default:
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, -1, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, -1, 0), container2);                              
+                output.movementDir = new Vector2(0, 0.1f);                                     
+                output.position = offset + new Vector3Int(0, 1, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, 1, 0), output);                
+                mapManager.GetMachineMap().SetTile(offset, combinerCPU);
+                break;
+        }            
+
+    }
     private void SetupTileTopPlace(Vector3Int offset, int counter, Vector3Int currentGridPos, int j, int i) {
         mapManager.GetSelectedMultiTile().localOutputLocation = offset;                        
         Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
@@ -155,7 +233,8 @@ public class SpriteEditorManager : MonoBehaviour
         Vector3Int gridTopRight = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)));
         machineManager.dirtSpawners = new();
         machineManager.soilSpawners = new();
-        machineManager.waterSpawners = new();
+        machineManager.waterSpawners = new();        
+        machineManager.combiners = new();
         //First iteration of terrain gen
         for (int y = gridBottomLeft.y; y <= gridTopRight.y; y++)
         {
@@ -173,6 +252,10 @@ public class SpriteEditorManager : MonoBehaviour
                 else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)).name.Contains("Water"))
                 {                    
                     machineManager.waterSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
+                }
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)) is CombinerCPUTile combiner)
+                {
+                    machineManager.combiners.Add(combiner);
                 }
             }
         }

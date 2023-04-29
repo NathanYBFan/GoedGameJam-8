@@ -7,12 +7,20 @@ public class MachineManager : MonoBehaviour
     public List<Vector3> dirtSpawners = new();
     public List<Vector3> soilSpawners = new();
     public List<Vector3> waterSpawners = new();
+
+    public List<Recipe> recipes = new();
+
+    public List<CombinerCPUTile> combiners = new();
     public GameObject[] spawnItems;
     public float spawnInterval = 2.0f;
     
     public void Awake()
     {
         InvokeRepeating("SpawnResource", 0, 2.0f);
+    }
+    void Update()
+    {
+        CheckCombiners();
     }
     public void SpawnResource()
     {
@@ -26,6 +34,20 @@ public class MachineManager : MonoBehaviour
             Vector3 temp = t;
             temp.z = spawnItems[itemToSpawn].transform.position.z;
             Instantiate(spawnItems[itemToSpawn], temp, Quaternion.identity);
+        }
+    }
+
+    private void CheckCombiners()
+    {
+        foreach(CombinerCPUTile c in combiners)
+        {
+            if (c.input1.heldItem != null & c.input2.heldItem != null);
+            {
+                if (c.CheckForValidRecipes())
+                {
+                    c.output.OutputItem();
+                }
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3032334106983512928}
   - component: {fileID: 3032334106983512931}
   - component: {fileID: 462427040133109296}
+  - component: {fileID: -9039461044553642828}
   m_Layer: 0
   m_Name: WaterBucketItem
   m_TagString: Item
@@ -115,3 +116,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.1351201}
   serializedVersion: 2
   m_Radius: 0.3648799
+--- !u!114 &-9039461044553642828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3032334106983512930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af42515a9fd0eb1419d39e7bd6dd431a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 9

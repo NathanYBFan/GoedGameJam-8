@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5383387296994737332}
   - component: {fileID: 5383387296994737335}
   - component: {fileID: 4489828170459283752}
+  - component: {fileID: 8957030350061030263}
   m_Layer: 0
   m_Name: DirtItem
   m_TagString: Item
@@ -115,3 +116,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.2292611}
   serializedVersion: 2
   m_Radius: 0.2707389
+--- !u!114 &8957030350061030263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5383387296994737334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af42515a9fd0eb1419d39e7bd6dd431a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0

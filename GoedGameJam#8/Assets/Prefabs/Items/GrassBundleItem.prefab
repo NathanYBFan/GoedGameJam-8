@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2925166109052197440}
   - component: {fileID: 2925166109052197447}
   - component: {fileID: 3265627604943502392}
+  - component: {fileID: -8621862684428411313}
   m_Layer: 0
   m_Name: GrassBundleItem
   m_TagString: Item
@@ -115,3 +116,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.11075416}
   serializedVersion: 2
   m_Radius: 0.18324307
+--- !u!114 &-8621862684428411313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2925166109052197446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af42515a9fd0eb1419d39e7bd6dd431a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 5

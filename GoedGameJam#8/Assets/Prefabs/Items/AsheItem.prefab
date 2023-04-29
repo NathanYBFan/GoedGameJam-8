@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7712557044733936023}
   - component: {fileID: 7712557044733936022}
   - component: {fileID: 7712557044733936021}
+  - component: {fileID: -2427752243371415145}
   m_Layer: 0
   m_Name: AsheItem
   m_TagString: Untagged
@@ -115,3 +116,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.19864678}
   serializedVersion: 2
   m_Radius: 0.24733406
+--- !u!114 &-2427752243371415145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7712557044733936025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af42515a9fd0eb1419d39e7bd6dd431a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
