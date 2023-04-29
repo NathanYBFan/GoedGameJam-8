@@ -24,7 +24,7 @@ public class EntityMove : MonoBehaviour
         Vector3Int animalPos = Vector3Int.FloorToInt(transform.position);
         animalPos.z = 0;
         startPos = transform.position;
-        
+
         // Check if entity can move in the current tile
         if (!mapManager.GetTileIsLand(mapManager.GetGameMap().GetTile(animalPos)) && isLandWalker) return;
         else if (mapManager.GetTileIsLand(mapManager.GetGameMap().GetTile(animalPos)) && !isLandWalker) return;
@@ -42,18 +42,18 @@ public class EntityMove : MonoBehaviour
         int randomNumber = Random.Range(0, directions.Count);
         target = animalPos;
 
-        switch(randomNumber) {
+        switch(directions[randomNumber]) {
             case 0:
-                target.y += 0.5f;
+                target.y += 1f;
                 break;
             case 1:
-                target.x += 0.5f;
+                target.x += 1f;
                 break;
             case 2:
-                target.y -= 0.5f; 
+                target.y -= 1f; 
                 break;
             case 3:
-                target.x -= 0.5f;
+                target.x -= 1f;
                 break;
         }
         target.z = Vector3Int.FloorToInt(transform.position).z;
@@ -64,7 +64,10 @@ public class EntityMove : MonoBehaviour
         Vector3Int temp = originalPos;
         temp.x += xOffset;
         temp.y += yOffset;
-        if (mapManager.GetTileIsLand(mapManager.GetGameMap().GetTile(temp))) directions.Add(addNumber);
+        if (isLandWalker && mapManager.GetTileIsLand(mapManager.GetGameMap().GetTile(temp)))
+            directions.Add(addNumber);
+        else if (!isLandWalker && !mapManager.GetTileIsLand(mapManager.GetGameMap().GetTile(temp)))
+            directions.Add(addNumber);
     }
 
     public IEnumerator MoveToPosition() {

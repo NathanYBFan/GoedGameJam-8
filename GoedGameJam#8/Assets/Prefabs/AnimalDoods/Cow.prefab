@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7715449289581532629}
   - component: {fileID: 7715449289581532628}
   - component: {fileID: 7715449289581532630}
+  - component: {fileID: 6368775908420551411}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -99,3 +100,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedValue: 2
   maxRotation: 45
+--- !u!114 &6368775908420551411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715449289581532627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116b5f2593d2f3f40a046a22ce8887ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLandWalker: 1
+  timeToReachTarget: 3
+  movebuffer: 3.5

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 471979351919235757}
   - component: {fileID: 471979351919235758}
   - component: {fileID: 471979351919235756}
+  - component: {fileID: 5904363666298430056}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -99,3 +100,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedValue: 10
   maxRotation: 5
+--- !u!114 &5904363666298430056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471979351919235759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116b5f2593d2f3f40a046a22ce8887ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLandWalker: 0
+  timeToReachTarget: 0.7
+  movebuffer: 0.7

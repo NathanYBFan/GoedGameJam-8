@@ -113,5 +113,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLandWalker: 1
-  timeToReachTarget: 1
-  movebuffer: 1.5
+  timeToReachTarget: 2
+  movebuffer: 2.1
