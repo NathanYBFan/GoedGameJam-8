@@ -114,6 +114,22 @@ SpriteAtlas:
   - {fileID: 445931071, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
   - {fileID: 311677442, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
   - {fileID: 552519215, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
+  - {fileID: -1060437416, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: -243994993, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 591294549, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: -162120041, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 16546282, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 245096988, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 309545389, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: -544658216, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 557177641, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 185891961, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 1503860147, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: -1494603651, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: -1312050966, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 1521757087, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 1969686673, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
+  - {fileID: 1339414302, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
   - {fileID: 458719299, guid: ca13166ce3b601d4696226c632d48d99, type: 3}
   - {fileID: -87283099, guid: ca13166ce3b601d4696226c632d48d99, type: 3}
   - {fileID: 1024044461, guid: ca13166ce3b601d4696226c632d48d99, type: 3}
@@ -215,6 +231,22 @@ SpriteAtlas:
   - Extractor_12
   - Extractor_11
   - Extractor_10
+  - AnimalBreeder_7
+  - AnimalBreeder_6
+  - AnimalBreeder_5
+  - AnimalBreeder_4
+  - AnimalBreeder_3
+  - AnimalBreeder_2
+  - AnimalBreeder_1
+  - AnimalBreeder_0
+  - AnimalBreeder_9
+  - AnimalBreeder_8
+  - AnimalBreeder_12
+  - AnimalBreeder_13
+  - AnimalBreeder_10
+  - AnimalBreeder_11
+  - AnimalBreeder_14
+  - AnimalBreeder_15
   - Combiner_25
   - Combiner_24
   - Combiner_27

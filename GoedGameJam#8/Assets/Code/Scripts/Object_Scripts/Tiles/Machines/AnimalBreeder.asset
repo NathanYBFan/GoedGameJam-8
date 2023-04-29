@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: AnimalBreeder
   m_EditorClassIdentifier: 
   name: AnimalBreeder
-  size: {x: 0, y: 0, z: 0}
-  directedTile: []
+  size: {x: 2, y: 2, z: 0}
+  directedTile:
+  - {fileID: 11400000, guid: addb9d05beba85f4383904ae19319f18, type: 2}
+  - {fileID: 11400000, guid: dc4e240620839564296043533370ec81, type: 2}
+  - {fileID: 11400000, guid: 6c58d46a43647374fa3ca1f6740e93b4, type: 2}
+  - {fileID: 11400000, guid: d183f8422822361498b426129ce50722, type: 2}
   localOutputLocation: {x: 0, y: 0, z: 0}
   spawnLocation: {fileID: 0}

@@ -4325,13 +4325,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7734261215128240317}
-        m_TargetAssemblyTypeName: MachinePlaceMenu, Assembly-CSharp
-        m_MethodName: SelectItemToPlace
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MapManager, Assembly-CSharp
+        m_MethodName: SetSelectedMultiTile
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 9e15a84b592fec348b66c792ffd837cc, type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Tilemaps.Tile, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 6afd5324d805f0a48804ba3460060753, type: 2}
+          m_ObjectArgumentAssemblyTypeName: MultiTile, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
