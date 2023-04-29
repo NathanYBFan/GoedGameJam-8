@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7de5d9e53c93a5046bf0ffc2c557b4b0, type: 3}
-  m_Name: Algae
+  m_Script: {fileID: 11500000, guid: 9274d50336c59a94fa9d5fe82d975391, type: 3}
+  m_Name: SeedTile
   m_EditorClassIdentifier: 
-  tileType: 5
-  amount: 0
+  tiles: {fileID: 11400000, guid: 59be934334dc14b48b6d7f5cb0f9868d, type: 2}
+  canMine: 1
+  isLand: 1
+  tileType: 1

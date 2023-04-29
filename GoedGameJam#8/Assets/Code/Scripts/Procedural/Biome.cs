@@ -25,6 +25,7 @@ public class Biome : MonoBehaviour
     public Texture2D wGradMap; //Gradient colormap for water biome shifting
     
 
+
     [Header("TILES")]    
     public Grid grid;         //Reference to the grid of which this tilemap is a child of
     public RuleTile grass;        //The tiles we want to autotile. For this instance, it's grass tiles
@@ -33,7 +34,7 @@ public class Biome : MonoBehaviour
     public RuleTile water;
     //public AnimatedTile water;        //The tile we want to autotile. For this instance, it's water
 
-    
+    public Sprite seedSprite;
     public Vector3Int gridBottomLeft;//The bottom left corner of the viewport, but mapped to the cell grid of the tilemap.
     public Vector3Int gridTopRight;//The top right corner of the viewport, but mapped to the cell grid of the tilemap.
     public GameObject mask;   //Reference to a SpriteMask
@@ -52,8 +53,29 @@ public class Biome : MonoBehaviour
         //voronoi.SetNoiseType(FastNoise.NoiseType.Cellular);
         //voronoi.SetFractalOctaves(2);
         GenerateTerrain();
+        InvokeRepeating("SeedTileSpawn", 2.0f, 60.0f);
     }
 
+    void SeedTileSpawn()
+    {
+        gridBottomLeft = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)));
+        gridTopRight = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)));
+        Vector3Int randNum = new Vector3Int((int)Random.Range(gridBottomLeft.x, gridTopRight.x + 1), (int)Random.Range(gridBottomLeft.y, gridTopRight.y + 1), 0);
+        while ((GetComponent<Tilemap>().GetTile(randNum) != grass))
+        {
+            randNum = new Vector3Int((int)Random.Range(gridBottomLeft.x, gridTopRight.x + 1), (int)Random.Range(gridBottomLeft.y, gridTopRight.y + 1), 0);
+        }
+        if ((GetComponent<Tilemap>().GetTile(randNum) == grass))
+        {            
+            int random = (int) Random.Range(4, 7);
+            int amount = (int) Random.Range(1, 4);
+            SeedTile seedTile = (SeedTile) ScriptableObject.CreateInstance(typeof(SeedTile));
+            seedTile.name = "Seed";
+            seedTile.sprite = seedSprite;
+            seedTile.Initialize(random, amount);
+            GetComponent<Tilemap>().SetTile(randNum, seedTile);
+        }
+    }
     void CalcNoise(int x, int y, bool isWater)
     {
         Vector3Int gridPos = grid.WorldToCell(new Vector3(x, y, 0));

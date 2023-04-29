@@ -12,9 +12,9 @@ public class Enums : MonoBehaviour
         Ground,
         Grass,
         Wheat,
-        Tree,
         Flower,
-        Algae
+        Water,
+        Soil
     }
     public enum ItemType {
         Dirt,

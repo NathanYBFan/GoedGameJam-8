@@ -53,6 +53,7 @@ public class SpriteEditorManager : MonoBehaviour
                         counter++;
                     }
                 }
+                Debug.Log(mapManager.GetGameMap().GetTile(offset).name);
                 if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
                     SetSpawnTileType(0, offset);
                 else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Soil"))
@@ -61,6 +62,8 @@ public class SpriteEditorManager : MonoBehaviour
                     SetSpawnTileType(2, offset);
                 else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Grass"))
                     SetSpawnTileType(3, offset);
+                else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Seed"))
+                    SetSpawnTileType(4, offset);
                 //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
             }
             else if (mapManager.GetSelectedMultiTile().name == "Combiner")
@@ -393,7 +396,8 @@ public class SpriteEditorManager : MonoBehaviour
         machineManager.dirtSpawners = new();
         machineManager.soilSpawners = new();
         machineManager.grassSpawners = new();
-        machineManager.waterSpawners = new();        
+        machineManager.waterSpawners = new();   
+        machineManager.seedSpawners = new();     
         machineManager.combiners = new();          
         machineManager.breeders = new();
         machineManager.incinerators = new();
@@ -419,6 +423,10 @@ public class SpriteEditorManager : MonoBehaviour
                 {                    
                     machineManager.grassSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
                 }
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)).name.Contains("Seed"))
+                {                                       
+                    machineManager.seedSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
+                }
                 else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)) is CombinerCPUTile combiner)
                 {
                     machineManager.combiners.Add(combiner);
@@ -431,6 +439,7 @@ public class SpriteEditorManager : MonoBehaviour
                 {
                     machineManager.incinerators.Add(incinerator);
                 }
+
             }
         }
         

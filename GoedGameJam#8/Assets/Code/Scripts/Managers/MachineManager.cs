@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class MachineManager : MonoBehaviour
 {
+    public MapManager mapManager;
+    public RuleTile barrenTile;
     public List<Vector3> dirtSpawners = new();
     public List<Vector3> soilSpawners = new();
     public List<Vector3> waterSpawners = new();
     
     public List<Vector3> grassSpawners = new();
+    
+    public List<Vector3> seedSpawners = new();
 
     public List<Recipe> recipes = new();
     
@@ -31,7 +35,71 @@ public class MachineManager : MonoBehaviour
     {
         CheckCombiners();
         CheckBreeders();
-        CheckIncinerators();      
+        CheckIncinerators();    
+        CheckSpawners();  
+    }
+    void CheckSpawners()
+    {
+        foreach (Vector3 v in seedSpawners)
+        {
+            string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
+            if (!name.Contains("Seed"))
+            {
+                seedSpawners.Remove(v);
+                if (name.Contains("Barren") && !dirtSpawners.Contains(v)) dirtSpawners.Add(v);      
+                if (name.Contains("Soil") && !soilSpawners.Contains(v)) soilSpawners.Add(v);                     
+                if (name.Contains("Water") && !waterSpawners.Contains(v)) waterSpawners.Add(v);                                    
+                if (name.Contains("Grass") && !grassSpawners.Contains(v)) grassSpawners.Add(v);          
+            }
+        }
+        foreach (Vector3 v in dirtSpawners)
+        {
+            string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
+            if (!name.Contains("Barren"))
+            {
+                dirtSpawners.Remove(v);
+                if (name.Contains("Seed") && !seedSpawners.Contains(v)) seedSpawners.Add(v);      
+                if (name.Contains("Soil") && !soilSpawners.Contains(v)) soilSpawners.Add(v);                     
+                if (name.Contains("Water") && !waterSpawners.Contains(v)) waterSpawners.Add(v);                                    
+                if (name.Contains("Grass") && !grassSpawners.Contains(v)) grassSpawners.Add(v);          
+            }
+        }
+        foreach (Vector3 v in soilSpawners)
+        {
+            string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
+            if (!name.Contains("Soil"))
+            {
+                soilSpawners.Remove(v);
+                if (name.Contains("Seed") && !seedSpawners.Contains(v)) seedSpawners.Add(v);      
+                if (name.Contains("Barren") && !dirtSpawners.Contains(v)) dirtSpawners.Add(v);                     
+                if (name.Contains("Water") && !waterSpawners.Contains(v)) waterSpawners.Add(v);                                    
+                if (name.Contains("Grass") && !grassSpawners.Contains(v)) grassSpawners.Add(v);          
+            }
+        }
+        foreach (Vector3 v in waterSpawners)
+        {
+            string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
+            if (!name.Contains("Water"))
+            {
+                waterSpawners.Remove(v);
+                if (name.Contains("Seed") && !seedSpawners.Contains(v)) seedSpawners.Add(v);      
+                if (name.Contains("Barren") && !dirtSpawners.Contains(v)) dirtSpawners.Add(v);                     
+                if (name.Contains("Soil") && !soilSpawners.Contains(v)) soilSpawners.Add(v);                                    
+                if (name.Contains("Grass") && !grassSpawners.Contains(v)) grassSpawners.Add(v);          
+            }
+        }
+        foreach (Vector3 v in grassSpawners)
+        {
+            string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
+            if (!name.Contains("Grass"))
+            {
+                grassSpawners.Remove(v);
+                if (name.Contains("Seed") && !seedSpawners.Contains(v)) seedSpawners.Add(v);      
+                if (name.Contains("Barren") && !dirtSpawners.Contains(v)) dirtSpawners.Add(v);                     
+                if (name.Contains("Soil") && !soilSpawners.Contains(v)) soilSpawners.Add(v);                                    
+                if (name.Contains("Water") && !waterSpawners.Contains(v)) waterSpawners.Add(v);          
+            }
+        }
     }
     public void SpawnResource()
     {
@@ -39,8 +107,27 @@ public class MachineManager : MonoBehaviour
         SpawnItems(soilSpawners, 1);
         SpawnItems(waterSpawners, 2);        
         SpawnItems(grassSpawners, 3);
+        SpawnSeeds(seedSpawners);
     }
 
+    private void SpawnSeeds(List<Vector3> resource)
+    {
+        foreach(Vector3 t in resource){
+            if (mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(t)) is SeedTile seedTile) 
+            {
+                int itemToSpawn = seedTile.randSeed;
+                Vector3 temp = t;
+                temp.z = spawnItems[itemToSpawn].transform.position.z;
+                Instantiate(spawnItems[itemToSpawn], temp, Quaternion.identity);
+                seedTile.seedsAmount--;
+
+                if (seedTile.seedsAmount <= 0)
+                {                    
+                    mapManager.GetGameMap().SetTile(Vector3Int.FloorToInt(t), barrenTile);
+                }
+            }  
+        }
+    }
     private void SpawnItems(List<Vector3> resource, int itemToSpawn) {
         foreach(Vector3 t in resource) {
             Vector3 temp = t;

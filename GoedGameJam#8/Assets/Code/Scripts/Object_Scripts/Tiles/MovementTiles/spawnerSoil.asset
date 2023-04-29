@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b116a01d006c44f8d64222b660842e, type: 3}
   m_Name: spawnerSoil
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -390255993, guid: 818d51335610f974f9afaba5b9ee57c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1d944cf9dea86c4a80a0b0b611da832, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,4 +34,4 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  movementDir: {x: 0, y: 0}
+  movementDir: {x: 0, y: 0.1}

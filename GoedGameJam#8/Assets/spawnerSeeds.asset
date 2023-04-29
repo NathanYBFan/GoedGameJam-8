@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83b116a01d006c44f8d64222b660842e, type: 3}
-  m_Name: spawnerGrass
+  m_Name: spawnerSeeds
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: a1d944cf9dea86c4a80a0b0b611da832, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
