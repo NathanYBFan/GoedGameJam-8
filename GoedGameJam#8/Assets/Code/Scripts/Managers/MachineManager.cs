@@ -7,10 +7,19 @@ public class MachineManager : MonoBehaviour
     public List<Vector3> dirtSpawners = new();
     public List<Vector3> soilSpawners = new();
     public List<Vector3> waterSpawners = new();
+    
+    public List<Vector3> grassSpawners = new();
 
     public List<Recipe> recipes = new();
+    
+    public List<Recipe> animalRecipes = new();
+    
+    public List<Recipe> incineratingRecipes = new();
 
     public List<CombinerCPUTile> combiners = new();
+    public List<BreederCPUTile> breeders = new();
+    
+    public List<IncineratorTile> incinerators = new();
     public GameObject[] spawnItems;
     public float spawnInterval = 2.0f;
     
@@ -21,12 +30,15 @@ public class MachineManager : MonoBehaviour
     void Update()
     {
         CheckCombiners();
+        CheckBreeders();
+        CheckIncinerators();      
     }
     public void SpawnResource()
     {
         SpawnItems(dirtSpawners, 0);
         SpawnItems(soilSpawners, 1);
-        SpawnItems(waterSpawners, 2);
+        SpawnItems(waterSpawners, 2);        
+        SpawnItems(grassSpawners, 3);
     }
 
     private void SpawnItems(List<Vector3> resource, int itemToSpawn) {
@@ -41,12 +53,37 @@ public class MachineManager : MonoBehaviour
     {
         foreach(CombinerCPUTile c in combiners)
         {
-            if (c.input1.heldItem != null & c.input2.heldItem != null);
+            if (c.input1.heldItem != null && c.input2.heldItem != null);
             {
                 if (c.CheckForValidRecipes())
                 {
                     c.output.OutputItem();
                 }
+            }
+        }
+    }
+    private void CheckBreeders()
+    {
+        foreach(BreederCPUTile b in breeders)
+        {
+            if (b.input1.heldItem != null || b.input2.heldItem != null);
+            {
+                if (b.CheckForValidRecipes())
+                {
+                    b.output.OutputItem();
+                }
+            }
+        }
+    }
+    private void CheckIncinerators()
+    {
+        foreach(IncineratorTile c in incinerators)
+        {
+            if (c.heldItem != null);
+            {
+                c.CheckForValidIncineration();
+                Destroy(c.heldItem);
+                
             }
         }
     }

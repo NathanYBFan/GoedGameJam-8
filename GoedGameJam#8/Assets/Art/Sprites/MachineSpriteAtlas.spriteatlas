@@ -114,6 +114,10 @@ SpriteAtlas:
   - {fileID: 445931071, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
   - {fileID: 311677442, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
   - {fileID: 552519215, guid: 078c02776e33ef149b318f03118ba4c6, type: 3}
+  - {fileID: 221999928, guid: ad1474775f56c8e488365c80d482103d, type: 3}
+  - {fileID: 391866581, guid: ad1474775f56c8e488365c80d482103d, type: 3}
+  - {fileID: 40101396, guid: ad1474775f56c8e488365c80d482103d, type: 3}
+  - {fileID: 1236176201, guid: ad1474775f56c8e488365c80d482103d, type: 3}
   - {fileID: -1060437416, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
   - {fileID: -243994993, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
   - {fileID: 591294549, guid: f56bb81c3a867484c9f89a7405c5909c, type: 3}
@@ -231,6 +235,10 @@ SpriteAtlas:
   - Extractor_12
   - Extractor_11
   - Extractor_10
+  - incinerator_0
+  - incinerator_1
+  - incinerator_2
+  - incinerator_3
   - AnimalBreeder_7
   - AnimalBreeder_6
   - AnimalBreeder_5

@@ -59,6 +59,8 @@ public class SpriteEditorManager : MonoBehaviour
                     SetSpawnTileType(1, offset);
                 else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Water"))
                     SetSpawnTileType(2, offset);
+                else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Grass"))
+                    SetSpawnTileType(3, offset);
                 //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
             }
             else if (mapManager.GetSelectedMultiTile().name == "Combiner")
@@ -87,6 +89,61 @@ public class SpriteEditorManager : MonoBehaviour
                 SetupCombinerTiles(offset);
                 //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
             }
+            else if (mapManager.GetSelectedMultiTile().name == "Breeder")
+            {                
+                if (!CheckIfPlaceable(currentGridPos)) return;
+                Vector3Int offset = Vector3Int.zero;
+                int counter = 0;                
+                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                        if (selectedTile == 0) {             
+                            offset = currentGridPos + new Vector3Int(0, 1, 0);              
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 1) {                            
+                            offset = currentGridPos + new Vector3Int(0, 0, 0);         
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 2) {
+                            offset = currentGridPos + new Vector3Int(1, 0, 0);
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 3) {
+                            offset = currentGridPos + new Vector3Int(1, 1, 0);
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        counter++;
+                    }
+                }
+                SetupBreederTiles(offset);
+                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+            }
+            else if (mapManager.GetSelectedMultiTile().name == "Incinerator")
+            {                
+                if (!CheckIfPlaceable(currentGridPos)) return;
+                Vector3Int offset = Vector3Int.zero;
+                int counter = 0;                
+                offset = currentGridPos;
+                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                        if (selectedTile == 0) {                                                      
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 1) {                            
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 2) {
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 3) {
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        counter++;
+                    }
+                }
+                SetupIncinerator(offset);
+                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+            }
         }
         else if (mapManager.GetSelectedAnimatedTile() != null) {
             // If tile already has machine on it, then exit
@@ -108,7 +165,10 @@ public class SpriteEditorManager : MonoBehaviour
         }
         // If an environemnt tile is selected
         else if (mapManager.GetSelectedRuleTile() != null && mapManager.GetSelectedAnimatedTile() == null)
-            mapManager.GetGameMap().SetTile(currentGridPos, mapManager.GetSelectedRuleTile());
+        {
+            if (mapManager.GetGameMap().GetTile(currentGridPos) == mapManager.GetSelectedRuleTile()) return;
+            else mapManager.GetGameMap().SetTile(currentGridPos, mapManager.GetSelectedRuleTile());
+        }
         
         // If no valid selected tile, then remove
         else {
@@ -140,6 +200,93 @@ public class SpriteEditorManager : MonoBehaviour
         }
     }
 
+    private void SetupIncinerator(Vector3Int offset)
+    {
+        IncineratorTile incinerator = (IncineratorTile) ScriptableObject.CreateInstance(typeof(IncineratorTile));
+        incinerator.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];        
+        incinerator.position = offset + new Vector3(0.5f, 0.5f, 0); 
+        incinerator.recipes = machineManager.incineratingRecipes;
+        switch (selectedTile)
+        {
+            case 1:
+                incinerator.movementDir = new Vector2(0.1f, 0);
+                break;
+            case 2:
+                incinerator.movementDir = new Vector2(0, -0.1f);
+                break;
+            case 3:
+                incinerator.movementDir = new Vector2(-0.1f, 0);
+                break;
+            default:
+                incinerator.movementDir = new Vector2(0, 0.1f);
+                break;
+        }
+        mapManager.GetMachineMap().SetTile(offset, incinerator);
+    }
+    private void SetupBreederTiles(Vector3Int offset)
+    {                               
+        BreederCPUTile breederCPU = (BreederCPUTile) ScriptableObject.CreateInstance(typeof(BreederCPUTile));
+        ContainerTile container1 = (ContainerTile) ScriptableObject.CreateInstance(typeof(ContainerTile));
+        ContainerTile container2 = (ContainerTile) ScriptableObject.CreateInstance(typeof(ContainerTile));        
+        OutputTile output = (OutputTile) ScriptableObject.CreateInstance(typeof(OutputTile));
+        breederCPU.name = "Extractor_2";        
+        breederCPU.input1 = container1;
+        breederCPU.input2 = container2;        
+        breederCPU.output = output;  
+        breederCPU.animalRecipes = machineManager.animalRecipes;     
+        switch(selectedTile)
+        {
+            case 1:
+                breederCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];        
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 0, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 1, 0), container2);                              
+                output.movementDir = new Vector2(0.1f, 0);                                              
+                output.position = offset + new Vector3Int(0, 1, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, 1, 0), output);                
+                mapManager.GetMachineMap().SetTile(offset, breederCPU);
+                break;
+            case 2:
+                breederCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];          
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, 1, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 1, 0), container2);                              
+                output.movementDir = new Vector2(0, -0.1f);                                   
+                output.position = offset + new Vector3Int(-1, 0, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 0, 0), output);                
+                mapManager.GetMachineMap().SetTile(offset, breederCPU);
+                break;
+            case 3:
+                breederCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];          
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 0, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, -1, 0), container2);                              
+                output.movementDir = new Vector2(-0.1f, 0);                                   
+                output.position = offset + new Vector3Int(0, -1, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, -1, 0), output);                
+                mapManager.GetMachineMap().SetTile(offset, breederCPU);
+                break;  
+            default:
+                breederCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];          
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, -1, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, -1, 0), container2);                              
+                output.movementDir = new Vector2(0, 0.1f);                                     
+                output.position = offset + new Vector3Int(1, 0, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 0, 0), output);                
+                mapManager.GetMachineMap().SetTile(offset, breederCPU);
+                break;
+        }            
+
+    }
     private void SetupCombinerTiles(Vector3Int offset)
     {                               
         CombinerCPUTile combinerCPU = (CombinerCPUTile) ScriptableObject.CreateInstance(typeof(CombinerCPUTile));
@@ -155,6 +302,9 @@ public class SpriteEditorManager : MonoBehaviour
         switch(selectedTile)
         {
             case 1:
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[8].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 1, 0), container1);                
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, -1, 0), container2);                              
                 output.movementDir = new Vector2(0.1f, 0);                                              
@@ -163,6 +313,9 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
                 break;
             case 2:
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[6].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[8].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 1, 0), container1);                
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 1, 0), container2);                              
                 output.movementDir = new Vector2(0, -0.1f);                                   
@@ -171,6 +324,9 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
                 break;
             case 3:
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[6].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[5].m_AnimatedSprites[selectedTile];
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 1, 0), container1);                
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, -1, 0), container2);                              
                 output.movementDir = new Vector2(-0.1f, 0);                                   
@@ -179,6 +335,9 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
                 break;  
             default:
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[7].m_AnimatedSprites[selectedTile];
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, -1, 0), container1);                
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, -1, 0), container2);                              
                 output.movementDir = new Vector2(0, 0.1f);                                     
@@ -233,8 +392,11 @@ public class SpriteEditorManager : MonoBehaviour
         Vector3Int gridTopRight = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)));
         machineManager.dirtSpawners = new();
         machineManager.soilSpawners = new();
+        machineManager.grassSpawners = new();
         machineManager.waterSpawners = new();        
-        machineManager.combiners = new();
+        machineManager.combiners = new();          
+        machineManager.breeders = new();
+        machineManager.incinerators = new();
         //First iteration of terrain gen
         for (int y = gridBottomLeft.y; y <= gridTopRight.y; y++)
         {
@@ -253,9 +415,21 @@ public class SpriteEditorManager : MonoBehaviour
                 {                    
                     machineManager.waterSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
                 }
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)).name.Contains("Grass"))
+                {                    
+                    machineManager.grassSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
+                }
                 else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)) is CombinerCPUTile combiner)
                 {
                     machineManager.combiners.Add(combiner);
+                }
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)) is BreederCPUTile breeder)
+                {
+                    machineManager.breeders.Add(breeder);
+                }
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)) is IncineratorTile incinerator)
+                {
+                    machineManager.incinerators.Add(incinerator);
                 }
             }
         }

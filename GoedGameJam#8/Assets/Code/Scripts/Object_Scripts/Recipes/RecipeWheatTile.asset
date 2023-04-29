@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a95537b8ee6564e8326b50067bb45a, type: 3}
+  m_Name: RecipeWheatTile
+  m_EditorClassIdentifier: 
+  firstIngredient: 7
+  secondIngredient: 11
+  output: {fileID: 2925166109052197446, guid: 827e0fe13c12e0344bfda93837e2ed5f, type: 3}
+  tileResource: {fileID: 0}
+  outputAmount: 1

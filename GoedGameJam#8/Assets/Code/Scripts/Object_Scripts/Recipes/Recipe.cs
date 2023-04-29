@@ -6,7 +6,8 @@ using UnityEngine;
 public class Recipe : ScriptableObject
 {    
     public Enums.ItemType firstIngredient, secondIngredient;
-    public GameObject output;      
+    public GameObject output;   
+    public Resource tileResource;   
     public int outputAmount = 0;
     void Awake()
     {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7971b2652356d304b90e6601bc8bade4, type: 3}
   m_Name: AnimalBreeder
   m_EditorClassIdentifier: 
-  name: AnimalBreeder
+  name: Breeder
   size: {x: 2, y: 2, z: 0}
   directedTile:
   - {fileID: 11400000, guid: addb9d05beba85f4383904ae19319f18, type: 2}

@@ -7,6 +7,15 @@ public class Enums : MonoBehaviour
         environment
     }
 
+    public enum EnvironmentTileType 
+    {
+        Ground,
+        Grass,
+        Wheat,
+        Tree,
+        Flower,
+        Algae
+    }
     public enum ItemType {
         Dirt,
         Ash,

@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Resource", menuName = "Inventory/Resource")]
 public class Resource : ScriptableObject
 {    
-    public Sprite icon;
-    new public string name = "";
+    public Enums.EnvironmentTileType tileType;
     public int amount;
 }
