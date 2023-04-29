@@ -61,20 +61,40 @@ public class Biome : MonoBehaviour
         gridBottomLeft = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)));
         gridTopRight = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)));
         Vector3Int randNum = new Vector3Int((int)Random.Range(gridBottomLeft.x, gridTopRight.x + 1), (int)Random.Range(gridBottomLeft.y, gridTopRight.y + 1), 0);
-        while ((GetComponent<Tilemap>().GetTile(randNum) != grass))
+        if (CheckForBarrenTiles())
         {
-            randNum = new Vector3Int((int)Random.Range(gridBottomLeft.x, gridTopRight.x + 1), (int)Random.Range(gridBottomLeft.y, gridTopRight.y + 1), 0);
+            while ((GetComponent<Tilemap>().GetTile(randNum) != grass))
+            {
+                randNum = new Vector3Int((int)Random.Range(gridBottomLeft.x, gridTopRight.x + 1), (int)Random.Range(gridBottomLeft.y, gridTopRight.y + 1), 0);
+            }
+            if ((GetComponent<Tilemap>().GetTile(randNum) == grass))
+            {            
+                int random = (int) Random.Range(4, 7);
+                int amount = (int) Random.Range(1, 4);
+                SeedTile seedTile = (SeedTile) ScriptableObject.CreateInstance(typeof(SeedTile));
+                seedTile.name = "Seed";
+                seedTile.sprite = seedSprite;
+                seedTile.Initialize(random, amount);
+                GetComponent<Tilemap>().SetTile(randNum, seedTile);
+            }
         }
-        if ((GetComponent<Tilemap>().GetTile(randNum) == grass))
-        {            
-            int random = (int) Random.Range(4, 7);
-            int amount = (int) Random.Range(1, 4);
-            SeedTile seedTile = (SeedTile) ScriptableObject.CreateInstance(typeof(SeedTile));
-            seedTile.name = "Seed";
-            seedTile.sprite = seedSprite;
-            seedTile.Initialize(random, amount);
-            GetComponent<Tilemap>().SetTile(randNum, seedTile);
+        
+    }
+    bool CheckForBarrenTiles()
+    {
+        bool existsBarren = false;
+        for (int y = gridBottomLeft.y; y <= gridTopRight.y; y++)
+        {
+            for (int x = gridBottomLeft.x; x <= gridTopRight.x; x++)
+            {
+                if ((GetComponent<Tilemap>().GetTile(new Vector3Int(x, y, 0)) == grass))
+                {
+                    existsBarren = true;
+                }
+            }
         }
+        return existsBarren;
+
     }
     void CalcNoise(int x, int y, bool isWater)
     {

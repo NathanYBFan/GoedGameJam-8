@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de5d9e53c93a5046bf0ffc2c557b4b0, type: 3}
   m_Name: Soil
   m_EditorClassIdentifier: 
-  tileType: 2
+  tileType: 5
   amount: 0
