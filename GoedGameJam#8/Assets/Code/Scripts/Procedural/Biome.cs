@@ -38,6 +38,7 @@ public class Biome : MonoBehaviour
     public Vector3Int gridTopRight;//The top right corner of the viewport, but mapped to the cell grid of the tilemap.
     public GameObject mask;   //Reference to a SpriteMask
     public GameObject player; //Reference to the player
+    public GameObject camBounds;
     public int noiseValue;    //The noise value (but mapped to a 0 - 255 range)
     Vector3 size;             //The vector 3 scale of the entire viewport (viewable range)
     public int tempSeed = 1337;
@@ -262,8 +263,8 @@ public class Biome : MonoBehaviour
         heightMap.SetFractalType(fractalType);
         FastNoise defectorHeightMap = new FastNoise();
         defectorHeightMap.SetNoiseType(FastNoise.NoiseType.PerlinFractal);       
-        gridBottomLeft = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)));
-        gridTopRight = grid.WorldToCell(Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)));
+        gridBottomLeft = grid.WorldToCell(camBounds.GetComponent<SpriteRenderer>().bounds.min);
+        gridTopRight = grid.WorldToCell(camBounds.GetComponent<SpriteRenderer>().bounds.max);
 
         //First iteration of terrain gen
         for (int y = gridBottomLeft.y; y <= gridTopRight.y; y++)
