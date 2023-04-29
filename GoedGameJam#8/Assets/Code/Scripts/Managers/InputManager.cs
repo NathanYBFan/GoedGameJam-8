@@ -52,10 +52,12 @@ public class InputManager : MonoBehaviour
             PauseGame();
         
         if (Input.GetKeyDown(KeyCode.LeftControl)) {
-            Vector3Int newGrid = gridPosition;
-            newGrid.z = -2;
-            for (int i = 0; i < 100; i++)
-                Instantiate(item, newGrid, Quaternion.identity);
+            Debug.Log(mapManager.GetMachineMap().GetTile(gridPosition).name);
+            
+            // Vector3Int newGrid = gridPosition;
+            // newGrid.z = -2;
+            // for (int i = 0; i < 100; i++)
+            //     Instantiate(item, newGrid, Quaternion.identity);
         }
         // Update Grid Positions 
         lastGridPosition = gridPosition;

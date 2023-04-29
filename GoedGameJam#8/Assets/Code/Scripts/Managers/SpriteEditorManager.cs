@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using NaughtyAttributes;
 
 public class SpriteEditorManager : MonoBehaviour
 {
@@ -12,234 +13,127 @@ public class SpriteEditorManager : MonoBehaviour
     [SerializeField] private MovementTile[] spawnerTiles;
     [SerializeField] private AudioClip ConveyorAudioClip;
     [SerializeField] private AudioSource audioSource;
-    public int selectedTile = 0; //Rotational value
+    [SerializeField, ReadOnly] private int selectedTile = 0; // Rotational value
 
-    private bool CheckIfPlaceable(Vector3Int currentGridPos) {
-        for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
-            for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                if (mapManager.GetMachineMap().GetTile(currentGridPos + new Vector3Int(j, i, 0)) != null) return false;
-                if (mapManager.GetConveyorMap().GetTile(currentGridPos + new Vector3Int(j, i, 0)) != null) return false;
-            }
-        }
-        return true;
-    }
+    // Main controller method
     public void PlaceTileDown(Vector3Int lastGridPos, Vector3Int currentGridPos) {
-        // If a machine is selected
         
-        if (mapManager.GetSelectedMultiTile() != null)
-        {
+        // If a machine is selected
+        if (mapManager.GetSelectedMultiTile() != null) {
+            if (!CheckIfPlaceable(currentGridPos)) return;
+
             if (mapManager.GetSelectedMultiTile().name == "Extractor")
-            {                
-                if (!CheckIfPlaceable(currentGridPos)) return;
-                Vector3Int offset = Vector3Int.zero;
-                int counter = 0;
-                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
-                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                        if (selectedTile == 0) {
-                            offset = currentGridPos + new Vector3Int(1, 1, 0);
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 1) {
-                            offset = currentGridPos + new Vector3Int(1, 0, 0);
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 2) {
-                            offset = currentGridPos;   
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 3) {
-                            offset = currentGridPos + new Vector3Int(0, 1, 0);
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        counter++;
-                    }
-                }
-                Debug.Log(mapManager.GetGameMap().GetTile(offset).name);
-                if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
-                    SetSpawnTileType(0, offset);
-                else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Soil"))
-                    SetSpawnTileType(1, offset);
-                else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Water"))
-                    SetSpawnTileType(2, offset);
-                else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Grass"))
-                    SetSpawnTileType(3, offset);
-                else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Seed"))
-                    SetSpawnTileType(4, offset);
-                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
-            }
+                PlaceExtractor(currentGridPos);
             else if (mapManager.GetSelectedMultiTile().name == "Combiner")
-            {                
-                if (!CheckIfPlaceable(currentGridPos)) return;
-                Vector3Int offset = Vector3Int.zero;
-                int counter = 0;                
-                offset = currentGridPos + new Vector3Int(1, 1, 0);
-                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
-                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                        if (selectedTile == 0) {                            
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 1) {
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 2) {
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 3) {
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        counter++;
-                    }
-                }
-                SetupCombinerTiles(offset);
-                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
-            }
+                PlaceCombiner(currentGridPos);
             else if (mapManager.GetSelectedMultiTile().name == "Breeder")
-            {                
-                if (!CheckIfPlaceable(currentGridPos)) return;
-                Vector3Int offset = Vector3Int.zero;
-                int counter = 0;                
-                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
-                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                        if (selectedTile == 0) {             
-                            offset = currentGridPos + new Vector3Int(0, 1, 0);              
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 1) {                            
-                            offset = currentGridPos + new Vector3Int(0, 0, 0);         
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 2) {
-                            offset = currentGridPos + new Vector3Int(1, 0, 0);
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 3) {
-                            offset = currentGridPos + new Vector3Int(1, 1, 0);
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        counter++;
-                    }
-                }
-                SetupBreederTiles(offset);
-                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
-            }
+                PlaceBreeder(currentGridPos);
             else if (mapManager.GetSelectedMultiTile().name == "Incinerator")
-            {                
-                if (!CheckIfPlaceable(currentGridPos)) return;
-                Vector3Int offset = Vector3Int.zero;
-                int counter = 0;                
-                offset = currentGridPos;
-                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
-                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                        if (selectedTile == 0) {                                                      
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 1) {                            
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 2) {
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 3) {
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        counter++;
-                    }
-                }
-                SetupIncinerator(offset);
-                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
-            }
-            else if (mapManager.GetSelectedMultiTile().name == "Uploader")
-            {                
-                if (!CheckIfPlaceable(currentGridPos)) return;
-                Vector3Int offset = Vector3Int.zero;
-                int counter = 0;                
-                offset = currentGridPos;
-                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
-                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                        if (selectedTile == 0) {                                                      
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 1) {                            
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 2) {
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        else if (selectedTile == 3) {
-                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
-                        }
-                        counter++;
-                    }
-                }
-                SetupUploader(offset);
-                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
-            }
+                PlaceIncinerator(currentGridPos);
+            else if (mapManager.GetSelectedMultiTile().name == "Uploader")                
+                PlaceUploader(currentGridPos);
         }
-        else if (mapManager.GetSelectedAnimatedTile() != null) {
-            // If tile already has machine on it, then exit
-            if (mapManager.GetMachineMap().GetTile(currentGridPos) != null) return;
 
-            // If a conveyor is selected
-            if (mapManager.GetSelectedAnimatedTile().name.Contains("Conveyor")) {
-                // Get direction the last grid was
-                ConveyorOrientation(lastGridPos - currentGridPos);
-
-                // Fix bends
-                FixPreviousConveyor(lastGridPos, currentGridPos);
-
-                mapManager.GetConveyorMap().SetTile(currentGridPos, mapManager.GetSelectedAnimatedTile());
-                audioSource.clip = ConveyorAudioClip;
-                if (!audioSource.isPlaying)
-                    audioSource.Play();
-            }
-        }
+        // If Conveyor Belts are selected
+        else if (mapManager.GetSelectedAnimatedTile() != null)
+            PlaceConveyorBelt(lastGridPos, currentGridPos);
+        
         // If an environemnt tile is selected
-        else if (mapManager.GetSelectedRuleTile() != null && mapManager.GetSelectedAnimatedTile() == null)
-        {
+        else if (mapManager.GetSelectedRuleTile() != null && mapManager.GetSelectedAnimatedTile() == null) {
             if (mapManager.GetGameMap().GetTile(currentGridPos) == mapManager.GetSelectedRuleTile()) return;
             else mapManager.GetGameMap().SetTile(currentGridPos, mapManager.GetSelectedRuleTile());
         }
         
         // If no valid selected tile, then remove
-        else {
-            if (mapManager.GetMachineMap().GetTile(currentGridPos) != null) {
-                switch(mapManager.GetMachineMap().GetTile(currentGridPos).name) {
-                    case "Extractor_2":                                         // Middle left
-                        RemoveAreaTiles(currentGridPos);
-                        break;
-                    case "Extractor_3":                                         // Middle right
-                        Vector3Int temp = currentGridPos;
-                        temp.x -= 1;
-                        RemoveAreaTiles(temp);
-                        break;
-                    case "Extractor_0":                                         // Bottom left
-                        temp = currentGridPos; 
-                        temp.y += 1;
-                        RemoveAreaTiles(temp);
-                        break;
-                    case "Extractor_1":                                         // Bottom right
-                        temp = currentGridPos;
-                        temp.x -= 1;
-                        temp.y += 1;
-                        RemoveAreaTiles(temp);
-                        break;
-                }
-            }
-            mapManager.GetConveyorMap().SetTile(currentGridPos, null);
-            mapManager.GetHoverHighlight().SetRuleHoverDisplay(null);
-        }
+        else
+            RemoveTiles(currentGridPos);
     }
 
-    private void SetupUploader(Vector3Int offset)
-    {
-        UploaderTile uploader = (UploaderTile) ScriptableObject.CreateInstance(typeof(UploaderTile));
-        uploader.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];      
-        uploader.resourceManager = resourceManager;        
-        mapManager.GetMachineMap().SetTile(offset, uploader);
+    // Places the entire extractor
+    private void PlaceExtractor(Vector3Int currentGridPos) {
+        int counter = 0;
+        Vector3Int offset = Vector3Int.zero;
+        for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+            for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                if (selectedTile == 0) {
+                    offset = currentGridPos + new Vector3Int(1, 1, 0);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                }
+                else if (selectedTile == 1) {
+                    offset = currentGridPos + new Vector3Int(1, 0, 0);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                }
+                else if (selectedTile == 2) {
+                    offset = currentGridPos + new Vector3Int(0, 0, 0);   
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                }
+                else if (selectedTile == 3) {
+                    offset = currentGridPos + new Vector3Int(0, 1, 0);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                }
+                counter++;
+            }
+        }
+
+        // Set a spawn tile
+        if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
+            SetSpawnTileType(0, offset);
+        else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Soil"))
+            SetSpawnTileType(1, offset);
+        else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Water"))
+            SetSpawnTileType(2, offset);
+        else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Grass"))
+            SetSpawnTileType(3, offset);
+        else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Seed"))
+            SetSpawnTileType(4, offset);
     }
-    private void SetupIncinerator(Vector3Int offset)
-    {
+
+    private void PlaceCombiner(Vector3Int currentGridPos) {
+        int counter = 0;
+        Vector3Int offset = Vector3Int.zero;
+        offset = currentGridPos + new Vector3Int(1, 1, 0);
+        for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+            for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                counter++;
+            }
+        }
+        SetupCombinerTiles(offset);
+    }
+
+    private void PlaceBreeder(Vector3Int currentGridPos) {
+        int counter = 0;
+        Vector3Int offset = Vector3Int.zero;
+        for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+            for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                if (selectedTile == 0) {             
+                    offset = currentGridPos + new Vector3Int(0, 1, 0);              
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                }
+                else if (selectedTile == 1) {                            
+                    offset = currentGridPos + new Vector3Int(0, 0, 0);         
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                }
+                else if (selectedTile == 2) {
+                    offset = currentGridPos + new Vector3Int(1, 0, 0);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                }
+                else if (selectedTile == 3) {
+                    offset = currentGridPos + new Vector3Int(1, 1, 0);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                }
+                counter++;
+            }
+        }
+        SetupBreederTiles(offset);
+    }
+
+    private void PlaceIncinerator(Vector3Int currentGridPos) {
+        Vector3Int offset = Vector3Int.zero;
+        offset = currentGridPos;
+
         IncineratorTile incinerator = (IncineratorTile) ScriptableObject.CreateInstance(typeof(IncineratorTile));
+        incinerator.name = "Incinerator";
         incinerator.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];        
         incinerator.position = offset + new Vector3(0.5f, 0.5f, 0); 
         incinerator.recipes = machineManager.incineratingRecipes;
@@ -260,6 +154,69 @@ public class SpriteEditorManager : MonoBehaviour
         }
         mapManager.GetMachineMap().SetTile(offset, incinerator);
     }
+
+    private void PlaceUploader(Vector3Int currentGridPos) {
+        Vector3Int offset = Vector3Int.zero;
+        offset = currentGridPos;
+
+        UploaderTile uploader = (UploaderTile) ScriptableObject.CreateInstance(typeof(UploaderTile));
+        uploader.name = "Incinerator";  // For removing the tile, saved as remove 1 tile
+        uploader.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];      
+        uploader.resourceManager = resourceManager;        
+        mapManager.GetMachineMap().SetTile(offset, uploader);
+    }
+
+    private void PlaceConveyorBelt(Vector3Int lastGridPos, Vector3Int currentGridPos) {
+        // If tile already has machine on it, then exit
+        if (mapManager.GetMachineMap().GetTile(currentGridPos) != null) return;
+        // If a conveyor is not selected, then exit
+        if (!mapManager.GetSelectedAnimatedTile().name.Contains("Conveyor")) return;
+
+        // Get direction the last grid was
+        ConveyorOrientation(lastGridPos - currentGridPos);
+        // Fix bends
+        FixPreviousConveyor(lastGridPos, currentGridPos);
+
+        // Set current position tile
+        mapManager.GetConveyorMap().SetTile(currentGridPos, mapManager.GetSelectedAnimatedTile());
+        // Play Audio
+        audioSource.clip = ConveyorAudioClip;
+        if (!audioSource.isPlaying)
+            audioSource.Play();
+    }
+
+    private void RemoveTiles(Vector3Int currentGridPos) {
+        mapManager.GetConveyorMap().SetTile(currentGridPos, null);
+        mapManager.GetHoverHighlight().SetRuleHoverDisplay(null);
+
+        // If theres nothing to remove, then exit
+        if (mapManager.GetMachineMap().GetTile(currentGridPos) == null) return;
+        
+        // Removal based on name
+        Vector3Int temp = currentGridPos;
+        switch(mapManager.GetMachineMap().GetTile(currentGridPos).name) {
+            case "Extractor_2":                                         // Middle left
+                RemoveAreaTiles(currentGridPos);
+                break;
+            case "Extractor_3":                                         // Middle right        
+                temp.x -= 1;
+                RemoveAreaTiles(temp);
+                break;
+            case "Extractor_0":                                         // Bottom left
+                temp.y += 1;
+                RemoveAreaTiles(temp);
+                break;
+            case "Extractor_1":                                         // Bottom right
+                temp.x -= 1;
+                temp.y += 1;
+                RemoveAreaTiles(temp);
+                break;
+            case "Incinerator":
+                mapManager.GetMachineMap().SetTile(currentGridPos, null);
+                break;
+        }
+    }
+
     private void SetupBreederTiles(Vector3Int offset)
     {                               
         BreederCPUTile breederCPU = (BreederCPUTile) ScriptableObject.CreateInstance(typeof(BreederCPUTile));
@@ -412,6 +369,8 @@ public class SpriteEditorManager : MonoBehaviour
         }                
         mapManager.GetMachineMap().SetTile(offset, spawnerTiles[temp]);
     }
+
+    // Removes all machine tiles in a rectangular/square grid
     private void RemoveAreaTiles(Vector3Int startPos) {
         Vector3Int gridPositions = startPos;
         for (int x = 0; x < 2; x++) {
@@ -564,6 +523,7 @@ public class SpriteEditorManager : MonoBehaviour
             else if (mapManager.GetSelectedAnimatedTile().name == "Conveyor_Left")
                 SetOppositeSprite(lastGridPos, 3);
         }
+        audioSource.Play();
     }
 
     private void ConveyorOrientation(Vector3Int direction) {
@@ -584,6 +544,14 @@ public class SpriteEditorManager : MonoBehaviour
                 break;
         }
     }
-
+    private bool CheckIfPlaceable(Vector3Int currentGridPos) {
+        for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+            for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                if (mapManager.GetMachineMap().GetTile(currentGridPos + new Vector3Int(j, i, 0)) != null) return false;
+                if (mapManager.GetConveyorMap().GetTile(currentGridPos + new Vector3Int(j, i, 0)) != null) return false;
+            }
+        }
+        return true;
+    }
     public int GetSelectedTile() { return selectedTile; }
 }

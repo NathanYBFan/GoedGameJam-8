@@ -15,14 +15,14 @@ MonoBehaviour:
   name: Combiner
   size: {x: 3, y: 3, z: 0}
   directedTile:
-  - {fileID: 11400000, guid: 1b69f9f0ce727f44fb7c9988f42bac59, type: 2}
-  - {fileID: 11400000, guid: 327dc098b6812e246893384c1ce4df72, type: 2}
-  - {fileID: 11400000, guid: 5871862e4b74b0645af4ccba762fd245, type: 2}
+  - {fileID: 11400000, guid: 56c2658e49874654eb0c830e5f886c64, type: 2}
+  - {fileID: 11400000, guid: 1dd6a62a797ac334692eed1285411ede, type: 2}
+  - {fileID: 11400000, guid: 1b5acff6a39a28848988553427eb708c, type: 2}
   - {fileID: 11400000, guid: d0eab921b0264fc489d9a482df21b214, type: 2}
   - {fileID: 11400000, guid: 152244a655e0d324a8e4aad9362df805, type: 2}
   - {fileID: 11400000, guid: cbfb708a82c6b584e88d9685e611a8ca, type: 2}
-  - {fileID: 11400000, guid: 1b5acff6a39a28848988553427eb708c, type: 2}
-  - {fileID: 11400000, guid: 1dd6a62a797ac334692eed1285411ede, type: 2}
-  - {fileID: 11400000, guid: 56c2658e49874654eb0c830e5f886c64, type: 2}
-  localOutputLocation: {x: -6, y: 2, z: 0}
+  - {fileID: 11400000, guid: 5871862e4b74b0645af4ccba762fd245, type: 2}
+  - {fileID: 11400000, guid: 327dc098b6812e246893384c1ce4df72, type: 2}
+  - {fileID: 11400000, guid: 1b69f9f0ce727f44fb7c9988f42bac59, type: 2}
+  localOutputLocation: {x: 9, y: -5, z: 0}
   spawnLocation: {fileID: 4144191020385190768, guid: 003d55fc5ea1b1744915f9213f59b269, type: 3}

@@ -26,8 +26,8 @@ public class EntityMove : MonoBehaviour
         startPos = transform.position;
 
         // Check if entity can move in the current tile
-        if (!mapManager.GetTileIsLand(mapManager.GetGameMap().GetTile(animalPos)) && isLandWalker) return;
-        else if (mapManager.GetTileIsLand(mapManager.GetGameMap().GetTile(animalPos)) && !isLandWalker) return;
+        if (isLandWalker && !mapManager.GetTileIsLand(mapManager.GetGameMap().GetTile(animalPos))) return;
+        else if (!isLandWalker && mapManager.GetTileIsLand(mapManager.GetGameMap().GetTile(animalPos))) return;
 
         // Check up
         CheckDirection(animalPos, 0, 1, 0);

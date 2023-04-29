@@ -143,7 +143,7 @@ public class MachineManager : MonoBehaviour
     {
         foreach(CombinerCPUTile c in combiners)
         {
-            if (c.input1.heldItem != null && c.input2.heldItem != null);
+            if (c.input1.heldItem != null && c.input2.heldItem != null)
             {
                 if (c.CheckForValidRecipes())
                 {
@@ -156,7 +156,7 @@ public class MachineManager : MonoBehaviour
     {
         foreach(BreederCPUTile b in breeders)
         {
-            if (b.input1.heldItem != null || b.input2.heldItem != null);
+            if (b.input1.heldItem != null || b.input2.heldItem != null)
             {
                 if (b.CheckForValidRecipes())
                 {
@@ -169,7 +169,7 @@ public class MachineManager : MonoBehaviour
     {
         foreach(IncineratorTile c in incinerators)
         {
-            if (c.heldItem != null);
+            if (c.heldItem != null)
             {
                 c.CheckForValidIncineration();
                 Destroy(c.heldItem);
@@ -181,7 +181,7 @@ public class MachineManager : MonoBehaviour
     {
         foreach(UploaderTile c in uploaders)
         {
-            if (c.heldItem != null);
+            if (c.heldItem != null)
             {
                 c.StoreItem();
                 Destroy(c.heldItem);

@@ -21,25 +21,26 @@ public class HoverHighlight : MonoBehaviour
             if (hoverTile.Length == 1)
                 interactiveMap.SetTile(mousePos, hoverTile[0]);
             else
-                SetTilesExtractorHover();
+                SetTilesMachineHover();
 
             // Color change if can place
-            
             ResetTileMapColor();
             previousMousePos = mousePos;
         }
     }
     public void ResetTileMapColor() {
         if (mapManager.GetSelectedAnimatedTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
-                interactiveMap.color = GetNewTileMapColor(Color.red);
-            else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
-                interactiveMap.color = GetNewTileMapColor(Color.red);
-            else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetSelectedMultiTile().name == "Extractor" && !CanPlaceExtractor())
-                interactiveMap.color = GetNewTileMapColor(Color.red);
-            else
-                interactiveMap.color = GetNewTileMapColor(Color.green);
+            interactiveMap.color = GetNewTileMapColor(Color.red);
+        else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
+            interactiveMap.color = GetNewTileMapColor(Color.red);
+        else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetSelectedMultiTile().name == "Extractor" && !CanPlaceMachine())
+            interactiveMap.color = GetNewTileMapColor(Color.red);
+        else
+            interactiveMap.color = GetNewTileMapColor(Color.green);
     }
-    private bool CanPlaceExtractor() {
+
+    // Check if the current selected machine can be placed; Are there any overlapping tiles
+    private bool CanPlaceMachine() {
         if (mapManager.GetMachineMap().GetTile(gridPosition) != null) return false;
         
         Vector3Int tempTilePos = gridPosition;
@@ -47,53 +48,53 @@ public class HoverHighlight : MonoBehaviour
             for (int y = 0; y < mapManager.GetSelectedMultiTile().size.y; y++) {
                 tempTilePos.x = gridPosition.x + x;
                 tempTilePos.y = gridPosition.y + y;
-                if (mapManager.GetMachineMap().GetTile(tempTilePos) != null) return false;
-                if (mapManager.GetConveyorMap().GetTile(tempTilePos) != null) return false;
+                if (mapManager.GetMachineMap().GetTile(tempTilePos) != null) return false;  // Overlapping with another machine part
+                if (mapManager.GetConveyorMap().GetTile(tempTilePos) != null) return false; // Overlapping with a conveyor
             }
         }
-        return true;
+        return true; // Nothing overlapping
     }
+
+    // Sets proper transparency for any given color
     private Color GetNewTileMapColor(Color colorToAdd) {
         Color newColor = colorToAdd;
         newColor.a = 0.5f;
         return newColor;
     }
-    private Vector3Int GetMousePosition() {
+    
+    // Gets current mouse position
+    public Vector3Int GetMousePosition() {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return mapManager.GetGameMap().WorldToCell(mouseWorldPos);
     }
     
-    public void SetMultiHoverDisplay(MultiTile selectedTile) { // Should not be used
+    // Displays multi tile machines
+    public void SetMultiHoverDisplay(MultiTile selectedTile) {
         if (selectedTile == null)
             SetRuleHoverDisplay(null);
         else {
             hoverTile = selectedTile.directedTile;
             interactiveMap.ClearAllTiles();
             
-            SetTilesExtractorHover();
+            SetTilesMachineHover();
         }
     }
 
-    private void SetTilesExtractorHover() {
+    // Draws tile on map method
+    private void SetTilesMachineHover() {
         int counter = 0;
         for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
             for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
                 Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
                 newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[spriteEditorManager.GetSelectedTile()];
-                if (spriteEditorManager.GetSelectedTile() == 0)
-                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
-                else if (spriteEditorManager.GetSelectedTile() == 1)
-                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
-                else if (spriteEditorManager.GetSelectedTile() == 2)
-                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
-                else if (spriteEditorManager.GetSelectedTile() == 3)
-                    interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile);
+                interactiveMap.SetTile(gridPosition + new Vector3Int(j, i, 0), newTile); // Draw on map
                 counter++;
             }
         }
-        ResetTileMapColor();
+        ResetTileMapColor(); // Check if overlap happens
     }
 
+    // Rule tile hover display, base method
     public void SetRuleHoverDisplay(RuleTile selectedTile) {
         if (selectedTile == null) {
             hoverTile = MakeNewTile(defaultTile);
@@ -103,6 +104,8 @@ public class HoverHighlight : MonoBehaviour
         else
             hoverTile = MakeNewTile(selectedTile.m_DefaultSprite);
     }
+
+    // Set animation tile hover display override
     public void SetAnimHoverDisplay(AnimatedTile selectedTile) {
         if (selectedTile == null)
             SetRuleHoverDisplay(null);
@@ -112,6 +115,7 @@ public class HoverHighlight : MonoBehaviour
         
     }
 
+    // Makes a new Animated tile
     private AnimatedTile[] MakeNewTile(Sprite newSprite) {
         Sprite[] arrayOfSprites = new Sprite[1];
         arrayOfSprites[0] = newSprite;

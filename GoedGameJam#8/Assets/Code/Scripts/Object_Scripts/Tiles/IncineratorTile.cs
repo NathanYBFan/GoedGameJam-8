@@ -16,8 +16,6 @@ public class IncineratorTile : Tile
 
     public bool CheckForValidIncineration()
     {
-
-        bool isValid = false;
         if (heldItem == null) return false;        
         foreach (Recipe r in recipes)
         {
