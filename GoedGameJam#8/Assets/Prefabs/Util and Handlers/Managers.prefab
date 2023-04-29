@@ -304,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapManager: {fileID: 1386659341379418046}
   machineManager: {fileID: 6034451040057429651}
+  resourceManager: {fileID: 0}
   grid: {fileID: 0}
   conveyorCardinalDirTiles:
   - {fileID: 11400000, guid: 82e278cff3fd5f2478e8f3873cf585f8, type: 2}
@@ -466,9 +467,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13646b089f4c924e80b749efbc68b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapManager: {fileID: 0}
+  barrenTile: {fileID: 0}
   dirtSpawners: []
   soilSpawners: []
   waterSpawners: []
+  grassSpawners: []
+  seedSpawners: []
+  recipes: []
+  animalRecipes: []
+  incineratingRecipes: []
+  combiners: []
+  breeders: []
+  incinerators: []
+  uploaders: []
   spawnItems:
   - {fileID: 5383387296994737334, guid: 925073ed37cfacb4792a48e5d6a2e085, type: 3}
   - {fileID: 5201393625666806928, guid: 97d01e3ddf68f6243a5f3531079b0c70, type: 3}

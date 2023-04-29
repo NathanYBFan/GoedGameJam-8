@@ -29,9 +29,11 @@ public class ItemMovement : MonoBehaviour
         else if (mapManager.GetMachineMap().GetTile(Vector3Int.FloorToInt(new Vector3(transform.position.x, transform.position.y, 0))) is IncineratorTile incineratorTile) {
             if (this.gameObject.GetComponent<Item>().itemType != Enums.ItemType.Ash && this.gameObject.GetComponent<Item>().itemType != Enums.ItemType.Coal)
                 incineratorTile.heldItem = this.gameObject;
-            else
-                target += new Vector3(incineratorTile.movementDir.x, incineratorTile.movementDir.y, 0);      
+            target += new Vector3(incineratorTile.movementDir.x, incineratorTile.movementDir.y, 0);      
         }
+        else if (mapManager.GetMachineMap().GetTile(Vector3Int.FloorToInt(new Vector3(transform.position.x, transform.position.y, 0))) is UploaderTile uploaderTile) {
+            uploaderTile.heldItem = this.gameObject;
+        }  
         this.transform.position = target;
     }
     

@@ -24,6 +24,8 @@ public class MachineManager : MonoBehaviour
     public List<BreederCPUTile> breeders = new();
     
     public List<IncineratorTile> incinerators = new();
+    
+    public List<UploaderTile> uploaders = new();
     public GameObject[] spawnItems;
     public float spawnInterval = 2.0f;
     
@@ -35,7 +37,8 @@ public class MachineManager : MonoBehaviour
     {
         CheckCombiners();
         CheckBreeders();
-        CheckIncinerators();    
+        CheckIncinerators();            
+        CheckUploaders();    
         CheckSpawners();  
     }
     void CheckSpawners()
@@ -169,6 +172,18 @@ public class MachineManager : MonoBehaviour
             if (c.heldItem != null);
             {
                 c.CheckForValidIncineration();
+                Destroy(c.heldItem);
+                
+            }
+        }
+    }
+    private void CheckUploaders()
+    {
+        foreach(UploaderTile c in uploaders)
+        {
+            if (c.heldItem != null);
+            {
+                c.StoreItem();
                 Destroy(c.heldItem);
                 
             }

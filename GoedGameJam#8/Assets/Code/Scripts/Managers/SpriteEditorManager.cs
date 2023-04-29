@@ -4,7 +4,8 @@ using UnityEngine.Tilemaps;
 public class SpriteEditorManager : MonoBehaviour
 {
     [SerializeField] private MapManager mapManager;    
-    [SerializeField] private MachineManager machineManager;     
+    [SerializeField] private MachineManager machineManager;    
+    [SerializeField] private InventoryManager resourceManager;  
     [SerializeField] private Grid grid;
     [SerializeField] private AnimatedTile[] conveyorCardinalDirTiles;
     [SerializeField] private AnimatedTile[] conveyorEdgeDirTiles;    
@@ -147,6 +148,32 @@ public class SpriteEditorManager : MonoBehaviour
                 SetupIncinerator(offset);
                 //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
             }
+            else if (mapManager.GetSelectedMultiTile().name == "Uploader")
+            {                
+                if (!CheckIfPlaceable(currentGridPos)) return;
+                Vector3Int offset = Vector3Int.zero;
+                int counter = 0;                
+                offset = currentGridPos;
+                for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
+                    for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
+                        if (selectedTile == 0) {                                                      
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 1) {                            
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 2) {
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        else if (selectedTile == 3) {
+                            SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                        }
+                        counter++;
+                    }
+                }
+                SetupUploader(offset);
+                //GameObject spawnLoc = Instantiate(mapManager.GetSelectedMultiTile().spawnLocation, offset + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+            }
         }
         else if (mapManager.GetSelectedAnimatedTile() != null) {
             // If tile already has machine on it, then exit
@@ -203,6 +230,13 @@ public class SpriteEditorManager : MonoBehaviour
         }
     }
 
+    private void SetupUploader(Vector3Int offset)
+    {
+        UploaderTile uploader = (UploaderTile) ScriptableObject.CreateInstance(typeof(UploaderTile));
+        uploader.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];      
+        uploader.resourceManager = resourceManager;        
+        mapManager.GetMachineMap().SetTile(offset, uploader);
+    }
     private void SetupIncinerator(Vector3Int offset)
     {
         IncineratorTile incinerator = (IncineratorTile) ScriptableObject.CreateInstance(typeof(IncineratorTile));
@@ -400,7 +434,8 @@ public class SpriteEditorManager : MonoBehaviour
         machineManager.seedSpawners = new();     
         machineManager.combiners = new();          
         machineManager.breeders = new();
-        machineManager.incinerators = new();
+        machineManager.incinerators = new();        
+        machineManager.uploaders = new();
         //First iteration of terrain gen
         for (int y = gridBottomLeft.y; y <= gridTopRight.y; y++)
         {
@@ -438,6 +473,10 @@ public class SpriteEditorManager : MonoBehaviour
                 else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)) is IncineratorTile incinerator)
                 {
                     machineManager.incinerators.Add(incinerator);
+                }
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)) is UploaderTile uploader)
+                {
+                    machineManager.uploaders.Add(uploader);
                 }
 
             }

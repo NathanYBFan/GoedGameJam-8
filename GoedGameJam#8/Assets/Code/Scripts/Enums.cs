@@ -9,10 +9,10 @@ public class Enums : MonoBehaviour
 
     public enum EnvironmentTileType 
     {
-        Ground,
-        Grass,
-        Wheat,
-        Flower,
+        Dirt,
+        GrassSeeds,
+        WheatSeeds,
+        FlowerSeeds,
         Water,
         Soil
     }
