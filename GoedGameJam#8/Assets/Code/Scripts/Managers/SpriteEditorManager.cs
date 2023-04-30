@@ -57,19 +57,19 @@ public class SpriteEditorManager : MonoBehaviour
             for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
                 if (selectedTile == 0) {
                     offset = currentGridPos + new Vector3Int(1, 1, 0);
-                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i, "Extractor_");
                 }
                 else if (selectedTile == 1) {
                     offset = currentGridPos + new Vector3Int(1, 0, 0);
-                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i, "Extractor_");
                 }
                 else if (selectedTile == 2) {
                     offset = currentGridPos + new Vector3Int(0, 0, 0);   
-                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i, "Extractor_");
                 }
                 else if (selectedTile == 3) {
                     offset = currentGridPos + new Vector3Int(0, 1, 0);
-                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i, "Extractor_");
                 }
                 counter++;
             }
@@ -94,7 +94,7 @@ public class SpriteEditorManager : MonoBehaviour
         offset = currentGridPos + new Vector3Int(1, 1, 0);
         for (int i = 0; i < mapManager.GetSelectedMultiTile().size.x; i++) {
             for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
-                SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                SetupTileTopPlace(offset, counter, currentGridPos, j, i, "Combiner_");
                 counter++;
             }
         }
@@ -108,19 +108,19 @@ public class SpriteEditorManager : MonoBehaviour
             for (int j = 0; j < mapManager.GetSelectedMultiTile().size.y; j++) {
                 if (selectedTile == 0) {             
                     offset = currentGridPos + new Vector3Int(0, 1, 0);              
-                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i, "Extractor_");
                 }
                 else if (selectedTile == 1) {                            
                     offset = currentGridPos + new Vector3Int(0, 0, 0);         
-                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i, "Extractor_");
                 }
                 else if (selectedTile == 2) {
                     offset = currentGridPos + new Vector3Int(1, 0, 0);
-                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i, "Extractor_");
                 }
                 else if (selectedTile == 3) {
                     offset = currentGridPos + new Vector3Int(1, 1, 0);
-                    SetupTileTopPlace(offset, counter, currentGridPos, j, i);
+                    SetupTileTopPlace(offset, counter, currentGridPos, j, i, "Extractor_");
                 }
                 counter++;
             }
@@ -195,24 +195,63 @@ public class SpriteEditorManager : MonoBehaviour
         // Removal based on name
         Vector3Int temp = currentGridPos;
         switch(mapManager.GetMachineMap().GetTile(currentGridPos).name) {
-            case "Extractor_2":                                         // Middle left
-                RemoveAreaTiles(currentGridPos);
+            case "Extractor_2":                                         // Top left
+                RemoveAreaTiles(currentGridPos, 2, 2);
                 break;
-            case "Extractor_3":                                         // Middle right        
+            case "Extractor_3":                                         // Top right        
                 temp.x -= 1;
-                RemoveAreaTiles(temp);
+                RemoveAreaTiles(temp, 2, 2);
                 break;
             case "Extractor_0":                                         // Bottom left
                 temp.y += 1;
-                RemoveAreaTiles(temp);
+                RemoveAreaTiles(temp, 2, 2);
                 break;
             case "Extractor_1":                                         // Bottom right
                 temp.x -= 1;
                 temp.y += 1;
-                RemoveAreaTiles(temp);
+                RemoveAreaTiles(temp, 2, 2);
                 break;
             case "Incinerator":
                 mapManager.GetMachineMap().SetTile(currentGridPos, null);
+                break;
+            case "Combiner_0":                                          // Top left
+                temp.y += 2;
+                RemoveAreaTiles(temp, 3, 3);
+                break;
+            case "Combiner_1":                                          // Top middle
+                temp.y += 2;
+                temp.x -= 1;
+                RemoveAreaTiles(temp, 3, 3);
+                break;
+            case "Combiner_2":                                          // Top right
+                temp.y += 2;
+                temp.x -= 2;
+                RemoveAreaTiles(temp, 3, 3);
+                break;
+            case "Combiner_3":                                          // Middle left
+                temp.y += 1;
+                RemoveAreaTiles(temp, 3, 3);
+                break;
+            case "Combiner_4":                                          // Middle middle
+                temp.y += 1;
+                temp.x -= 1;
+                RemoveAreaTiles(temp, 3, 3);
+                break;
+            case "Combiner_5":                                          // Middle right
+                temp.y += 1;
+                temp.x -= 2;
+                RemoveAreaTiles(temp, 3, 3);
+                break;
+            case "Combiner_6":                                          // Top left
+                RemoveAreaTiles(temp, 3, 3);
+                break;
+            case "Combiner_7":                                          // Top middle
+                temp.x -= 1;
+                RemoveAreaTiles(temp, 3, 3);
+                break;
+            case "Combiner_8":                                          // Top right
+                temp.x -= 2;
+                RemoveAreaTiles(temp, 3, 3);
                 break;
         }
     }
@@ -223,14 +262,18 @@ public class SpriteEditorManager : MonoBehaviour
         ContainerTile container1 = (ContainerTile) ScriptableObject.CreateInstance(typeof(ContainerTile));
         ContainerTile container2 = (ContainerTile) ScriptableObject.CreateInstance(typeof(ContainerTile));        
         OutputTile output = (OutputTile) ScriptableObject.CreateInstance(typeof(OutputTile));
-        breederCPU.name = "Extractor_2";        
         breederCPU.input1 = container1;
         breederCPU.input2 = container2;        
         breederCPU.output = output;  
         breederCPU.animalRecipes = machineManager.animalRecipes;     
         switch(selectedTile)
         {
-            case 1:
+            case 1: // Facing right
+                breederCPU.name = "Extractor_0";
+                container1.name = "Extractor_1";
+                container2.name = "Extractor_3";
+                output.name = "Extractor_2";
+
                 breederCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];        
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];                    
@@ -242,7 +285,12 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, 1, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, breederCPU);
                 break;
-            case 2:
+            case 2: // Facing up
+                breederCPU.name = "Extractor_1";
+                container1.name = "Extractor_3";
+                container2.name = "Extractor_2";
+                output.name = "Extractor_0";
+
                 breederCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];          
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
@@ -254,7 +302,12 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 0, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, breederCPU);
                 break;
-            case 3:
+            case 3: // Facing left
+                breederCPU.name = "Extractor_3";
+                container1.name = "Extractor_2";
+                container2.name = "Extractor_0";
+                output.name = "Extractor_1";
+
                 breederCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];          
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
@@ -266,7 +319,12 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, -1, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, breederCPU);
                 break;  
-            default:
+            default: // Facing down
+                breederCPU.name = "Extractor_2";
+                container1.name = "Extractor_0";
+                container2.name = "Extractor_1";
+                output.name = "Extractor_3";
+
                 breederCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];          
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];                    
@@ -287,7 +345,6 @@ public class SpriteEditorManager : MonoBehaviour
         ContainerTile container1 = (ContainerTile) ScriptableObject.CreateInstance(typeof(ContainerTile));
         ContainerTile container2 = (ContainerTile) ScriptableObject.CreateInstance(typeof(ContainerTile));        
         OutputTile output = (OutputTile) ScriptableObject.CreateInstance(typeof(OutputTile));
-        combinerCPU.name = "Extractor_4";
         combinerCPU.sprite = mapManager.GetSelectedMultiTile().directedTile[4].m_AnimatedSprites[selectedTile];          
         combinerCPU.input1 = container1;
         combinerCPU.input2 = container2;        
@@ -295,7 +352,12 @@ public class SpriteEditorManager : MonoBehaviour
         combinerCPU.recipes = machineManager.recipes;     
         switch(selectedTile)
         {
-            case 1:
+            case 1: // Facing left
+                combinerCPU.name = "Combiner_4";
+                container1.name = "Combiner_8";
+                container2.name = "Combiner_2";
+                output.name = "Combiner_3";
+
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[8].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
                 output.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];
@@ -306,7 +368,12 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 0, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
                 break;
-            case 2:
+            case 2: // Facing up
+                combinerCPU.name = "Combiner_4";
+                container1.name = "Combiner_6";
+                container2.name = "Combiner_8";
+                output.name = "Combiner_1";
+
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[6].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[8].m_AnimatedSprites[selectedTile];                    
                 output.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];
@@ -317,7 +384,12 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, -1, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
                 break;
-            case 3:
+            case 3: // Facing right
+                combinerCPU.name = "Combiner_4";
+                container1.name = "Combiner_6";
+                container2.name = "Combiner_0";
+                output.name = "Combiner_5";
+
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[6].m_AnimatedSprites[selectedTile];                    
                 output.sprite = mapManager.GetSelectedMultiTile().directedTile[5].m_AnimatedSprites[selectedTile];
@@ -328,7 +400,12 @@ public class SpriteEditorManager : MonoBehaviour
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 0, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
                 break;  
-            default:
+            default: // Facing down
+                combinerCPU.name = "Combiner_4";
+                container1.name = "Combiner_0";
+                container2.name = "Combiner_2";
+                output.name = "Combiner_7";
+
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
                 output.sprite = mapManager.GetSelectedMultiTile().directedTile[7].m_AnimatedSprites[selectedTile];
@@ -342,10 +419,10 @@ public class SpriteEditorManager : MonoBehaviour
         }            
 
     }
-    private void SetupTileTopPlace(Vector3Int offset, int counter, Vector3Int currentGridPos, int j, int i) {
+    private void SetupTileTopPlace(Vector3Int offset, int counter, Vector3Int currentGridPos, int j, int i, string machineName) {
         mapManager.GetSelectedMultiTile().localOutputLocation = offset;                        
         Tile newTile = (Tile) ScriptableObject.CreateInstance(typeof(Tile));
-        newTile.name = "Extractor_" + counter;
+        newTile.name = machineName + counter;
         newTile.sprite = mapManager.GetSelectedMultiTile().directedTile[counter].m_AnimatedSprites[selectedTile];                   
         mapManager.GetMachineMap().SetTile(currentGridPos + new Vector3Int(j, i, 0), newTile);
     }
@@ -371,10 +448,10 @@ public class SpriteEditorManager : MonoBehaviour
     }
 
     // Removes all machine tiles in a rectangular/square grid
-    private void RemoveAreaTiles(Vector3Int startPos) {
+    private void RemoveAreaTiles(Vector3Int startPos, int areaX, int areaY) {
         Vector3Int gridPositions = startPos;
-        for (int x = 0; x < 2; x++) {
-            for (int y = 0; y < 2; y++) {
+        for (int x = 0; x < areaX; x++) {
+            for (int y = 0; y < areaY; y++) {
                 gridPositions.x = startPos.x + x;
                 gridPositions.y = startPos.y - y;
                 mapManager.GetMachineMap().SetTile(gridPositions, null);

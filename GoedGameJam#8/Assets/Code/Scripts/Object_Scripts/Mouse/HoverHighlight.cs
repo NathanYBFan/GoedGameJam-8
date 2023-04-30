@@ -18,8 +18,13 @@ public class HoverHighlight : MonoBehaviour
 
         if (!mousePos.Equals(previousMousePos)) {
             interactiveMap.ClearAllTiles(); // Remove all tiles
-            if (hoverTile.Length == 1)
-                interactiveMap.SetTile(mousePos, hoverTile[0]);
+
+            if (hoverTile.Length == 1) {
+                if (hoverTile[0] != null && hoverTile[0].name == "Incinerator" || hoverTile[0] != null && hoverTile[0].name == "Uploader")
+                    interactiveMap.SetTile(mousePos, MakeTile(hoverTile[0].m_AnimatedSprites[spriteEditorManager.GetSelectedTile()]));
+                else
+                    interactiveMap.SetTile(mousePos, hoverTile[0]);
+            }
             else
                 SetTilesMachineHover();
 
@@ -113,6 +118,12 @@ public class HoverHighlight : MonoBehaviour
             hoverTile = MakeNewTile(selectedTile.m_AnimatedSprites[0]);
         interactiveMap.SetTile(GetMousePosition(), selectedTile);
         
+    }
+
+    private Tile MakeTile(Sprite newSprite) {
+        Tile newTile = (Tile) ScriptableObject.CreateInstance<Tile>();
+        newTile.sprite = newSprite;
+        return newTile;
     }
 
     // Makes a new Animated tile
