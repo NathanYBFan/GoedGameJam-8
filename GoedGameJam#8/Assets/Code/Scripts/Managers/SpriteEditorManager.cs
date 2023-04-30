@@ -363,7 +363,7 @@ public class SpriteEditorManager : MonoBehaviour
                 output.sprite = mapManager.GetSelectedMultiTile().directedTile[3].m_AnimatedSprites[selectedTile];
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 1, 0), container1);                
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, -1, 0), container2);                              
-                output.movementDir = new Vector2(0.1f, 0);                                              
+                output.movementDir = new Vector2(-0.1f, 0);                                              
                 output.position = offset + new Vector3Int(-1, 0, 0);  
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 0, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
@@ -374,14 +374,14 @@ public class SpriteEditorManager : MonoBehaviour
                 container2.name = "Combiner_8";
                 output.name = "Combiner_1";
 
-                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[6].m_AnimatedSprites[selectedTile];                    
-                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[8].m_AnimatedSprites[selectedTile];                    
-                output.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];
-                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 1, 0), container1);                
-                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 1, 0), container2);                              
-                output.movementDir = new Vector2(0, -0.1f);                                   
-                output.position = offset + new Vector3Int(0, -1, 0);  
-                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, -1, 0), output);                
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[7].m_AnimatedSprites[selectedTile];
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, -1, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, -1, 0), container2);                              
+                output.movementDir = new Vector2(0, 0.1f);                                   
+                output.position = offset + new Vector3Int(0, 1, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, 1, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
                 break;
             case 3: // Facing right
@@ -395,7 +395,7 @@ public class SpriteEditorManager : MonoBehaviour
                 output.sprite = mapManager.GetSelectedMultiTile().directedTile[5].m_AnimatedSprites[selectedTile];
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 1, 0), container1);                
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, -1, 0), container2);                              
-                output.movementDir = new Vector2(-0.1f, 0);                                   
+                output.movementDir = new Vector2(0.1f, 0);                                   
                 output.position = offset + new Vector3Int(1, 0, 0);  
                 mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 0, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
@@ -406,14 +406,14 @@ public class SpriteEditorManager : MonoBehaviour
                 container2.name = "Combiner_2";
                 output.name = "Combiner_7";
 
-                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
-                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
-                output.sprite = mapManager.GetSelectedMultiTile().directedTile[7].m_AnimatedSprites[selectedTile];
-                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, -1, 0), container1);                
-                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, -1, 0), container2);                              
-                output.movementDir = new Vector2(0, 0.1f);                                     
-                output.position = offset + new Vector3Int(0, 1, 0);  
-                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, 1, 0), output);                
+                container1.sprite = mapManager.GetSelectedMultiTile().directedTile[6].m_AnimatedSprites[selectedTile];                    
+                container2.sprite = mapManager.GetSelectedMultiTile().directedTile[8].m_AnimatedSprites[selectedTile];                    
+                output.sprite = mapManager.GetSelectedMultiTile().directedTile[1].m_AnimatedSprites[selectedTile];
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(-1, 1, 0), container1);                
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(1, 1, 0), container2);                              
+                output.movementDir = new Vector2(0, -0.1f);                                     
+                output.position = offset + new Vector3Int(0, -1, 0);  
+                mapManager.GetMachineMap().SetTile(offset + new Vector3Int(0, -1, 0), output);                
                 mapManager.GetMachineMap().SetTile(offset, combinerCPU);
                 break;
         }            
