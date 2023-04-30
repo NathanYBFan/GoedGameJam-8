@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Incinerator
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 221999928, guid: ad1474775f56c8e488365c80d482103d, type: 3}
-  - {fileID: 391866581, guid: ad1474775f56c8e488365c80d482103d, type: 3}
-  - {fileID: 40101396, guid: ad1474775f56c8e488365c80d482103d, type: 3}
-  - {fileID: 1236176201, guid: ad1474775f56c8e488365c80d482103d, type: 3}
+  - {fileID: -1693006063, guid: fe4667ba656300d4da950c0e11c59d16, type: 3}
+  - {fileID: 700836673, guid: fe4667ba656300d4da950c0e11c59d16, type: 3}
+  - {fileID: 1800935299, guid: fe4667ba656300d4da950c0e11c59d16, type: 3}
+  - {fileID: 506528674, guid: fe4667ba656300d4da950c0e11c59d16, type: 3}
   m_MinSpeed: 0
   m_MaxSpeed: 0
   m_AnimationStartTime: 0
