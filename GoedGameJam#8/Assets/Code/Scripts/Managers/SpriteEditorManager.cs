@@ -47,6 +47,8 @@ public class SpriteEditorManager : MonoBehaviour
         // If no valid selected tile, then remove
         else
             RemoveTiles(currentGridPos);
+
+        mapManager.GetHoverHighlight().ResetTileMapColor();
     }
 
     // Places the entire extractor
@@ -370,9 +372,9 @@ public class SpriteEditorManager : MonoBehaviour
                 break;
             case 2: // Facing up
                 combinerCPU.name = "Combiner_4";
-                container1.name = "Combiner_6";
-                container2.name = "Combiner_8";
-                output.name = "Combiner_1";
+                container1.name = "Combiner_0";
+                container2.name = "Combiner_2";
+                output.name = "Combiner_7";
 
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[0].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[2].m_AnimatedSprites[selectedTile];                    
@@ -402,9 +404,9 @@ public class SpriteEditorManager : MonoBehaviour
                 break;  
             default: // Facing down
                 combinerCPU.name = "Combiner_4";
-                container1.name = "Combiner_0";
-                container2.name = "Combiner_2";
-                output.name = "Combiner_7";
+                container1.name = "Combiner_6";
+                container2.name = "Combiner_8";
+                output.name = "Combiner_1";
 
                 container1.sprite = mapManager.GetSelectedMultiTile().directedTile[6].m_AnimatedSprites[selectedTile];                    
                 container2.sprite = mapManager.GetSelectedMultiTile().directedTile[8].m_AnimatedSprites[selectedTile];                    
