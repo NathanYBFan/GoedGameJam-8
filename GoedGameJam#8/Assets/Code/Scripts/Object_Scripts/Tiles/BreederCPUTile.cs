@@ -15,23 +15,51 @@ public class BreederCPUTile : Tile
     public bool CheckForValidRecipes()
     {
         bool hasValidRecipe = false;
-        if (input1.heldItem == null || input2.heldItem == null) return false;
+        if (input1.heldItem == null && input2.heldItem == null) return false;
         foreach (Recipe r in animalRecipes)
         {
-            if ((input1.heldItem.GetComponent<Item>().itemType == r.firstIngredient || input2.heldItem.GetComponent<Item>().itemType == r.secondIngredient) || (input2.heldItem.GetComponent<Item>().itemType == r.firstIngredient || input1.heldItem.GetComponent<Item>().itemType == r.secondIngredient))
+            if (input1.heldItem == null)
             {
-                currentRecipe = r;
-                output.spawnItem = r.output;
-                Destroy(input1.heldItem);                  
-                Destroy(input2.heldItem);               
-                input1.heldItem = null;
-                input2.heldItem = null;
-                return true;
+                if (input2.heldItem.GetComponent<Item>().itemType == r.firstIngredient || input2.heldItem.GetComponent<Item>().itemType == r.secondIngredient)
+                {
+                    currentRecipe = r;
+                    output.spawnItem = r.output;               
+                    Destroy(input2.heldItem);       
+                    input2.heldItem = null;
+                    return true;
+                }
             }
+            if (input2.heldItem == null)
+            {
+                if (input1.heldItem.GetComponent<Item>().itemType == r.firstIngredient || input1.heldItem.GetComponent<Item>().itemType == r.secondIngredient)
+                {
+                    currentRecipe = r;
+                    output.spawnItem = r.output;               
+                    Destroy(input1.heldItem);       
+                    input1.heldItem = null;
+                    return true;
+                }
+            }
+            if (input1.heldItem != null && input2.heldItem != null)
+            {
+                if ((input1.heldItem.GetComponent<Item>().itemType == r.firstIngredient || input1.heldItem.GetComponent<Item>().itemType == r.secondIngredient) || (input2.heldItem.GetComponent<Item>().itemType == r.firstIngredient || input2.heldItem.GetComponent<Item>().itemType == r.secondIngredient))
+                {
+                    currentRecipe = r;
+                    output.spawnItem = r.output;               
+                    Destroy(input1.heldItem);
+                    Destroy(input2.heldItem);       
+                    input1.heldItem = null;     
+                    input2.heldItem = null;
+                    return true;
+                }
+            }
+            
 
         }
-        Destroy(input1.heldItem);                  
-        Destroy(input2.heldItem);    
+        if (input1.heldItem != null)
+            Destroy(input1.heldItem);   
+        if (input2.heldItem != null)               
+            Destroy(input2.heldItem);    
         input1.heldItem = null;
         input2.heldItem = null;
         return false;

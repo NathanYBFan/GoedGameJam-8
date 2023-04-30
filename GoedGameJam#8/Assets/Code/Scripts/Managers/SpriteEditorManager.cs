@@ -14,6 +14,7 @@ public class SpriteEditorManager : MonoBehaviour
     [SerializeField] private AudioClip ConveyorAudioClip;
     [SerializeField] private AudioSource audioSource;
     [SerializeField, ReadOnly] private int selectedTile = 0; // Rotational value
+    public Sprite wheatSprite, flowerSprite;
 
     // Main controller method
     public void PlaceTileDown(Vector3Int lastGridPos, Vector3Int currentGridPos) {
@@ -38,10 +39,21 @@ public class SpriteEditorManager : MonoBehaviour
         else if (mapManager.GetSelectedAnimatedTile() != null)
             PlaceConveyorBelt(lastGridPos, currentGridPos);
         
+        else if (mapManager.GetSelectedSeedTile() != null)
+        {
+            if (mapManager.GetSelectedSeedTile().name == "Wheat")
+                PlaceWheat(currentGridPos);
+            else if (mapManager.GetSelectedSeedTile().name == "Flower")
+                PlaceFlower(currentGridPos);
+        }
         // If an environemnt tile is selected
         else if (mapManager.GetSelectedRuleTile() != null && mapManager.GetSelectedAnimatedTile() == null) {
-            if (mapManager.GetGameMap().GetTile(currentGridPos) == mapManager.GetSelectedRuleTile()) return;
-            else mapManager.GetGameMap().SetTile(currentGridPos, mapManager.GetSelectedRuleTile());
+            if (mapManager.GetGameMap().GetTile(currentGridPos) == mapManager.GetSelectedRuleTile() || !HasAnyOfThisTile()) return;
+            else
+            {
+              UpdateInventory();
+              mapManager.GetGameMap().SetTile(currentGridPos, mapManager.GetSelectedRuleTile());  
+            }
         }
         
         // If no valid selected tile, then remove
@@ -49,6 +61,104 @@ public class SpriteEditorManager : MonoBehaviour
             RemoveTiles(currentGridPos);
 
         mapManager.GetHoverHighlight().ResetTileMapColor();
+    }
+    private void PlaceWheat(Vector3Int currentGridPos)
+    {
+        if (mapManager.GetPlantMap().GetTile(currentGridPos) != null)
+        {
+            if (mapManager.GetPlantMap().GetTile(currentGridPos).name == mapManager.GetSelectedSeedTile().name) return;
+        }        
+        else
+        {            
+            if (!CheckInventory(Enums.ItemType.WheatSeeds)) return;
+            if (!mapManager.GetGameMap().GetTile(currentGridPos).name.Contains("Soil")) return;
+            SeedTile wheat = (SeedTile) ScriptableObject.CreateInstance(typeof(SeedTile));
+            wheat.name = "Wheat";
+            wheat.sprite = wheatSprite;
+            wheat.randSeed = 7;
+            wheat.seedsAmount = (int) Random.Range(2, 6);            
+            UpdatePlantInventory(Enums.ItemType.WheatSeeds);
+            mapManager.GetPlantMap().SetTile(currentGridPos, wheat);
+        }
+    }
+    private void PlaceFlower(Vector3Int currentGridPos)
+    {        
+        if (mapManager.GetPlantMap().GetTile(currentGridPos) != null)
+        {
+            if (mapManager.GetPlantMap().GetTile(currentGridPos).name == mapManager.GetSelectedSeedTile().name) return;
+        }   
+        else
+        {        
+            if (!CheckInventory(Enums.ItemType.FlowerSeeds)) return;
+            if (!mapManager.GetGameMap().GetTile(currentGridPos).name.Contains("Soil") && !mapManager.GetGameMap().GetTile(currentGridPos).name.Contains("Grass")) return;    
+            SeedTile flower = (SeedTile) ScriptableObject.CreateInstance(typeof(SeedTile));
+            flower.name = "Flower";
+            flower.sprite = flowerSprite;
+            flower.randSeed = 8;
+            flower.seedsAmount = (int) Random.Range(2, 6);       
+            UpdatePlantInventory(Enums.ItemType.FlowerSeeds);
+            mapManager.GetPlantMap().SetTile(currentGridPos, flower);
+        }
+    }
+    private void UpdatePlantInventory(Enums.ItemType itemType)
+    {        
+        resourceManager.RemoveFromInventory(itemType);        
+    }
+    private void UpdateInventory()
+    {
+        string name = mapManager.GetSelectedRuleTile().name;
+        if (name.Contains("Barren"))
+        {
+            resourceManager.RemoveFromInventory(Enums.ItemType.Dirt);
+        }
+        else if (name.Contains("Water"))
+        {
+            resourceManager.RemoveFromInventory(Enums.ItemType.Water);
+        }
+        else if (name.Contains("Soil"))
+        {
+            resourceManager.RemoveFromInventory(Enums.ItemType.Soil);
+        }
+        else if (name.Contains("Grass"))
+        {
+            resourceManager.RemoveFromInventory(Enums.ItemType.GrassSeeds);
+        }
+    }
+    
+    private bool HasAnyOfThisTile()
+    {
+        string name = mapManager.GetSelectedRuleTile().name;
+        if (name.Contains("Barren"))
+        {
+            return CheckInventory(Enums.ItemType.Dirt);
+        }
+        else if (name.Contains("Water"))
+        {
+            return CheckInventory(Enums.ItemType.Water);
+        }
+        else if (name.Contains("Soil"))
+        {
+            return CheckInventory(Enums.ItemType.Soil);
+        }
+        else if (name.Contains("Grass"))
+        {
+            return CheckInventory(Enums.ItemType.GrassSeeds);
+        }
+
+        return false;
+        
+    }
+    private bool CheckInventory(Enums.ItemType itemType)
+    {
+        foreach (Resource r in resourceManager.inventory)
+        {
+            if (r.tileType == itemType)
+            {
+                if (r.amount <= 0) return false;
+                else return true;
+            }
+        }
+        return false;
     }
 
     // Places the entire extractor
@@ -78,7 +188,14 @@ public class SpriteEditorManager : MonoBehaviour
         }
 
         // Set a spawn tile
-        if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
+        if (mapManager.GetPlantMap().GetTile(offset) != null)
+        {
+            if (mapManager.GetPlantMap().GetTile(offset).name.Contains("Wheat"))
+                SetSpawnTileType(5, offset);
+            else if (mapManager.GetPlantMap().GetTile(offset).name.Contains("Flower"))
+                SetSpawnTileType(6, offset);
+        }        
+        else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Barren"))
             SetSpawnTileType(0, offset);
         else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Soil"))
             SetSpawnTileType(1, offset);
@@ -87,7 +204,10 @@ public class SpriteEditorManager : MonoBehaviour
         else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Grass"))
             SetSpawnTileType(3, offset);
         else if (mapManager.GetGameMap().GetTile(offset).name.Contains("Seed"))
+        {            
+            Debug.Log("Here");
             SetSpawnTileType(4, offset);
+        }
     }
 
     private void PlaceCombiner(Vector3Int currentGridPos) {
@@ -431,22 +551,48 @@ public class SpriteEditorManager : MonoBehaviour
 
     private void SetSpawnTileType(int temp, Vector3Int offset)
     {
+        MovementTile spawnerTile = (MovementTile) ScriptableObject.CreateInstance(typeof(MovementTile));
+        spawnerTile.sprite = spawnerTiles[0].sprite;
         switch(selectedTile)
         {
             case 1:
-                spawnerTiles[temp].movementDir = new Vector2(0.1f, 0);
+                spawnerTile.movementDir = new Vector2(0.1f, 0);
                 break;
             case 2:
-                spawnerTiles[temp].movementDir = new Vector2(0, -0.1f);
+                spawnerTile.movementDir = new Vector2(0, -0.1f);
                 break;
             case 3:
-                spawnerTiles[temp].movementDir = new Vector2(-0.1f, 0);
+                spawnerTile.movementDir = new Vector2(-0.1f, 0);
                 break;  
             default:
-                spawnerTiles[temp].movementDir = new Vector2(0, 0.1f);
+                spawnerTile.movementDir = new Vector2(0, 0.1f);
                 break;
-        }                
-        mapManager.GetMachineMap().SetTile(offset, spawnerTiles[temp]);
+        }   
+        switch (temp)
+        {
+            case 1:
+                spawnerTile.name = "Soil";
+                break;
+            case 2:
+                spawnerTile.name = "Water";
+                break;
+            case 3:
+                spawnerTile.name = "Grass";
+                break;
+            case 4:
+                spawnerTile.name = "Seed";
+                break;
+            case 5:
+                spawnerTile.name = "Wheat";
+                break;
+            case 6:
+                spawnerTile.name = "Flower";
+                break;
+            default:
+                spawnerTile.name = "Dirt";
+                break;
+        }             
+        mapManager.GetMachineMap().SetTile(offset, spawnerTile);
     }
 
     // Removes all machine tiles in a rectangular/square grid
@@ -469,7 +615,9 @@ public class SpriteEditorManager : MonoBehaviour
         machineManager.soilSpawners = new();
         machineManager.grassSpawners = new();
         machineManager.waterSpawners = new();   
-        machineManager.seedSpawners = new();     
+        machineManager.seedSpawners = new();           
+        machineManager.wheatSpawners = new();       
+        machineManager.flowerSpawners = new();     
         machineManager.combiners = new();          
         machineManager.breeders = new();
         machineManager.incinerators = new();        
@@ -499,6 +647,14 @@ public class SpriteEditorManager : MonoBehaviour
                 else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)).name.Contains("Seed"))
                 {                                       
                     machineManager.seedSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
+                }
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)).name.Contains("Wheat"))
+                {                                       
+                    machineManager.wheatSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
+                }
+                else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)).name.Contains("Flower"))
+                {                                       
+                    machineManager.flowerSpawners.Add(new Vector3(x + 0.5f, y + 0.5f, 0));
                 }
                 else if (mapManager.GetMachineMap().GetTile(new Vector3Int(x, y, 0)) is CombinerCPUTile combiner)
                 {

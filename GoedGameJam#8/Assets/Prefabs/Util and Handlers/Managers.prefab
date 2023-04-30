@@ -151,6 +151,7 @@ MonoBehaviour:
   selectedRuleTile: {fileID: 0}
   selectedAnimatedTile: {fileID: 0}
   selectedMultiTile: {fileID: 0}
+  selectedSeedTile: {fileID: 0}
   gameTileDatas:
   - {fileID: 11400000, guid: 28cc9f28f020279469a0b6b29704f3db, type: 2}
   - {fileID: 11400000, guid: dfd4683d1bed8c34ba2ae8c02bdeb25d, type: 2}
@@ -171,6 +172,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3e06c801969cb3747b99716cbf1033ce, type: 2}
   hoverHighlight: {fileID: 6518340055194314656}
   gameMap: {fileID: 0}
+  plantMap: {fileID: 0}
   conveyorMap: {fileID: 0}
   machineMap: {fileID: 0}
   hoverMap: {fileID: 0}
@@ -330,6 +332,8 @@ MonoBehaviour:
   ConveyorAudioClip: {fileID: 8300000, guid: 7855b7a6fb5be614598e39a119c58642, type: 3}
   audioSource: {fileID: 2367133609327758352}
   selectedTile: 0
+  wheatSprite: {fileID: 21300000, guid: bfc2289c5044dcd4dab05016250d3222, type: 3}
+  flowerSprite: {fileID: 21300000, guid: dadcdf907edbd56459e206c95bb2684e, type: 3}
 --- !u!82 &2367133609327758352
 AudioSource:
   m_ObjectHideFlags: 0
@@ -477,6 +481,8 @@ MonoBehaviour:
   waterSpawners: []
   grassSpawners: []
   seedSpawners: []
+  wheatSpawners: []
+  flowerSpawners: []
   recipes:
   - {fileID: 11400000, guid: 97491112523caf94e9f17e20ef58aedc, type: 2}
   animalRecipes:
@@ -501,6 +507,8 @@ MonoBehaviour:
   - {fileID: 8349638535310874770, guid: 7c80332ec8dc5e84c937b61d5ccb67da, type: 3}
   - {fileID: 9215499574506095318, guid: 2e255559c9e81ed4fa3abd70f4d3bfc8, type: 3}
   - {fileID: 6222849264425882008, guid: f5385fb9f457a3f4db44a1bd76dcb200, type: 3}
+  - {fileID: 7513829533597498028, guid: 1dfc8d09f48c53b45aedb9794436a1ca, type: 3}
+  - {fileID: 1048494962406601705, guid: 2f6f497b4225e8a498ac46bf18890453, type: 3}
   spawnInterval: 2
 --- !u!1 &4254235305920640076
 GameObject:
@@ -691,6 +699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapManager: {fileID: 1386659341379418046}
   spriteEditorManager: {fileID: 8622603902892440748}
+  resourceManager: {fileID: 8888773509757309289}
   interactiveMap: {fileID: 0}
   hoverTile:
   - {fileID: 0}

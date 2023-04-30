@@ -44,10 +44,12 @@ public class Biome : MonoBehaviour
     Vector3 size;             //The vector 3 scale of the entire viewport (viewable range)
     public int tempSeed = 1337;
     public int precSeed = 10273;
+    public List<SeedTile> seedTiles;
     
     [SerializeField] private MapManager mapManager;
     void Start()
     {
+        seed = (int) Random.Range(int.MinValue, int.MaxValue);
         size = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)) - Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         mask.transform.localScale = size;
         //voronoi.SetNoiseType(FastNoise.NoiseType.Cellular);
@@ -75,6 +77,7 @@ public class Biome : MonoBehaviour
                 seedTile.name = "Seed";
                 seedTile.sprite = seedSprite;
                 seedTile.Initialize(random, amount);
+                seedTiles.Add(seedTile);
                 GetComponent<Tilemap>().SetTile(randNum, seedTile);
             }
         }
@@ -373,5 +376,7 @@ public class Biome : MonoBehaviour
     void Update()
     {
         GenerateTerrain();
+       
+
     }
 }

@@ -8,12 +8,15 @@ public class MapManager : MonoBehaviour
     [SerializeField, ReadOnly] private RuleTile selectedRuleTile;
     [SerializeField, ReadOnly] private AnimatedTile selectedAnimatedTile;
     [SerializeField, ReadOnly] private MultiTile selectedMultiTile;
+    [SerializeField, ReadOnly] private SeedTile selectedSeedTile;
     [SerializeField] private List<GameTileData> gameTileDatas;
     [SerializeField] private List<ConveyorTiles> conveyorAnimatedTiles;
     [SerializeField] private HoverHighlight hoverHighlight;
 
     [Header("Maps")]
     [SerializeField] private Tilemap gameMap;
+    
+    [SerializeField] private Tilemap plantMap;
     [SerializeField] private Tilemap conveyorMap;
     [SerializeField] private Tilemap machineMap;
     [SerializeField] private Tilemap hoverMap;
@@ -39,6 +42,12 @@ public class MapManager : MonoBehaviour
         selectedRuleTile = newTile;
         hoverHighlight.SetRuleHoverDisplay(newTile);
     }
+    public SeedTile GetSelectedSeedTile() { return selectedSeedTile; }
+    public void SetSelectedSeedTile(SeedTile newTile) {
+        ResetSelectedTiles();
+        selectedSeedTile = newTile;
+        hoverHighlight.SetSeedHoverDisplay(newTile);
+    }
     public MultiTile GetSelectedMultiTile() { return selectedMultiTile; }
     public void SetSelectedMultiTile(MultiTile multiTile) {
         ResetSelectedTiles();
@@ -57,13 +66,16 @@ public class MapManager : MonoBehaviour
     public static Dictionary<Sprite, ConveyorTiles> GetConveyorDictionary() { return conveyorDataTiles; } 
 
     public Tilemap GetGameMap() { return gameMap; }
+    
+    public Tilemap GetPlantMap() { return plantMap; }
     public Tilemap GetConveyorMap() { return conveyorMap; }
     public Tilemap GetMachineMap() { return machineMap; }
     public Tilemap GetHoverMap() { return hoverMap; }
     private void ResetSelectedTiles() {
         selectedAnimatedTile = null;
         selectedMultiTile = null;
-        selectedRuleTile = null;
+        selectedRuleTile = null;        
+        selectedSeedTile = null;
         hoverHighlight.SetRuleHoverDisplay(null);
     }    
     public HoverHighlight GetHoverHighlight() { return hoverHighlight; }

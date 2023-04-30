@@ -5,6 +5,8 @@ public class HoverHighlight : MonoBehaviour
 {
     [SerializeField] private MapManager mapManager;
     [SerializeField] private SpriteEditorManager spriteEditorManager;
+    
+    [SerializeField] private InventoryManager resourceManager;
     [SerializeField] private Tilemap interactiveMap = null;
     [SerializeField, ReadOnly] private AnimatedTile[] hoverTile = null;
     [SerializeField] private Sprite defaultTile = null;
@@ -33,12 +35,65 @@ public class HoverHighlight : MonoBehaviour
             previousMousePos = mousePos;
         }
     }
+    public bool HasResource()
+    {
+        string name = mapManager.GetSelectedRuleTile().name;
+        if (name.Contains("Barren"))
+        {
+            return CheckInventory(Enums.ItemType.Dirt);
+        }
+        else if (name.Contains("Water"))
+        {
+            return CheckInventory(Enums.ItemType.Water);
+        }
+        else if (name.Contains("Soil"))
+        {
+            return CheckInventory(Enums.ItemType.Soil);
+        }
+        else if (name.Contains("Grass"))
+        {
+            return CheckInventory(Enums.ItemType.GrassSeeds);
+        }
+
+        return false;
+    }
+    public bool CanSeedBePlaced()
+    {
+        string name = mapManager.GetSelectedSeedTile().name;
+        if (name.Contains("Wheat"))
+        {
+            if (!CheckInventory(Enums.ItemType.WheatSeeds)) return false;
+            if (!mapManager.GetGameMap().GetTile(gridPosition).name.Contains("Soil")) return false;
+        }
+        else if (name.Contains("Flower"))
+        {            
+            if (!CheckInventory(Enums.ItemType.FlowerSeeds)) return false;
+            if (!mapManager.GetGameMap().GetTile(gridPosition).name.Contains("Soil") && !mapManager.GetGameMap().GetTile(gridPosition).name.Contains("Grass")) return false;
+        }
+        return true;
+    }
+    private bool CheckInventory(Enums.ItemType itemType)
+    {
+        foreach (Resource r in resourceManager.inventory)
+        {
+            if (r.tileType == itemType)
+            {
+                if (r.amount <= 0) return false;
+                else return true;
+            }
+        }
+        return false;
+    }
     public void ResetTileMapColor() {
         if (mapManager.GetSelectedAnimatedTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
             interactiveMap.color = GetNewTileMapColor(Color.red);
         else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetMachineMap().GetTile(gridPosition) != null)
             interactiveMap.color = GetNewTileMapColor(Color.red);
         else if (mapManager.GetSelectedMultiTile() != null && mapManager.GetSelectedMultiTile().name == "Extractor" && !CanPlaceMachine())
+            interactiveMap.color = GetNewTileMapColor(Color.red);
+        else if (mapManager.GetSelectedRuleTile() != null && !HasResource())
+            interactiveMap.color = GetNewTileMapColor(Color.red);
+        else if (mapManager.GetSelectedSeedTile() != null && !CanSeedBePlaced())
             interactiveMap.color = GetNewTileMapColor(Color.red);
         else
             interactiveMap.color = GetNewTileMapColor(Color.green);
@@ -108,6 +163,19 @@ public class HoverHighlight : MonoBehaviour
         }
         else
             hoverTile = MakeNewTile(selectedTile.m_DefaultSprite);
+    }
+
+    public void SetSeedHoverDisplay(SeedTile selectedTile) {
+        if (selectedTile == null) {
+            hoverTile = MakeNewTile(defaultTile);
+            interactiveMap.SetTile(gridPosition, hoverTile[0]);
+            interactiveMap.color = GetNewTileMapColor(Color.green);
+        }
+        else
+        {
+            hoverTile = MakeNewTile(selectedTile.sprite);
+        }
+          //  
     }
 
     // Set animation tile hover display override

@@ -32,6 +32,9 @@ public class LeftPopupPlaceMenu : MonoBehaviour
     public void SelectRuleTileToPlace(RuleTile building) {
         mapManager.SetSelectedRuleTile(building);
     }
+    public void SelectSeedTileToPlace(SeedTile plant) {
+        mapManager.SetSelectedSeedTile(plant);
+    }
     public void SelectConveyorToPlace(AnimatedTile conveyor) {
         mapManager.SetSelectedAnimatedTile(conveyor);
     }

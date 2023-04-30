@@ -13,6 +13,8 @@ public class MachineManager : MonoBehaviour
     public List<Vector3> grassSpawners = new();
     
     public List<Vector3> seedSpawners = new();
+    public List<Vector3> wheatSpawners = new();
+    public List<Vector3> flowerSpawners = new();
 
     public List<Recipe> recipes = new();
     
@@ -43,13 +45,35 @@ public class MachineManager : MonoBehaviour
     }
     void CheckSpawners()
     {
+        if (wheatSpawners.Count > 0) {
+            List<Vector3> toRemove = new();
+            foreach (Vector3 v in wheatSpawners) {                
+                if (mapManager.GetPlantMap().GetTile(Vector3Int.FloorToInt(v)) == null) {
+                    toRemove.Add(v);
+                    ReAssignSpawner(v, mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name);
+                }
+            }
+            foreach(Vector3 v in toRemove)
+                wheatSpawners.Remove(v);
+        }
+        if (flowerSpawners.Count > 0) {
+            List<Vector3> toRemove = new();
+            foreach (Vector3 v in flowerSpawners) {
+                if (mapManager.GetPlantMap().GetTile(Vector3Int.FloorToInt(v)) == null) {
+                    toRemove.Add(v);
+                    ReAssignSpawner(v, mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name);
+                }
+            }
+            foreach(Vector3 v in toRemove)
+                flowerSpawners.Remove(v);
+        }
         if (seedSpawners.Count > 0) {
             List<Vector3> toRemove = new();
             foreach (Vector3 v in seedSpawners) {
                 string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
                 if (!name.Contains("Seed")) {
                     toRemove.Add(v);
-                    ReAssignSpawner(v);
+                    ReAssignSpawner(v, name);
                 }
             }
             foreach(Vector3 v in toRemove)
@@ -61,7 +85,7 @@ public class MachineManager : MonoBehaviour
                 string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
                 if (!name.Contains("Barren")) {
                     toRemove.Add(v);
-                    ReAssignSpawner(v);
+                    ReAssignSpawner(v, name);
                 }
             }
             foreach(Vector3 v in toRemove)
@@ -73,7 +97,7 @@ public class MachineManager : MonoBehaviour
                 string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
                 if (!name.Contains("Soil")) {
                     toRemove.Add(v);
-                    ReAssignSpawner(v);
+                    ReAssignSpawner(v, name);
                 }
             }
             foreach(Vector3 v in toRemove)
@@ -85,7 +109,7 @@ public class MachineManager : MonoBehaviour
                 string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
                 if (!name.Contains("Water")) {
                     toRemove.Add(v);
-                    ReAssignSpawner(v);                                  
+                    ReAssignSpawner(v, name);                                  
                 }
             }
             foreach(Vector3 v in toRemove)
@@ -97,7 +121,7 @@ public class MachineManager : MonoBehaviour
                 string name = mapManager.GetGameMap().GetTile(Vector3Int.FloorToInt(v)).name;
                 if (!name.Contains("Grass")) {
                     toRemove.Add(v);
-                    ReAssignSpawner(v);
+                    ReAssignSpawner(v, name);
                 }
             }
             foreach(Vector3 v in toRemove)
@@ -105,8 +129,10 @@ public class MachineManager : MonoBehaviour
         }
     }
 
-    private void ReAssignSpawner(Vector3 v) {
-        if (name.Contains("Seed") && !seedSpawners.Contains(v)) seedSpawners.Add(v);      
+    private void ReAssignSpawner(Vector3 v, string name) {
+        if (name.Contains("Seed") && !seedSpawners.Contains(v)) seedSpawners.Add(v);    
+        if (name.Contains("Wheat") && !wheatSpawners.Contains(v)) wheatSpawners.Add(v);    
+        if (name.Contains("Flower") && !flowerSpawners.Contains(v)) flowerSpawners.Add(v);       
         if (name.Contains("Barren") && !dirtSpawners.Contains(v)) dirtSpawners.Add(v);                     
         if (name.Contains("Soil") && !soilSpawners.Contains(v)) soilSpawners.Add(v);                                    
         if (name.Contains("Water") && !waterSpawners.Contains(v)) waterSpawners.Add(v);
@@ -119,7 +145,28 @@ public class MachineManager : MonoBehaviour
         SpawnItems(soilSpawners, 1);
         SpawnItems(waterSpawners, 2);        
         SpawnItems(grassSpawners, 3);
-        SpawnSeeds(seedSpawners);
+        SpawnSeeds(seedSpawners);        
+        SpawnPlants(wheatSpawners);             
+        SpawnPlants(flowerSpawners);
+    }
+
+    private void SpawnPlants(List<Vector3> resource)
+    {
+        foreach(Vector3 t in resource){
+            if (mapManager.GetPlantMap().GetTile(Vector3Int.FloorToInt(t)) is SeedTile seedTile) 
+            {
+                int itemToSpawn = seedTile.randSeed;
+                Vector3 temp = t;
+                temp.z = spawnItems[itemToSpawn].transform.position.z;
+                Instantiate(spawnItems[itemToSpawn], temp, Quaternion.identity);
+                seedTile.seedsAmount--;
+
+                if (seedTile.seedsAmount <= 0)
+                {                    
+                    mapManager.GetPlantMap().SetTile(Vector3Int.FloorToInt(t), null);
+                }
+            }  
+        }
     }
 
     private void SpawnSeeds(List<Vector3> resource)
