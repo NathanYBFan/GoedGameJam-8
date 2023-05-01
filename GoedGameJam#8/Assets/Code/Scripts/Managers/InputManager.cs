@@ -45,7 +45,7 @@ public class InputManager : MonoBehaviour
             spriteEditorManager.RotateSprite(false);
 
         else if (Input.GetKeyDown(KeyCode.L))
-            itemSaveManager.SetNumberOfBears(itemSaveManager.GetNumberOfBears() + 1);
+            //itemSaveManager.SetNumberOfBears(itemSaveManager.GetNumberOfBears() + 1);
 
 
         if (Input.GetKeyDown(KeyCode.Escape))               // Escape button click, pause or unpause game

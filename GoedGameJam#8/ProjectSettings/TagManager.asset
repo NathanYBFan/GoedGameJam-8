@@ -7,6 +7,12 @@ TagManager:
   - UI
   - Conveyors
   - Item
+  - Cows
+  - Bears
+  - Foxes
+  - Sheep
+  - Rabbits
+  - Fish
   layers:
   - Default
   - TransparentFX
